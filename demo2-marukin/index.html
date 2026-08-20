@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ja" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>大衆酒場 まるきん | 大井町 ※デモサイト</title>
+<meta name="description" content="串カツ120円から。煮込みとホッピーと、気取らない一杯。大井町駅徒歩3分の大衆酒場「まるきん」。※これは架空店舗のデモサイトです。">
+<meta name="theme-color" content="#F7F5EC">
+<meta name="robots" content="noindex">
+<meta property="og:image" content="https://images.unsplash.com/photo-1767265581515-afe9ff46ad76?q=80&w=1200&auto=format&fit=crop">
+<script>document.documentElement.classList.replace('no-js', 'js');</script>
+<meta property="og:type" content="website">
+<meta property="og:title" content="大衆酒場 まるきん | 大井町 ※デモサイト">
+<meta property="og:description" content="串カツ120円から。煮込みとホッピーと、気取らない一杯。※架空店舗のデモサイトです。">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23C9302C'/%3E%3Ctext x='32' y='44' font-size='32' text-anchor='middle' fill='%23FFF8E8' font-family='serif'%3Eま%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "大衆酒場 まるきん(架空店舗・デモサイト)",
+  "servesCuisine": "串カツ・煮込み・大衆酒場",
+  "priceRange": "¥",
+  "telephone": "+81-3-0000-0000",
+  "address": { "@type": "PostalAddress", "addressLocality": "東京都品川区", "streetAddress": "大井0-0-0(架空の住所)" },
+  "openingHoursSpecification": { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "16:00", "closes": "23:30" },
+  "description": "架空店舗のデモサイトです。制作実績紹介のためのサンプルであり、実在の店舗ではありません。"
+}
+</script>
+<style>
+  :root {
+    /* 文字色は必ず --sumi か --shiro。--kin と --aka は文字色に使わない(ベタ面・罫線専用) */
+    --aka: #C9302C;
+    --kin: #E8A020;
+    --kon: #1B2A44;
+    --kiji: #F7F5EC;
+    --shiro: #FFFCF2;
+    --sumi: #211D1A;
+    --kage: 4px 4px 0;
+    --tegaki: "Yusei Magic", "Hiragino Maru Gothic ProN", "Meiryo", sans-serif;
+    --gothic: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+    --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 32px; --sp-6: 48px; --sp-8: 64px; --sp-10: 80px;
+    --header-h: 60px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    position: relative;
+    font-family: var(--gothic);
+    color: var(--sumi); background: var(--kiji);
+    line-height: 1.8; font-size: 16px; letter-spacing: 0.03em;
+    background-image:
+      repeating-linear-gradient(-45deg, rgba(33, 29, 26, 0.032) 0 1px, transparent 1px 7px),
+      repeating-linear-gradient(12deg, rgba(33, 29, 26, 0.022) 0 1px, transparent 1px 11px);
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--kon); }
+  [id] { scroll-margin-top: calc(var(--header-h) + 12px); }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 3px solid var(--kon); outline-offset: 3px;
+  }
+  .dark :focus-visible, .mobile-bar a:focus-visible { outline-color: var(--kin); }
+
+  /* ---------- 共通部品 ---------- */
+  .btn {
+    display: inline-block; font-family: var(--tegaki); font-size: 18px; text-decoration: none;
+    padding: 14px 26px; border: 2.5px solid var(--sumi); color: var(--shiro);
+    box-shadow: var(--kage) var(--sumi); transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .btn:hover { transform: translate(-1px, -1px); box-shadow: 6px 6px 0 var(--sumi); }
+  .btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--sumi); }
+  .btn-aka { background: var(--aka); }
+  .btn-kon { background: var(--kon); }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 var(--sp-3); }
+  h2.midashi {
+    font-family: var(--tegaki); font-size: clamp(28px, 4vw, 40px); font-weight: 400;
+    letter-spacing: 0.08em; margin-bottom: var(--sp-6); display: inline-block;
+    padding: 4px 18px; transform: rotate(-1.2deg);
+  }
+  .midashi-aka { background: var(--aka); color: var(--shiro); box-shadow: var(--kage) var(--sumi); }
+  .midashi-kin { background: var(--kin); color: var(--sumi); box-shadow: var(--kage) var(--sumi); }
+
+  /* ---------- header ---------- */
+  .header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: var(--header-h);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 var(--sp-3);
+    background: var(--kiji); border-bottom: 2.5px solid var(--sumi);
+  }
+  .brand { font-family: var(--tegaki); font-size: 21px; color: var(--sumi); text-decoration: none; white-space: nowrap; }
+  .brand .maru { display: inline-block; width: 30px; height: 30px; background: var(--aka); color: var(--shiro); border-radius: 50%; text-align: center; line-height: 31px; font-size: 16px; margin-right: 8px; transform: rotate(-4deg); }
+  .nav { display: flex; gap: var(--sp-3); align-items: center; }
+  .nav a { font-family: var(--tegaki); text-decoration: none; color: var(--sumi); font-size: 16px; }
+  .nav a:hover { color: var(--aka); text-decoration: underline; text-decoration-thickness: 3px; text-underline-offset: 5px; text-decoration-color: var(--kin); }
+  .nav .btn { padding: 10px 16px; font-size: 15px; min-height: 44px; }
+  .nav-toggle { display: none; font-family: var(--tegaki); background: var(--shiro); border: 2px solid var(--sumi); min-height: 44px; padding: 8px 14px; font-size: 15px; cursor: pointer; box-shadow: 2px 2px 0 var(--sumi); }
+
+  /* ---------- hero ---------- */
+  .hero { padding: calc(var(--header-h) + var(--sp-8)) 0 var(--sp-8); position: relative; overflow: hidden; }
+  .hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--sp-6); align-items: center; }
+  .hero-name { font-family: var(--tegaki); font-size: clamp(52px, 8vw, 88px); line-height: 1.15; letter-spacing: 0.04em; }
+  .hero-name small { display: block; font-size: 20px; letter-spacing: 0.3em; color: var(--aka); margin-bottom: 4px; }
+  .hero-catch { font-family: var(--tegaki); font-size: clamp(20px, 2.6vw, 27px); margin: var(--sp-3) 0; border-bottom: 4px solid var(--aka); display: inline-block; padding-bottom: 4px; }
+  .hero-badges { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin: var(--sp-3) 0 var(--sp-4); }
+  .hero-badges span { border: 2px solid var(--sumi); background: var(--shiro); padding: 5px 13px; font-size: 14px; font-weight: 500; box-shadow: 2px 2px 0 var(--sumi); }
+  .hero-cta { display: flex; gap: var(--sp-3); flex-wrap: wrap; }
+  /* 提灯 */
+  .chochin-row { display: flex; justify-content: center; gap: var(--sp-2); align-items: flex-start; }
+  .chochin { width: 74px; filter: drop-shadow(3px 4px 0 rgba(33,29,26,0.25)); transform-origin: 50% 0; animation: yure 3.6s ease-in-out infinite; }
+  .chochin:nth-child(2) { margin-top: 22px; animation-duration: 4.4s; animation-delay: -1.3s; }
+  .chochin:nth-child(3) { margin-top: 7px; animation-duration: 3.1s; animation-delay: -0.5s; }
+  .chochin:nth-child(4) { margin-top: 30px; animation-duration: 4.9s; animation-delay: -2.1s; }
+  @keyframes yure {
+    0%, 100% { transform: rotate(-2.4deg); }
+    50% { transform: rotate(2.4deg); }
+  }
+  /* 判子 */
+  @keyframes petan {
+    from { transform: scale(1.28); opacity: 0; }
+  }
+  .stamp.in .tanzaku { animation: petan 0.26s cubic-bezier(0.2, 1.5, 0.4, 1) backwards; }
+  .stamp.in .tanzaku:nth-child(2) { animation-delay: 0.13s; }
+  .stamp.in .tanzaku:nth-child(3) { animation-delay: 0.26s; }
+  h2.midashi.in { animation: petan 0.24s cubic-bezier(0.2, 1.5, 0.4, 1) backwards; }
+
+  /* ---------- 本日のおすすめ(短冊) ---------- */
+  .osusume { background: var(--kon); color: var(--shiro); padding: var(--sp-8) 0 var(--sp-10); background-image: radial-gradient(rgba(255, 248, 232, 0.06) 1px, transparent 1px); background-size: 22px 22px; }
+  .tanzaku-row { display: flex; justify-content: center; gap: var(--sp-4); flex-wrap: wrap; }
+  .tanzaku {
+    writing-mode: vertical-rl; text-orientation: upright;
+    font-family: var(--tegaki); font-size: 24px; letter-spacing: 0.14em;
+    background: var(--shiro); color: var(--sumi);
+    padding: 22px 16px; min-height: 240px; line-height: 1.4;
+    border: 2.5px solid var(--sumi); box-shadow: var(--kage) var(--sumi);
+    position: relative;
+  }
+  .tanzaku b { font-size: 15px; font-family: var(--gothic); font-weight: 700; color: var(--sumi); letter-spacing: 0.2em; margin-block-start: 10px; }
+  .tanzaku:nth-child(1) { transform: rotate(-2.5deg); background: var(--aka); color: var(--shiro); }
+  .tanzaku:nth-child(1) b { color: var(--shiro); }
+  .tanzaku:nth-child(2) { transform: rotate(1.5deg); margin-top: 14px; }
+  .tanzaku:nth-child(3) { transform: rotate(-1deg) translateY(46px); background: var(--kin); margin-top: 5px; z-index: 5; }
+  .osusume .chui { text-align: center; margin-top: var(--sp-6); font-size: 14px; opacity: 0.85; }
+
+  /* ---------- 名物メニュー(壁の品書き) ---------- */
+  .menu-section { padding: var(--sp-10) 0; }
+  .menu-kokoro { font-family: var(--tegaki); font-size: 19px; margin: -20px 0 var(--sp-6); transform: rotate(-0.8deg); }
+  .menu-walls { display: grid; grid-template-columns: 1.3fr 1fr 0.8fr; gap: var(--sp-4); align-items: start; }
+  .fuda-group h3 { font-family: var(--tegaki); font-size: 22px; font-weight: 400; background: var(--sumi); color: var(--shiro); display: inline-block; padding: 3px 14px; margin-bottom: var(--sp-2); transform: rotate(-1deg); }
+  .fuda { list-style: none; }
+  .fuda li {
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10px;
+    font-family: var(--tegaki); font-size: 17px;
+    background: var(--shiro); border: 2px solid var(--sumi); padding: 9px 13px; margin-bottom: 9px;
+    box-shadow: 2px 2px 0 rgba(33, 29, 26, 0.55);
+  }
+  .fuda li { transform: rotate(var(--r, 0deg)); margin-left: var(--ml, 0px); }
+  .fuda-group:nth-child(1) li:nth-child(1) { --r: -1.4deg; }
+  .fuda-group:nth-child(1) li:nth-child(2) { --r: 0.3deg; --ml: 5px; }
+  .fuda-group:nth-child(1) li:nth-child(4) { --r: 1.1deg; }
+  .fuda-group:nth-child(1) li:nth-child(5) { --r: -0.5deg; --ml: 9px; }
+  .fuda-group:nth-child(1) li:nth-child(6) { --r: 0.2deg; }
+  .fuda-group:nth-child(2) li:nth-child(1) { --r: 0.8deg; }
+  .fuda-group:nth-child(2) li:nth-child(2) { --r: -1.8deg; }
+  .fuda-group:nth-child(2) li:nth-child(3) { --ml: 6px; }
+  .fuda-group:nth-child(2) li:nth-child(4) { --r: -0.3deg; }
+  .fuda-group:nth-child(2) li:nth-child(5) { --r: 1.4deg; --ml: 3px; }
+  .fuda-group:nth-child(3) li:nth-child(1) { --r: -0.7deg; --ml: 4px; }
+  .fuda-group:nth-child(3) li:nth-child(3) { --r: 1.9deg; }
+  .fuda-group:nth-child(3) li:nth-child(4) { --r: -1.2deg; }
+  .fuda-group:nth-child(3) li:nth-child(5) { --r: 0.5deg; --ml: 8px; }
+  .fuda .ne { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .fuda .meibutsu { background: var(--aka); color: var(--shiro); }
+  .menu-note { margin-top: var(--sp-4); font-size: 14px; }
+
+  /* ---------- 宴会 ---------- */
+  .enkai { background: var(--aka); color: var(--shiro); padding: var(--sp-10) 0; }
+  .enkai-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin-bottom: var(--sp-6); max-width: 760px; }
+  .enkai-card { background: var(--shiro); color: var(--sumi); border: 2.5px solid var(--sumi); box-shadow: var(--kage) var(--sumi); padding: var(--sp-4); }
+  .enkai-card:nth-child(1) { transform: rotate(-1deg); }
+  .enkai-card:nth-child(2) { transform: rotate(0.8deg); }
+  .enkai-card h3 { font-family: var(--tegaki); font-size: 21px; font-weight: 400; }
+  .enkai-card .en-price { font-family: var(--tegaki); font-size: 34px; color: var(--aka); margin: 6px 0 10px; font-variant-numeric: tabular-nums; }
+  .enkai-card .en-price small { font-size: 15px; color: var(--sumi); }
+  .enkai-card ul { list-style: none; font-size: 14.5px; }
+  .enkai-card li { padding: 5px 0; border-bottom: 1px dashed rgba(33, 29, 26, 0.35); }
+  .enkai-card .cap { font-size: 14px; margin-top: 10px; }
+  .enkai .btn { font-size: 20px; }
+
+  /* ---------- 店について ---------- */
+  .about { padding: var(--sp-10) 0; }
+  .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: var(--sp-6); align-items: center; }
+  .about p { margin-bottom: var(--sp-3); }
+  .about .oyaji { font-family: var(--tegaki); font-size: 17px; }
+  .about-photo { border: 2.5px solid var(--sumi); box-shadow: var(--kage) var(--sumi); transform: rotate(1.2deg); }
+  .about-photo img { width: 100%; height: 340px; object-fit: cover; }
+  .about-photo figcaption { font-size: 14px; padding: 8px 12px; background: var(--shiro); border-top: 2px solid var(--sumi); font-family: var(--gothic); }
+  .ph { position: relative; }
+  .ph img { filter: grayscale(1) contrast(1.15); }
+  .ph::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: var(--aka); mix-blend-mode: multiply; opacity: 0.32;
+  }
+  .ph::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    background-image: radial-gradient(rgba(247, 245, 236, 0.35) 1px, transparent 1px);
+    background-size: 5px 5px;
+    mix-blend-mode: screen; opacity: 0.35;
+  }
+
+  /* ---------- アクセス・予約 ---------- */
+  .access { background: var(--kon); color: #F5F2E6; padding: var(--sp-10) 0; }
+  .access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-6); }
+  .info-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .info-table th, .info-table td { text-align: left; padding: 11px 8px; border-bottom: 1px solid rgba(245, 242, 230, 0.25); vertical-align: top; font-variant-numeric: tabular-nums; }
+  .info-table th { font-family: var(--tegaki); font-weight: 400; white-space: nowrap; width: 6.5em; }
+  .info-table a { color: #F5F2E6; }
+  .map-frame { width: 100%; height: 240px; border: 2.5px solid var(--sumi); margin-top: var(--sp-2); }
+  .map-link { display: inline-block; margin-top: var(--sp-1); color: var(--kin); font-size: 14px; }
+  .oshirase { margin-top: var(--sp-3); font-size: 14px; border-left: 3px solid var(--kin); padding-left: 10px; }
+  .tel-box { margin-bottom: var(--sp-3); }
+  .tel-box .tel { font-family: var(--tegaki); font-size: 26px; color: #F5F2E6; text-decoration: none; }
+  .tel-box .demo-tag { font-size: 14px; opacity: 0.8; margin-left: 8px; }
+  .tel-note { font-size: 14px; opacity: 0.9; margin-top: 2px; }
+  .reserve-form { margin-top: var(--sp-3); display: grid; gap: var(--sp-2); }
+  .reserve-form .pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2); }
+  .reserve-form label { font-size: 14px; display: block; }
+  .reserve-form .opt { opacity: 0.75; font-size: 13px; }
+  .reserve-form input, .reserve-form select, .reserve-form textarea {
+    width: 100%; padding: 11px; border: 2px solid rgba(245, 242, 230, 0.5); background: rgba(245, 242, 230, 0.1);
+    color: #F5F2E6; font-family: var(--gothic); font-size: 16px; color-scheme: dark;
+  }
+  .reserve-form textarea { min-height: 64px; resize: vertical; }
+  .reserve-form button {
+    font-family: var(--tegaki); font-size: 18px; padding: 14px; cursor: pointer;
+    background: var(--kin); color: var(--sumi); border: 2.5px solid var(--sumi); box-shadow: var(--kage) var(--sumi);
+    transition: transform 0.08s ease, box-shadow 0.08s ease;
+  }
+  .reserve-form button:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--sumi); }
+  .form-policy { font-size: 14px; opacity: 0.85; line-height: 1.7; }
+  .form-done { border: 2.5px solid var(--kin); padding: var(--sp-3); font-size: 15px; background: rgba(232, 160, 32, 0.12); margin-bottom: var(--sp-2); }
+  .form-done:empty { display: none; }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--sumi); color: rgba(247, 245, 236, 0.9); padding: var(--sp-6) var(--sp-3); text-align: center; font-size: 14px; }
+  footer .fbrand { font-family: var(--tegaki); font-size: 19px; color: var(--kiji); margin-bottom: var(--sp-2); }
+  footer .demo-note { margin-top: var(--sp-2); opacity: 0.65; font-size: 13px; }
+
+  .mobile-bar { display: none; }
+  /* 出現演出はJSが生きている時だけ。素の状態では全部見える */
+  .js .stamp { opacity: 0; }
+  .js .stamp.in { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .stamp { opacity: 1; }
+    .chochin, .stamp.in .tanzaku, h2.midashi.in { animation: none; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    :root { --header-h: 54px; }
+    .nav-toggle { display: block; }
+    .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; background: var(--kiji); border-bottom: 2.5px solid var(--sumi); padding: var(--sp-2) var(--sp-3) var(--sp-3); gap: 0; }
+    .header.open .nav { display: flex; }
+    .nav a { padding: 13px 4px; border-bottom: 1px dashed rgba(33, 29, 26, 0.3); }
+    .nav .btn { margin-top: var(--sp-2); text-align: center; }
+    .hero .wrap, .about-grid, .access-grid { grid-template-columns: 1fr; }
+    .chochin-row { justify-content: flex-start; margin-top: var(--sp-4); }
+    .chochin { width: 56px; }
+    .menu-walls { grid-template-columns: 1fr; }
+    .enkai-grid { grid-template-columns: 1fr; }
+    .tanzaku { min-height: 200px; font-size: 21px; }
+    .about-photo img { height: 240px; }
+    .reserve-form .pair { grid-template-columns: 1fr; }
+    .mobile-bar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; bottom: 0; left: 0; right: 0; z-index: 60; border-top: 2.5px solid var(--sumi); }
+    .mobile-bar a { display: block; text-align: center; padding: 15px 8px calc(15px + env(safe-area-inset-bottom)); font-family: var(--tegaki); font-size: 16px; text-decoration: none; }
+    .mobile-bar .tel { background: var(--kin); color: var(--sumi); }
+    .mobile-bar .rsv { background: var(--aka); color: var(--shiro); }
+    body { padding-bottom: calc(62px + env(safe-area-inset-bottom)); }
+    .tanzaku-row { flex-wrap: wrap; }
+    .tanzaku:nth-child(3) { transform: rotate(-1deg); }
+  }
+  @media (max-width: 600px) {
+    .brand { font-size: 18px; }
+  }
+  @media (max-width: 380px) {
+    .brand { font-size: 15px; }
+    .brand .maru { width: 24px; height: 24px; line-height: 25px; font-size: 13px; margin-right: 5px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="brand" href="#top"><span class="maru" aria-hidden="true">ま</span>大衆酒場 まるきん</a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="gnav">ごあんない</button>
+  <nav class="nav" id="gnav">
+    <a href="#osusume">本日のおすすめ</a>
+    <a href="#menu">品書き</a>
+    <a href="#enkai">宴会</a>
+    <a href="#access">アクセス</a>
+    <a class="btn btn-aka" href="#reserve">席の予約</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1 class="hero-name"><small>東京・大井町</small>大衆酒場<br>まるきん</h1>
+        <p class="hero-catch">仕事帰りに、一杯やろう。</p>
+        <div class="hero-badges">
+          <span>16:00〜23:30</span>
+          <span>日曜定休</span>
+          <span>30席</span>
+          <span>大井町駅 徒歩3分</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-aka" href="tel:0300000000">電話で予約</a>
+          <a class="btn btn-kon" href="#reserve">ネット予約</a>
+        </div>
+      </div>
+      <div class="chochin-row" aria-hidden="true">
+        <svg class="chochin" viewBox="0 0 64 96" xmlns="http://www.w3.org/2000/svg">
+          <line x1="32" y1="0" x2="32" y2="10" stroke="#C9302C" stroke-width="3"/>
+          <ellipse cx="32" cy="48" rx="22" ry="36" fill="#C9302C" stroke="#211D1A" stroke-width="2"/>
+          <line x1="14" y1="34" x2="50" y2="34" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <line x1="12" y1="48" x2="52" y2="48" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <line x1="14" y1="62" x2="50" y2="62" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <text x="32" y="56" text-anchor="middle" font-size="22" fill="#FFF8E8" font-family="serif" font-weight="bold">ま</text>
+        </svg>
+        <svg class="chochin" viewBox="0 0 64 96" xmlns="http://www.w3.org/2000/svg">
+          <line x1="32" y1="0" x2="32" y2="10" stroke="#C9302C" stroke-width="3"/>
+          <ellipse cx="32" cy="48" rx="22" ry="36" fill="#C9302C" stroke="#211D1A" stroke-width="2"/>
+          <line x1="14" y1="34" x2="50" y2="34" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <line x1="12" y1="48" x2="52" y2="48" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <line x1="14" y1="62" x2="50" y2="62" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <text x="32" y="56" text-anchor="middle" font-size="22" fill="#FFF8E8" font-family="serif" font-weight="bold">る</text>
+        </svg>
+        <svg class="chochin" viewBox="0 0 64 96" xmlns="http://www.w3.org/2000/svg">
+          <line x1="32" y1="0" x2="32" y2="10" stroke="#E8A020" stroke-width="3"/>
+          <ellipse cx="32" cy="48" rx="22" ry="36" fill="#E8A020" stroke="#211D1A" stroke-width="2"/>
+          <line x1="14" y1="34" x2="50" y2="34" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <line x1="12" y1="48" x2="52" y2="48" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <line x1="14" y1="62" x2="50" y2="62" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <text x="32" y="56" text-anchor="middle" font-size="22" fill="#211D1A" font-family="serif" font-weight="bold">き</text>
+        </svg>
+        <svg class="chochin" viewBox="0 0 64 96" xmlns="http://www.w3.org/2000/svg">
+          <line x1="32" y1="0" x2="32" y2="10" stroke="#C9302C" stroke-width="3"/>
+          <ellipse cx="32" cy="48" rx="22" ry="36" fill="#C9302C" stroke="#211D1A" stroke-width="2"/>
+          <line x1="14" y1="34" x2="50" y2="34" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <line x1="12" y1="48" x2="52" y2="48" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <line x1="14" y1="62" x2="50" y2="62" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
+          <text x="32" y="56" text-anchor="middle" font-size="22" fill="#FFF8E8" font-family="serif" font-weight="bold">ん</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- 本日のおすすめ -->
+  <section id="osusume" class="osusume dark">
+    <div class="wrap" style="text-align: center;">
+      <h2 class="midashi midashi-kin stamp">本日のおすすめ</h2>
+      <div class="tanzaku-row stamp">
+        <p class="tanzaku">串カツ盛り<b>七本 八百円</b></p>
+        <p class="tanzaku">牛すじ煮込み<b>特盛 五百九十円</b></p>
+        <p class="tanzaku">ホッピーセット<b>四百五十円</b></p>
+      </div>
+      <p class="chui">※その日の仕入れで変わります。壁の短冊が今日の正解です。</p>
+    </div>
+  </section>
+
+  <!-- 品書き -->
+  <section id="menu" class="menu-section">
+    <div class="wrap">
+      <h2 class="midashi midashi-aka stamp">品書き</h2>
+      <p class="menu-kokoro">安くて、旨い。まるきんの決まりはそれだけです。</p>
+      <div class="menu-walls">
+        <div class="fuda-group">
+          <h3>串カツ</h3>
+          <ul class="fuda">
+            <li class="meibutsu"><span>豚(名物)</span><span class="ne">120円</span></li>
+            <li><span>玉ねぎ</span><span class="ne">120円</span></li>
+            <li><span>うずら</span><span class="ne">140円</span></li>
+            <li><span>紅しょうが</span><span class="ne">140円</span></li>
+            <li><span>チーズ</span><span class="ne">160円</span></li>
+            <li><span>海老</span><span class="ne">190円</span></li>
+          </ul>
+        </div>
+        <div class="fuda-group">
+          <h3>アテ</h3>
+          <ul class="fuda">
+            <li class="meibutsu"><span>牛すじ煮込み(名物)</span><span class="ne">390円</span></li>
+            <li><span>ポテトサラダ</span><span class="ne">290円</span></li>
+            <li><span>冷やしトマト</span><span class="ne">260円</span></li>
+            <li><span>どて焼き</span><span class="ne">420円</span></li>
+            <li><span>板わさ</span><span class="ne">300円</span></li>
+          </ul>
+        </div>
+        <div class="fuda-group">
+          <h3>飲みもの</h3>
+          <ul class="fuda">
+            <li><span>生ビール</span><span class="ne">490円</span></li>
+            <li class="meibutsu"><span>ホッピーセット</span><span class="ne">450円</span></li>
+            <li><span>中(なか)</span><span class="ne">250円</span></li>
+            <li><span>レモンサワー</span><span class="ne">390円</span></li>
+            <li><span>コップ酒</span><span class="ne">380円</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="menu-note">表示はすべて税込です。串カツの二度づけは、うちはOKにしています(ソースは取り分け式)。</p>
+    </div>
+  </section>
+
+  <!-- 宴会 -->
+  <section id="enkai" class="enkai dark">
+    <div class="wrap">
+      <h2 class="midashi midashi-kin stamp">宴会やるなら</h2>
+      <div class="enkai-grid">
+        <div class="enkai-card">
+          <h3>気軽コース</h3>
+          <p class="en-price">2,980<small>円(税込)</small></p>
+          <ul>
+            <li>串カツ五本・煮込み・小鉢二品</li>
+            <li>飲み放題 90分つき</li>
+            <li>4名さまから</li>
+          </ul>
+          <p class="cap">仕事帰りのサク飲み会に。</p>
+        </div>
+        <div class="enkai-card">
+          <h3>まんぷくコース</h3>
+          <p class="en-price">3,980<small>円(税込)</small></p>
+          <ul>
+            <li>串カツ八本・どて焼き・煮込み・〆の茶漬け</li>
+            <li>飲み放題 120分つき</li>
+            <li>4名さまから・貸切は20名さまから相談</li>
+          </ul>
+          <p class="cap">歓送迎会はだいたいこちらです。</p>
+        </div>
+      </div>
+      <a class="btn btn-kon" href="#reserve">宴会の相談をする</a>
+    </div>
+  </section>
+
+  <!-- 店について -->
+  <section class="about">
+    <div class="wrap about-grid">
+      <div>
+        <h2 class="midashi midashi-aka stamp">まるきんという店</h2>
+        <p>昭和五十二年、先代が屋台から始めた店です。二代目になっても、やることは変わりません。朝から仕込む煮込みと、揚げたての串カツと、よく冷えたホッピー。</p>
+        <p>ひとりでふらっと来る常連さんも、会社の若い衆を連れてくる部長さんも、カウンターに座れば同じです。</p>
+        <p class="oyaji">「うちは高い酒は置いてないよ。そのかわり、安い酒を旨く飲ませる自信はあるね」——二代目・金田</p>
+      </div>
+      <figure class="about-photo">
+        <div class="ph">
+          <img loading="lazy"
+            src="https://images.unsplash.com/photo-1767265581515-afe9ff46ad76?q=80&w=900&auto=format&fit=crop"
+            srcset="https://images.unsplash.com/photo-1767265581515-afe9ff46ad76?q=80&w=450&auto=format&fit=crop 450w, https://images.unsplash.com/photo-1767265581515-afe9ff46ad76?q=80&w=900&auto=format&fit=crop 900w"
+            sizes="(max-width: 900px) 100vw, 45vw"
+            alt="賑わう店内">
+        </div>
+        <figcaption>金曜7時のカウンター。この賑わいが名物です。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- アクセス・予約 -->
+  <section id="access" class="access dark">
+    <div class="wrap">
+      <h2 class="midashi midashi-kin stamp">アクセスと予約</h2>
+      <div class="access-grid">
+        <div id="reserve">
+          <div class="tel-box">
+            <a class="tel" href="tel:0300000000">03-0000-0000</a><span class="demo-tag">(デモ用の架空番号)</span>
+            <p class="tel-note">揚げ場に立っている時間は出られません。フォームなら24時間受け付けます。</p>
+          </div>
+          <form class="reserve-form" id="rsvForm">
+            <div class="pair">
+              <div>
+                <label for="f-name">お名前</label>
+                <input id="f-name" type="text" autocomplete="name" required>
+              </div>
+              <div>
+                <label for="f-tel">お電話番号</label>
+                <input id="f-tel" type="tel" autocomplete="tel" inputmode="tel" required>
+              </div>
+            </div>
+            <div class="pair">
+              <div>
+                <label for="f-date">ご来店日</label>
+                <input id="f-date" type="date" required>
+              </div>
+              <div>
+                <label for="f-time">ご来店時間</label>
+                <select id="f-time">
+                  <option>16:00</option><option>17:00</option><option selected>18:00</option>
+                  <option>19:00</option><option>20:00</option><option>21:00</option>
+                </select>
+              </div>
+            </div>
+            <div class="pair">
+              <div>
+                <label for="f-num">ご人数</label>
+                <select id="f-num">
+                  <option>1名</option><option selected>2名</option><option>3〜4名</option><option>5〜8名</option><option>9〜19名</option><option>20名以上(貸切相談)</option>
+                </select>
+              </div>
+              <div>
+                <label for="f-course">コース</label>
+                <select id="f-course">
+                  <option selected>席だけ(注文は当日)</option><option>気軽コース 2,980円</option><option>まんぷくコース 3,980円</option><option>宴会の相談をしたい</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="f-req">ご要望 <span class="opt">(任意)</span></label>
+              <input id="f-req" type="text" placeholder="例: 奥の席がいい、貸切の相談 など">
+            </div>
+            <p class="form-done" id="formDone" role="status"></p>
+            <button type="submit">この内容で予約を頼む</button>
+            <p class="form-policy">※この時点ではまだ席は押さえていません。店から折り返しご連絡して、そこで確定です。<br>※ご入力いただいた連絡先は、予約の連絡以外には使いません。</p>
+          </form>
+        </div>
+        <div>
+          <table class="info-table">
+            <tr><th>店名</th><td>大衆酒場 まるきん</td></tr>
+            <tr><th>住所</th><td><a href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E4%BA%95%E7%94%BA%E9%A7%85" target="_blank" rel="noopener">東京都品川区大井0-0-0 まるきんビル1F</a><br><small>※架空の住所です(デモサイト)</small></td></tr>
+            <tr><th>営業時間</th><td>16:00〜23:30(L.O. 23:00)</td></tr>
+            <tr><th>定休日</th><td>日曜(月曜が祝日のときは日曜やって月曜休み)</td></tr>
+            <tr><th>席数</th><td>カウンター12席・テーブル18席</td></tr>
+            <tr><th>お支払い</th><td>現金・QR決済(カードはごめんなさい)</td></tr>
+          </table>
+          <iframe class="map-frame" title="店舗周辺の地図(大井町駅周辺)" loading="lazy"
+            src="https://www.google.com/maps?q=%E5%A4%A7%E4%BA%95%E7%94%BA%E9%A7%85&output=embed"></iframe>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A7%E4%BA%95%E7%94%BA%E9%A7%85" target="_blank" rel="noopener">Googleマップで開く(経路案内)↗</a>
+          <p class="oshirase">【お知らせ】2026年8月23日(日)は、町内の祭りに合わせて臨時営業します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="fbrand">大衆酒場 まるきん</p>
+  <p>東京都品川区大井0-0-0 ｜ 03-0000-0000 ｜ 16:00〜23:30(日曜定休)</p>
+  <p class="demo-note">※本サイトは制作実績紹介のためのデモサイトです。店舗・人物・住所・電話番号はすべて架空のものです。<br>Photo: Unsplash</p>
+</footer>
+
+<nav class="mobile-bar" aria-label="予約アクション">
+  <a class="tel" href="tel:0300000000">電話する</a>
+  <a class="rsv" href="#reserve">席の予約</a>
+</nav>
+
+<script>
+  // 出現(判子)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.stamp').forEach(el => io.observe(el));
+
+  // モバイルナビ
+  const header = document.querySelector('.header');
+  const navToggle = document.querySelector('.nav-toggle');
+  navToggle.addEventListener('click', () => {
+    const open = header.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.textContent = open ? '閉じる' : 'ごあんない';
+  });
+  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => {
+    header.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.textContent = 'ごあんない';
+  }));
+
+  // 予約フォーム(過去日はローカル日付基準で選択不可)
+  const now = new Date();
+  document.getElementById('f-date').min =
+    now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+  document.getElementById('rsvForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    form.querySelectorAll('input, select, button').forEach(el => { el.disabled = true; });
+    const d = document.getElementById('f-date').value;
+    const t = document.getElementById('f-time').value;
+    const n = document.getElementById('f-num').value;
+    const done = document.getElementById('formDone');
+    done.textContent = 'あいよ、承りました。' + d + ' ' + t + '・' + n + 'ですね。デモサイトのため実際の送信は行われません。実案件では店のメールに届き、折り返しの連絡をもって確定になります。';
+    done.setAttribute('tabindex', '-1');
+    done.focus();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# 既定で全部無視し、公開してよいものだけを明示的に許可する（許可リスト方式）。
+# 制作ログ・OJOワークスペース・内部ツールを事故で公開しないため。
+/*
+!/.gitignore
+!/index.html
+!/robots.txt
+!/demo1-toriai/
+!/demo2-marukin/
+!/demo3-shoku/

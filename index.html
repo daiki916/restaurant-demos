@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="飲食店向けホームページの制作実績（デモ）。静かな焼鳥店、大衆酒場、ワインバルの3本。すべて架空の店舗です。">
+<meta name="theme-color" content="#F7F4EE">
+<title>制作実績（デモ）| 飲食店のホームページ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kami: #F7F4EE; --sumi: #221F1B; --usu: #6B655C; --keisen: #DAD3C7;
+    --shu: #9C4A2F;
+    --mincho: "Noto Serif JP", serif; --gothic: "Noto Sans JP", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--gothic); background: var(--kami); color: var(--sumi);
+    line-height: 1.9; font-size: 15px; letter-spacing: .02em;
+    padding: 64px 24px 80px;
+    word-break: auto-phrase; line-break: strict;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+  .en { font-size: 11px; letter-spacing: .32em; color: var(--shu); font-weight: 700; }
+  h1 { font-family: var(--mincho); font-size: 30px; font-weight: 500; margin: 14px 0 16px; line-height: 1.6; }
+  .lead { max-width: 46ch; color: var(--usu); margin-bottom: 56px; }
+  .works { display: grid; gap: 40px; }
+  .work { display: grid; grid-template-columns: 240px 1fr; gap: 28px; align-items: start;
+          padding-bottom: 40px; border-bottom: 1px solid var(--keisen); }
+  .work:last-child { border-bottom: 0; }
+  /* height:auto を明示しないと、img の height 属性が presentational hint として効いて
+     aspect-ratio が無視される（属性は CLS 対策で残したいので、CSS 側で打ち消す） */
+  .thumb { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: #E4DED3; }
+  .work h2 { font-family: var(--mincho); font-size: 21px; font-weight: 500; line-height: 1.6; }
+  .kind { font-size: 12px; letter-spacing: .12em; color: var(--shu); margin-bottom: 6px; }
+  .work p { color: var(--usu); font-size: 14px; margin-top: 10px; }
+  .points { margin: 14px 0 0; padding: 0; list-style: none; font-size: 13px; color: var(--usu); }
+  .points li { padding-left: 16px; position: relative; }
+  .points li::before { content: "—"; position: absolute; left: 0; color: var(--keisen); }
+  .links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .links a {
+    display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px;
+    border: 1px solid var(--sumi); color: var(--sumi); text-decoration: none;
+    font-size: 13px; letter-spacing: .06em;
+    transition: background .2s ease, color .2s ease;
+  }
+  .links a:hover { background: var(--sumi); color: var(--kami); }
+  .links a.sub { border-color: var(--keisen); color: var(--usu); }
+  .links a.sub:hover { background: transparent; border-color: var(--usu); color: var(--sumi); }
+  a:focus-visible { outline: 2px solid var(--shu); outline-offset: 3px; }
+  .note { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--keisen);
+          font-size: 12px; color: var(--usu); line-height: 1.9; }
+  @media (max-width: 640px) {
+    body { padding: 44px 20px 60px; }
+    h1 { font-size: 24px; }
+    .work { grid-template-columns: 1fr; gap: 16px; }
+    .thumb { aspect-ratio: 16 / 9; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="en">Works</p>
+  <h1>飲食店のホームページ制作実績</h1>
+  <p class="lead">お店の性格に合わせて、静けさで単価を上げる方向と、賑わいで回転を上げる方向を作り分けています。以下はすべて架空の店舗で作ったデモです。</p>
+
+  <div class="works">
+
+    <article class="work">
+      <img class="thumb" src="https://images.unsplash.com/photo-1727281970324-4bda7bab3073?q=70&w=600&auto=format&fit=crop" alt="炭火で焼かれる焼鳥" loading="lazy" decoding="async" width="600" height="450">
+      <div>
+        <p class="kind">焼鳥・日本酒 ／ 中目黒</p>
+        <h2>炭火焼鳥と日本酒 とり藍</h2>
+        <p>白木のカウンター八席。静けさを売る店の作り方です。集客の仕掛けをいちばん厚く積んであります。</p>
+        <ul class="points">
+          <li>電話・Web予約をスマホ画面下に常時固定</li>
+          <li>構造化データとOGPで検索・SNSでの見え方を整備</li>
+          <li>経路案内をワンタップで開く導線</li>
+        </ul>
+        <div class="links">
+          <a href="demo1-toriai/">サイトを見る</a>
+          <a class="sub" href="demo1-toriai/notes.html">制作ノート</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="work">
+      <img class="thumb" src="https://images.unsplash.com/photo-1767265581515-afe9ff46ad76?q=70&w=600&auto=format&fit=crop" alt="赤提灯の下がる大衆酒場の店先" loading="lazy" decoding="async" width="600" height="450">
+      <div>
+        <p class="kind">大衆酒場 ／ 大井町</p>
+        <h2>大衆酒場 まるきん</h2>
+        <p>串カツ120円から。同じ作り方は使いません。提灯の赤、短冊の品書き、判子で押し出す見出し。世界観そのものを設計しています。</p>
+        <ul class="points">
+          <li>提灯が四灯それぞれ違う周期で揺れる</li>
+          <li>価格は漢数字と算用数字を役割で使い分け</li>
+          <li>宴会の人数・コース選択まで含んだ予約導線</li>
+        </ul>
+        <div class="links">
+          <a href="demo2-marukin/">サイトを見る</a>
+        </div>
+      </div>
+    </article>
+
+    <article class="work">
+      <img class="thumb" src="demo3-shoku/ogp.jpg" alt="雨上がりの路地の奥に灯る店の入口" loading="lazy" decoding="async" width="1200" height="630">
+      <div>
+        <p class="kind">ワインバル ／ 神楽坂</p>
+        <h2>燭 SHOKU KAGURAZAKA</h2>
+        <p>十一席だけの夜。演出の上限を出した一本です。スクロールに合わせてコース三皿が入れ替わり、写真は一枚ずつ違う速さで動きます。</p>
+        <ul class="points">
+          <li>語の途中で改行しない日本語組版（中割れ対策）</li>
+          <li>動きを止める設定の端末には静かな状態で届く</li>
+          <li>プログラムが動かない環境でも店舗情報が残る</li>
+        </ul>
+        <div class="links">
+          <a href="demo3-shoku/">サイトを見る</a>
+          <a class="sub" href="demo3-shoku/notes.html">制作ノート</a>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <p class="note">
+    ※掲載しているのはすべて架空の店舗です。店名・住所・電話番号・価格・人物・口コミは制作実績紹介のための設定であり、実在のものとは関係ありません。<br>
+    ※各デモの予約フォームは通信を行いません。送信しても予約は成立しません。<br>
+    ※「制作ノート」は、画面の裏で何をしているかを店主さま向けにまとめた解説シートです。実案件では納品物に同梱します。
+  </p>
+</div>
+</body>
+</html>

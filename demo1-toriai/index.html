@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>炭火焼鳥と日本酒 とり藍(とりあい)| 中目黒 ※デモサイト</title>
+<meta name="description" content="白木のカウンター八席。備長炭で焼く大山鶏と、店主が蔵元を訪ねて選んだ日本酒。中目黒の静かな路地の焼鳥店「とり藍」。※これは架空店舗のデモサイトです。">
+<meta name="theme-color" content="#F6F3EC">
+<meta property="og:type" content="website">
+<meta property="og:title" content="炭火焼鳥と日本酒 とり藍(とりあい)| 中目黒 ※デモサイト">
+<meta property="og:description" content="白木のカウンター八席。備長炭で焼く大山鶏と、蔵元を訪ねて選んだ日本酒。※架空店舗のデモサイトです。">
+<meta property="og:image" content="https://images.unsplash.com/photo-1727281970324-4bda7bab3073?q=80&w=1200&auto=format&fit=crop">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314283A'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23F6F3EC' font-family='serif'%3E藍%3C/text%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "炭火焼鳥と日本酒 とり藍(架空店舗・デモサイト)",
+  "servesCuisine": "焼鳥・日本酒",
+  "priceRange": "¥¥",
+  "telephone": "+81-3-0000-0000",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "東京都目黒区",
+    "streetAddress": "中目黒0-0-0 藍ビル1F(架空の住所)"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "17:30",
+    "closes": "23:00"
+  },
+  "description": "架空店舗のデモサイトです。制作実績紹介のためのサンプルであり、実在の店舗ではありません。"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kinari: #F6F3EC;      /* 生成り */
+    --shiraki: #E8E0CF;     /* 白木 */
+    --ai-yoru: #14283A;     /* 夜 */
+    --ai-koi: #1E4258;      /* 藍 */
+    --ai-usu: #35678A;      /* 藍うす */
+    --sumi: #2B2721;        /* 墨 */
+    --koji: #B98F3E;        /* 麹 */
+    --koji-deep: #85622A;   /* 濃麹 */
+    --ls-body: 0.04em; --ls-ui: 0.12em; --ls-title: 0.2em; --ls-tate: 0.3em;
+    --line: rgba(30, 66, 88, 0.18);
+    --serif: "Shippori Mincho", "Hiragino Mincho ProN", serif;
+    --sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", sans-serif;
+    --sp-1: 8px; --sp-2: 16px; --sp-3: 24px; --sp-4: 32px;
+    --sp-6: 48px; --sp-8: 64px; --sp-12: 96px; --sp-15: 120px;
+    /* 文字 */
+    --fs-cap: 12px;
+    --fs-sm: 14px;
+    --fs-body: 16px;
+    --fs-lead: 18px;
+    --fs-h3: 21px;
+    --fs-h2: clamp(26px, 3vw, 34px);
+    --fs-num: 26px;
+    --fs-display: clamp(30px, 3.4vw, 46px);
+    --header-h: 63px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    position: relative;
+    font-family: var(--sans);
+    color: var(--sumi);
+    background: var(--kinari);
+    line-height: 1.9;
+    font-size: var(--fs-body);
+    letter-spacing: var(--ls-body);
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--ai-usu); }
+  /* 紙 */
+  body::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 200;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='360'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='360' height='360' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    opacity: 0.05; mix-blend-mode: multiply;
+  }
+  /* 落款 */
+  .rakkan {
+    display: inline-block; font-family: var(--serif); font-weight: 500;
+    color: #F6F3EC; background: #A63A22; width: 36px; height: 36px;
+    line-height: 37px; text-align: center; font-size: 17px;
+    border-radius: 3px 2px 4px 2px; letter-spacing: 0;
+    transform: rotate(-3.5deg); margin-left: 14px; vertical-align: middle;
+  }
+  section[id], #reserve, #top { scroll-margin-top: calc(var(--header-h) + 16px); }
+
+  /* フォーカスと押下 */
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--ai-koi); outline-offset: 3px; border-radius: 2px;
+  }
+  .access-section :focus-visible, .mobile-bar .rsv:focus-visible { outline-color: var(--koji); }
+  .btn-reserve, .reserve-form button, .mobile-bar a, .nav-toggle {
+    transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease;
+  }
+  .btn-reserve:active, .reserve-form button:active, .mobile-bar a:active, .nav-toggle:active { transform: scale(0.985); }
+
+  /* ---------- header ---------- */
+  .header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+    height: var(--header-h);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 24px;
+    background: var(--kinari);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { font-family: var(--serif); font-weight: 700; font-size: var(--fs-lead); color: var(--ai-koi); text-decoration: none; letter-spacing: var(--ls-ui); white-space: nowrap; min-width: 0; }
+  .brand small { font-size: var(--fs-cap); font-weight: 500; color: var(--sumi); margin-left: 10px; letter-spacing: var(--ls-title); }
+  .nav { display: flex; gap: 28px; align-items: center; }
+  .nav a { text-decoration: none; color: var(--sumi); font-size: var(--fs-sm); letter-spacing: var(--ls-ui); }
+  .nav a:hover { text-decoration: underline; text-decoration-color: var(--koji); text-decoration-thickness: 2px; text-underline-offset: 6px; }
+  .btn-reserve {
+    background: var(--ai-yoru); border: 1px solid var(--koji); color: #fff !important; padding: 10px 22px;
+    border-radius: 4px; font-weight: 500;
+  }
+  .btn-reserve:hover { background: var(--ai-koi); text-decoration: none !important; }
+  .nav-toggle {
+    display: none; background: none; border: 1px solid rgba(30, 66, 88, 0.45); border-radius: 4px;
+    min-height: 44px; padding: 9px 14px; font-family: var(--sans); font-size: var(--fs-sm); letter-spacing: var(--ls-ui);
+    color: var(--ai-koi); cursor: pointer;
+  }
+
+  /* ---------- hero: 分割ペイン ---------- */
+  .hero {
+    display: grid; grid-template-columns: 11fr 10fr;
+    min-height: 78vh; padding-top: var(--header-h);
+  }
+  .hero-copy {
+    display: flex; align-items: center; justify-content: center;
+    position: relative; padding: var(--sp-8) var(--sp-6);
+  }
+  .hero-inner { display: flex; flex-direction: row-reverse; gap: var(--sp-6); align-items: center; }
+  .hero-catch {
+    writing-mode: vertical-rl; font-family: var(--serif);
+    font-size: var(--fs-display); font-weight: 600; color: var(--ai-koi);
+    letter-spacing: var(--ls-tate); line-height: 1.7; height: 15em; max-height: 52vh;
+  }
+  .hero-sub { max-width: 300px; }
+  .hero-sub h1 { font-family: var(--serif); font-size: var(--fs-h3); color: var(--ai-koi); font-weight: 600; margin-bottom: var(--sp-2); letter-spacing: var(--ls-ui); }
+  .hero-sub p { font-size: var(--fs-sm); }
+  .hero-photo { position: relative; }
+  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+  .hero-info {
+    display: flex; gap: var(--sp-6); flex-wrap: wrap;
+    padding: var(--sp-3) var(--sp-6);
+    border-top: 1px solid var(--line);
+    background: var(--shiraki);
+    font-size: var(--fs-sm); letter-spacing: var(--ls-ui);
+  }
+  .hero-info b { font-family: var(--serif); color: var(--ai-koi); margin-right: 10px; font-weight: 600; }
+
+  /* ---------- 共通セクション ---------- */
+  section { padding: var(--sp-15) var(--sp-6); }
+  .container { max-width: 1080px; margin: 0 auto; }
+  .sec-label { display: flex; align-items: baseline; gap: var(--sp-2); margin-bottom: var(--sp-8); }
+  .sec-label h2 { font-family: var(--serif); font-size: var(--fs-h2); color: var(--ai-koi); font-weight: 600; letter-spacing: var(--ls-title); }
+  .menu-section .sec-label::after, .access-section .sec-label::after { content: ""; flex: 1; height: 1px; background: rgba(185, 143, 62, 0.35); transform: translateY(-6px); }
+
+  /* ---------- こだわり ---------- */
+  .kodawari-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-4); }
+  @media (min-width: 901px) {
+    .kodawari:nth-child(3) { margin-top: 37px; }
+    .kodawari-grid { padding-bottom: var(--sp-6); }
+    .kodawari:nth-child(1) img { height: 320px; }
+    .kodawari:nth-child(2) img { height: 264px; }
+    .kodawari:nth-child(3) img { height: 383px; }
+  }
+  .kodawari img { width: 100%; height: 320px; object-fit: cover; }
+  .kodawari .num { font-family: var(--serif); font-weight: 500; color: var(--koji-deep); font-size: var(--fs-sm); letter-spacing: var(--ls-tate); margin: var(--sp-3) 0 6px; }
+  .kodawari h3 { font-family: var(--serif); font-size: var(--fs-h3); color: var(--ai-koi); font-weight: 600; margin-bottom: var(--sp-1); letter-spacing: var(--ls-ui); }
+  .kodawari p { font-size: var(--fs-sm); }
+
+  /* ---------- お品書き ---------- */
+  .menu-section { background: var(--shiraki); }
+  .menu-grid { display: grid; grid-template-columns: 5fr 4fr; gap: var(--sp-8); align-items: start; }
+  .course {
+    border-top: 2px solid var(--koji);
+    padding: var(--sp-6) var(--sp-4);
+    background: var(--kinari);
+  }
+  .course h3 { font-family: var(--serif); font-size: var(--fs-h3); color: var(--ai-koi); font-weight: 600; letter-spacing: var(--ls-ui); }
+  .course .price { font-family: var(--serif); font-size: var(--fs-num); font-weight: 600; color: var(--sumi); margin: var(--sp-2) 0; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+  .course .price small { font-size: var(--fs-sm); }
+  .course ul { list-style: none; font-size: var(--fs-sm); margin: var(--sp-2) 0 var(--sp-3); }
+  .course li { padding: 7px 0; border-bottom: 1px dotted var(--line); }
+  .course .note { font-size: var(--fs-sm); color: rgba(43, 39, 33, 0.8); }
+  .alacarte dl { font-size: var(--fs-sm); }
+  .alacarte .row { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; }
+  .alacarte dt { white-space: nowrap; }
+  .alacarte .leader { flex: 1; border-bottom: 1px dotted rgba(185, 143, 62, 0.5); transform: translateY(-4px); }
+  .alacarte dd { white-space: nowrap; font-family: var(--serif); font-weight: 500; min-width: 4.5em; text-align: right; font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+  .alacarte h3 { font-family: var(--serif); color: var(--ai-koi); letter-spacing: var(--ls-title); font-size: var(--fs-sm); margin: var(--sp-3) 0 var(--sp-1); font-weight: 600; }
+  .menu-photo { margin-top: var(--sp-4); }
+  .menu-photo img { width: 100%; height: 200px; object-fit: cover; }
+  .menu-note { font-size: var(--fs-sm); margin-top: var(--sp-3); color: rgba(43, 39, 33, 0.8); }
+
+  /* ---------- 藍の帯(写真ではなく面と言葉) ---------- */
+  .about-band {
+    background: var(--ai-yoru);
+    display: flex; align-items: center; justify-content: flex-end;
+    padding: var(--sp-12) 16vw var(--sp-12) var(--sp-6);
+  }
+  .about-band p {
+    font-family: var(--serif); font-weight: 500; color: #F2EFE7;
+    writing-mode: vertical-rl; letter-spacing: var(--ls-tate); line-height: 2.2;
+    font-size: var(--fs-h3); height: 11em;
+  }
+
+  /* ---------- 店について ---------- */
+  .about-section { background: var(--kinari); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: var(--sp-8); align-items: center; }
+  .about-text p { margin-bottom: var(--sp-3); font-size: var(--fs-body); }
+  .about-text .sig { font-family: var(--serif); font-weight: 500; color: var(--ai-koi); letter-spacing: var(--ls-title); }
+  .about-photo img { width: 100%; height: 420px; object-fit: cover; }
+
+  /* ---------- 予約・アクセス ---------- */
+  .access-section { background: var(--ai-yoru); color: #F2EFE7; }
+  .access-section .sec-label h2 { color: #F2EFE7; }
+  .access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-8); }
+  .info-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+  .info-table th, .info-table td { text-align: left; padding: 12px 8px; border-bottom: 1px solid rgba(242, 239, 231, 0.2); vertical-align: top; font-variant-numeric: tabular-nums; }
+  .info-table th { font-weight: 500; white-space: nowrap; width: 7em; font-family: var(--serif); letter-spacing: var(--ls-ui); }
+  .info-table a { color: #F2EFE7; }
+  .tel-label { font-size: var(--fs-sm); letter-spacing: var(--ls-ui); margin-bottom: 6px; }
+  .tel-big { font-family: var(--serif); font-weight: 500; font-size: var(--fs-h3); color: #F2EFE7; text-decoration: none; letter-spacing: var(--ls-body); }
+  .demo-tag { font-size: var(--fs-sm); color: rgba(242, 239, 231, 0.7); margin-left: 10px; }
+  .tel-note { font-size: var(--fs-sm); opacity: 0.85; }
+  .map-frame { width: 100%; height: 260px; border: 0; }
+  .map-link { display: inline-block; margin-top: var(--sp-1); color: var(--koji); font-size: var(--fs-sm); letter-spacing: var(--ls-body); }
+  .oshirase { margin-top: var(--sp-3); font-size: var(--fs-sm); border-left: 2px solid var(--koji); padding-left: 10px; opacity: 0.9; }
+  .reserve-form { margin-top: var(--sp-4); display: grid; gap: var(--sp-2); }
+  .reserve-form .pair { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-2); }
+  .reserve-form label { font-size: var(--fs-sm); letter-spacing: var(--ls-ui); display: block; }
+  .reserve-form .opt { opacity: 0.7; font-size: var(--fs-cap); }
+  .reserve-form input, .reserve-form select, .reserve-form textarea {
+    width: 100%; padding: 12px; border: 1px solid rgba(242, 239, 231, 0.35);
+    background: rgba(242, 239, 231, 0.08); color: #F2EFE7; border-radius: 4px;
+    font-family: var(--sans); font-size: 16px;
+    color-scheme: dark;
+  }
+  .reserve-form textarea { min-height: 72px; resize: vertical; }
+  .reserve-form button {
+    margin-top: var(--sp-1); padding: 14px; background: var(--kinari); color: var(--ai-yoru);
+    font-family: var(--serif); font-size: var(--fs-body); letter-spacing: var(--ls-title); font-weight: 600;
+    border: 0; border-radius: 4px; cursor: pointer;
+  }
+  .reserve-form button:hover { background: #fff; }
+  .form-policy { font-size: var(--fs-cap); opacity: 0.75; line-height: 1.7; }
+  .form-done {
+    border: 1px solid var(--koji); border-radius: 4px; padding: var(--sp-3);
+    font-size: var(--fs-sm); line-height: 1.9; background: rgba(185, 143, 62, 0.08);
+  }
+
+  /* ---------- Instagram帯 ---------- */
+  .insta-section { background: var(--kinari); border-top: 1px solid var(--line); padding: var(--sp-8) var(--sp-6); }
+  .insta-section .lead { font-family: var(--serif); font-weight: 500; color: var(--ai-koi); letter-spacing: var(--ls-title); margin-bottom: var(--sp-1); font-size: var(--fs-lead); }
+  .insta-section .handle { font-size: var(--fs-sm); margin-bottom: var(--sp-4); }
+  .insta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-2); max-width: 1080px; margin: 0 auto; align-items: start; }
+  .insta-inner { max-width: 1080px; margin: 0 auto; }
+  .insta-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; }
+  .insta-grid img:nth-child(2) { aspect-ratio: 3 / 4; }
+  .insta-more { display: flex; align-items: flex-end; padding: var(--sp-2); font-family: var(--serif); color: var(--ai-koi); border: 1px solid var(--line); aspect-ratio: 1; }
+  .insta-more a { color: var(--ai-koi); text-decoration: none; letter-spacing: var(--ls-ui); }
+
+  /* ---------- footer ---------- */
+  footer { background: var(--ai-yoru); color: rgba(242, 239, 231, 0.88); padding: var(--sp-6); text-align: center; font-size: var(--fs-sm); border-top: 1px solid rgba(242, 239, 231, 0.15); }
+  footer .fbrand { font-family: var(--serif); font-weight: 600; font-size: var(--fs-body); letter-spacing: var(--ls-title); margin-bottom: var(--sp-2); color: #F2EFE7; }
+  footer .demo-note { margin-top: var(--sp-2); opacity: 0.65; font-size: var(--fs-cap); }
+
+  /* ---------- モバイル固定バー ---------- */
+  .mobile-bar { display: none; }
+
+  /* ---------- スクロール出現(純フェードのみ) ---------- */
+  .fade { opacity: 0; transition: opacity 0.6s ease-out; }
+  .fade.in { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .fade { opacity: 1; transition: none; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    :root { --header-h: 56px; }
+    body { font-size: 15px; }
+    .nav-toggle { display: block; }
+    .nav {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; align-items: stretch; gap: 0;
+      background: var(--kinari); border-bottom: 1px solid var(--line);
+      padding: var(--sp-2) var(--sp-3) var(--sp-3);
+    }
+    .header.open .nav { display: flex; }
+    .nav a { padding: 13px 4px; border-bottom: 1px dotted var(--line); font-size: 15px; }
+    .nav .btn-reserve { margin-top: var(--sp-2); padding: 12px 22px; text-align: center; border-bottom: 1px solid var(--koji); }
+    .hero { grid-template-columns: 1fr; min-height: 0; }
+    .hero-copy { padding: var(--sp-6) var(--sp-3); }
+    .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: var(--sp-3); }
+    .hero-catch { writing-mode: horizontal-tb; height: auto; max-height: none; font-size: 27px; letter-spacing: 0.18em; line-height: 1.6; }
+    .hero-photo img { height: 46vh; }
+    .hero-info { padding: var(--sp-3); gap: var(--sp-2) var(--sp-4); }
+    section { padding: var(--sp-8) var(--sp-3); }
+    .kodawari-grid, .menu-grid, .about-grid, .access-grid { grid-template-columns: 1fr; }
+    .reserve-form .pair { grid-template-columns: 1fr; }
+    .kodawari img { height: 220px; }
+    .about-band { padding: var(--sp-8) var(--sp-3); justify-content: center; }
+    .about-band p { writing-mode: horizontal-tb; height: auto; letter-spacing: var(--ls-title); font-size: var(--fs-lead); }
+    .about-photo img { height: 260px; }
+    .insta-grid { grid-template-columns: repeat(2, 1fr); }
+    .mobile-bar {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
+      background: var(--line);
+    }
+    .mobile-bar a {
+      display: block; text-align: center; padding: 15px 8px;
+      font-size: var(--fs-sm); letter-spacing: var(--ls-ui); text-decoration: none;
+      font-family: var(--serif); font-weight: 600;
+    }
+    .mobile-bar .tel { background: var(--kinari); color: var(--ai-koi); }
+    .mobile-bar .rsv { background: var(--ai-yoru); color: #fff; border-top: 1px solid var(--koji); }
+    body { padding-bottom: 64px; }
+  }
+  @media (max-width: 600px) {
+    .brand { font-size: 15px; letter-spacing: var(--ls-body); }
+    .brand small { display: none; }
+    .alacarte dt { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+
+<header class="header">
+  <a class="brand" href="#top">炭火焼鳥と日本酒 とり藍<small>NAKAMEGURO</small></a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="gnav">メニュー</button>
+  <nav class="nav" id="gnav">
+    <a href="#kodawari">こだわり</a>
+    <a href="#menu">お品書き</a>
+    <a href="#about">店について</a>
+    <a href="#access">アクセス</a>
+    <a class="btn-reserve" href="#reserve">ご予約</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- hero -->
+  <div class="hero">
+    <div class="hero-copy">
+      <div class="hero-inner">
+        <p class="hero-catch">串一本に、<br>炭の呼吸を。</p>
+        <div class="hero-sub">
+          <h1>炭火焼鳥と日本酒 とり藍</h1>
+          <p>白木のカウンター、八席だけ。備長炭の火を挟んで、今日の一番いい状態の串と酒をお出しします。</p>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img
+        src="https://images.unsplash.com/photo-1727281970324-4bda7bab3073?q=80&w=1200&auto=format&fit=crop"
+        srcset="https://images.unsplash.com/photo-1727281970324-4bda7bab3073?q=80&w=600&auto=format&fit=crop 600w, https://images.unsplash.com/photo-1727281970324-4bda7bab3073?q=80&w=1200&auto=format&fit=crop 1200w, https://images.unsplash.com/photo-1727281970324-4bda7bab3073?q=80&w=1800&auto=format&fit=crop 1800w"
+        sizes="(max-width: 900px) 100vw, 48vw"
+        fetchpriority="high"
+        alt="焼鳥の盛り合わせ">
+    </div>
+  </div>
+  <div class="hero-info">
+    <span><b>営業</b>17:30 – 23:00(L.O. 22:15)</span>
+    <span><b>定休</b>月曜・第3火曜</span>
+    <span><b>席</b>カウンター8席・小上がり1卓</span>
+    <span><b>場所</b>中目黒駅 徒歩5分</span>
+  </div>
+
+  <!-- こだわり -->
+  <section id="kodawari">
+    <div class="container">
+      <div class="sec-label fade"><h2>三つの約束</h2></div>
+      <div class="kodawari-grid">
+        <article class="kodawari fade">
+          <img loading="lazy"
+            src="https://images.unsplash.com/photo-1727281970348-c3c3b253c662?q=80&w=900&auto=format&fit=crop"
+            srcset="https://images.unsplash.com/photo-1727281970348-c3c3b253c662?q=80&w=450&auto=format&fit=crop 450w, https://images.unsplash.com/photo-1727281970348-c3c3b253c662?q=80&w=900&auto=format&fit=crop 900w"
+            sizes="(max-width: 900px) 100vw, 33vw"
+            alt="焼き上がりの串">
+          <p class="num">その一</p>
+          <h3>備長炭の火</h3>
+          <p>火柱を立てず、遠赤外線でじっくり。炭の機嫌を読むのが店主の仕事です。</p>
+        </article>
+        <article class="kodawari fade">
+          <img loading="lazy"
+            src="https://images.unsplash.com/photo-1727281970228-a5ae69599fd8?q=80&w=900&auto=format&fit=crop"
+            srcset="https://images.unsplash.com/photo-1727281970228-a5ae69599fd8?q=80&w=450&auto=format&fit=crop 450w, https://images.unsplash.com/photo-1727281970228-a5ae69599fd8?q=80&w=900&auto=format&fit=crop 900w"
+            sizes="(max-width: 900px) 100vw, 33vw"
+            alt="串打ちした大山鶏">
+          <p class="num">その二</p>
+          <h3>朝引きの大山鶏</h3>
+          <p>その日の朝に引いた鶏を、部位ごとに打つ。それだけです。</p>
+        </article>
+        <article class="kodawari fade">
+          <img loading="lazy"
+            src="https://images.unsplash.com/photo-1626379907753-406934326e2c?q=80&w=900&auto=format&fit=crop"
+            srcset="https://images.unsplash.com/photo-1626379907753-406934326e2c?q=80&w=450&auto=format&fit=crop 450w, https://images.unsplash.com/photo-1626379907753-406934326e2c?q=80&w=900&auto=format&fit=crop 900w"
+            sizes="(max-width: 900px) 100vw, 33vw"
+            style="object-position: 50% 35%;"
+            alt="純米大吟醸の瓶">
+          <p class="num">その三</p>
+          <h3>蔵を訪ねた酒</h3>
+          <p>店主が自分の足で蔵元を訪ね、串に合うと確信した銘柄だけを置きます。数は十二本。定番は宮城の「浦霞」。あとの十一本は季節で入れ替わり、燗つけは女将の担当です。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- お品書き -->
+  <section id="menu" class="menu-section">
+    <div class="container">
+      <div class="sec-label fade"><h2>お品書き</h2></div>
+      <div class="menu-grid">
+        <div class="fade">
+          <div class="course">
+            <h3>おまかせコース</h3>
+            <p class="price">5,500<small>円(税込)</small></p>
+            <ul>
+              <li>先付け 二種</li>
+              <li>おまかせ串 八本(白レバー・つくね含む)</li>
+              <li>季節の焼き野菜 三種</li>
+              <li>スープ・お食事(親子丼 小)</li>
+              <li>本日の甘味</li>
+            </ul>
+            <p class="note">※仕入れにより内容が変わります。苦手な食材はご予約時にお知らせください。</p>
+          </div>
+          <div class="menu-photo">
+            <img loading="lazy"
+              src="https://images.unsplash.com/photo-1727281970223-d4895fd0872f?q=80&w=900&auto=format&fit=crop"
+              srcset="https://images.unsplash.com/photo-1727281970223-d4895fd0872f?q=80&w=450&auto=format&fit=crop 450w, https://images.unsplash.com/photo-1727281970223-d4895fd0872f?q=80&w=900&auto=format&fit=crop 900w"
+              sizes="(max-width: 900px) 100vw, 50vw"
+              alt="串の盛り合わせ">
+          </div>
+        </div>
+        <div class="alacarte fade">
+          <h3>串(一本)</h3>
+          <dl>
+            <div class="row"><dt>ねぎま</dt><span class="leader"></span><dd>320円</dd></div>
+            <div class="row"><dt>もも</dt><span class="leader"></span><dd>300円</dd></div>
+            <div class="row"><dt>皮(パリパリ)</dt><span class="leader"></span><dd>280円</dd></div>
+            <div class="row"><dt>つくね(卵黄)</dt><span class="leader"></span><dd>380円</dd></div>
+            <div class="row"><dt>白レバー</dt><span class="leader"></span><dd>380円</dd></div>
+            <div class="row"><dt>ささみ わさび</dt><span class="leader"></span><dd>340円</dd></div>
+            <div class="row"><dt>季節の野菜串</dt><span class="leader"></span><dd>260円〜</dd></div>
+          </dl>
+          <h3>日本酒</h3>
+          <dl>
+            <div class="row"><dt>本日の純米(半合)</dt><span class="leader"></span><dd>650円</dd></div>
+            <div class="row"><dt>店主のおすすめ三種飲み比べ</dt><span class="leader"></span><dd>1,300円</dd></div>
+            <div class="row"><dt>燗酒(半合)</dt><span class="leader"></span><dd>700円〜</dd></div>
+          </dl>
+          <h3>その他</h3>
+          <dl>
+            <div class="row"><dt>生ビール</dt><span class="leader"></span><dd>650円</dd></div>
+            <div class="row"><dt>親子丼(〆)</dt><span class="leader"></span><dd>900円</dd></div>
+            <div class="row"><dt>お通し(季節の小鉢)</dt><span class="leader"></span><dd>450円</dd></div>
+          </dl>
+          <p class="menu-note">表示はすべて税込価格です。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 藍の帯 -->
+  <div class="about-band fade">
+    <p>暖簾の藍は、使うほど深くなる。</p>
+  </div>
+
+  <!-- 店について -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <div class="sec-label fade"><h2>店について</h2></div>
+      <div class="about-grid">
+        <div class="about-text fade">
+          <p>とり藍は、店主夫婦二人で営む八席の焼鳥店です。大きな声も、大きなメニューもありません。あるのは炭の音と、その日の串、そして店主が惚れ込んだ酒だけ。</p>
+          <p>屋号の「藍」は、暖簾に使った藍染から。それだけの理由です。</p>
+          <p>おひとりでも、静かに飲みたい夜でも。カウンターの端の席は、そのための席です。</p>
+          <p class="sig">店主 佐野 誠・女将 佐野 千鶴<span class="rakkan" aria-hidden="true">藍</span></p>
+        </div>
+        <div class="about-photo fade">
+          <img loading="lazy"
+            src="https://images.unsplash.com/photo-1780805664802-dd796d5950c6?q=80&w=900&auto=format&fit=crop"
+            srcset="https://images.unsplash.com/photo-1780805664802-dd796d5950c6?q=80&w=450&auto=format&fit=crop 450w, https://images.unsplash.com/photo-1780805664802-dd796d5950c6?q=80&w=900&auto=format&fit=crop 900w"
+            sizes="(max-width: 900px) 100vw, 50vw"
+            alt="店内のカウンター">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 予約・アクセス -->
+  <section id="access" class="access-section">
+    <div class="container">
+      <div class="sec-label fade"><h2>ご予約・アクセス</h2></div>
+      <div class="access-grid">
+        <div class="fade" id="reserve">
+          <p class="tel-label">お電話でのご予約(15:00以降)</p>
+          <p><a class="tel-big" href="tel:0300000000">03-0000-0000</a><span class="demo-tag">(デモ用の架空番号)</span></p>
+          <p class="tel-note">焼き台に立っている間は出られないことがあります。<br>Webフォームなら24時間受け付けています。</p>
+          <form class="reserve-form" id="rsvForm">
+            <div class="pair">
+              <div>
+                <label for="f-name">お名前</label>
+                <input id="f-name" type="text" autocomplete="name" required>
+              </div>
+              <div>
+                <label for="f-tel">お電話番号</label>
+                <input id="f-tel" type="tel" autocomplete="tel" inputmode="tel" required>
+              </div>
+            </div>
+            <div>
+              <label for="f-mail">メールアドレス <span class="opt">(任意)</span></label>
+              <input id="f-mail" type="email" autocomplete="email" inputmode="email">
+            </div>
+            <div class="pair">
+              <div>
+                <label for="f-date">ご希望日</label>
+                <input id="f-date" type="date" required>
+              </div>
+              <div>
+                <label for="f-time">ご希望時間</label>
+                <select id="f-time">
+                  <option>17:30</option><option>18:00</option><option>18:30</option>
+                  <option selected>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label for="f-num">人数</label>
+              <select id="f-num">
+                <option>1名</option><option selected>2名</option><option>3名</option><option>4名</option><option>5名以上(小上がり)</option>
+              </select>
+            </div>
+            <div>
+              <label for="f-req">アレルギー・ご要望 <span class="opt">(任意)</span></label>
+              <textarea id="f-req"></textarea>
+            </div>
+            <button type="submit">予約をリクエストする</button>
+            <p class="form-policy">※ご予約はリクエスト制です。店舗からの返信をもって確定となります。<br>※当日キャンセルはコース代金の50%を申し受けます。ご入力いただいた情報は予約のご連絡のみに使用します。</p>
+          </form>
+        </div>
+        <div class="fade">
+          <table class="info-table">
+            <tr><th>店名</th><td>炭火焼鳥と日本酒 とり藍(とりあい)</td></tr>
+            <tr><th>住所</th><td><a href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E7%9B%AE%E9%BB%92%E9%A7%85" target="_blank" rel="noopener">東京都目黒区中目黒0-0-0 藍ビル1F</a><br><small>※架空の住所です(デモサイト)</small></td></tr>
+            <tr><th>営業時間</th><td>17:30 – 23:00(L.O. 22:15)</td></tr>
+            <tr><th>定休日</th><td>月曜・第3火曜</td></tr>
+            <tr><th>席数</th><td>カウンター8席・小上がり1卓(4名まで)</td></tr>
+            <tr><th>お子様連れ</th><td>小上がりのみ可(要予約)</td></tr>
+            <tr><th>お支払い</th><td>現金・各種カード・QR決済</td></tr>
+          </table>
+          <iframe class="map-frame" title="店舗周辺の地図(中目黒駅周辺)" loading="lazy"
+            src="https://www.google.com/maps?q=%E4%B8%AD%E7%9B%AE%E9%BB%92%E9%A7%85&output=embed"></iframe>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%AD%E7%9B%AE%E9%BB%92%E9%A7%85" target="_blank" rel="noopener">Googleマップで開く(経路案内)↗</a>
+          <p class="oshirase">【お知らせ】8/25(月)〜8/27(水)は蔵元訪問のため休業いたします。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram -->
+  <section class="insta-section">
+    <div class="insta-inner">
+      <p class="lead fade">今日の串と酒は、Instagramで。</p>
+      <p class="handle fade">@toriai_nakameguro(架空アカウント・デモ)</p>
+      <div class="insta-grid fade">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1727281970348-c3c3b253c662?q=70&w=500&auto=format&fit=crop"
+          srcset="https://images.unsplash.com/photo-1727281970348-c3c3b253c662?q=70&w=250&auto=format&fit=crop 250w, https://images.unsplash.com/photo-1727281970348-c3c3b253c662?q=70&w=500&auto=format&fit=crop 500w"
+          sizes="(max-width: 900px) 50vw, 25vw"
+          alt="">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1664477407933-dd42ed0c6c62?q=70&w=500&auto=format&fit=crop"
+          srcset="https://images.unsplash.com/photo-1664477407933-dd42ed0c6c62?q=70&w=250&auto=format&fit=crop 250w, https://images.unsplash.com/photo-1664477407933-dd42ed0c6c62?q=70&w=500&auto=format&fit=crop 500w"
+          sizes="(max-width: 900px) 50vw, 25vw"
+          alt="">
+        <img loading="lazy"
+          src="https://images.unsplash.com/photo-1626379907626-2863cc76a526?q=70&w=500&auto=format&fit=crop"
+          srcset="https://images.unsplash.com/photo-1626379907626-2863cc76a526?q=70&w=250&auto=format&fit=crop 250w, https://images.unsplash.com/photo-1626379907626-2863cc76a526?q=70&w=500&auto=format&fit=crop 500w"
+          sizes="(max-width: 900px) 50vw, 25vw"
+          alt="">
+        <div class="insta-more"><a href="#" onclick="return false;">@toriai_nakameguro →</a></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p class="fbrand">炭火焼鳥と日本酒 とり藍</p>
+  <p>東京都目黒区中目黒0-0-0 藍ビル1F ｜ 03-0000-0000 ｜ 17:30–23:00(月曜・第3火曜 定休)</p>
+  <p class="demo-note">※本サイトは制作実績紹介のためのデモサイトです。店舗・人物・住所・電話番号はすべて架空のものです。<br>Photos: Unsplash</p>
+</footer>
+
+<nav class="mobile-bar" aria-label="予約アクション">
+  <a class="tel" href="tel:0300000000">電話する</a>
+  <a class="rsv" href="#reserve">Web予約</a>
+</nav>
+
+<script>
+  // スクロール出現(純フェード)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.05 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  // モバイルナビ開閉
+  const header = document.querySelector('.header');
+  const navToggle = document.querySelector('.nav-toggle');
+  navToggle.addEventListener('click', () => {
+    const open = header.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(open));
+    navToggle.textContent = open ? '閉じる' : 'メニュー';
+  });
+  document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => {
+    header.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.textContent = 'メニュー';
+  }));
+
+  // 予約フォーム: 過去日を選べないように
+  document.getElementById('f-date').min = new Date().toISOString().slice(0, 10);
+
+  // デモ用フォーム(alertではなく静かなインライン表示)
+  document.getElementById('rsvForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const done = document.createElement('div');
+    done.className = 'form-done';
+    done.setAttribute('role', 'status');
+    done.innerHTML = 'ご入力ありがとうございます。<br>デモサイトのため実際の送信は行われません。実案件では、この内容が店舗のメールに届き、店舗からの返信をもって予約確定となります。';
+    form.replaceWith(done);
+  });
+</script>
+</body>
+</html>

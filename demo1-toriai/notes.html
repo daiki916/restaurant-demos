@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>制作ノート | 炭火焼鳥と日本酒 とり藍(デモサイト)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kinari: #F6F3EC; --ai-900: #14283A; --ai-700: #1E4258;
+    --sumi: #2B2721; --koji: #B98F3E; --koji-deep: #85622A;
+    --line: rgba(30, 66, 88, 0.18);
+    --serif: "Shippori Mincho", serif; --sans: "Zen Kaku Gothic New", sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sans); color: var(--sumi); background: var(--kinari); line-height: 1.9; font-size: 15px; letter-spacing: 0.03em; padding: 48px 24px 64px; }
+  .sheet { max-width: 720px; margin: 0 auto; }
+  .en { font-size: 12px; letter-spacing: 0.34em; color: var(--koji-deep); font-weight: 700; }
+  h1 { font-family: var(--serif); font-size: 26px; color: var(--ai-700); font-weight: 600; letter-spacing: 0.1em; margin: 8px 0 4px; }
+  .sub { font-size: 14px; margin-bottom: 40px; color: rgba(43,39,33,0.8); }
+  h2 { font-family: var(--serif); font-size: 18px; color: var(--ai-700); font-weight: 600; letter-spacing: 0.12em; margin: 40px 0 12px; padding-bottom: 8px; border-bottom: 1px solid rgba(185,143,62,0.35); }
+  .item { display: grid; grid-template-columns: 28px 1fr; gap: 10px; padding: 12px 0; border-bottom: 1px dotted var(--line); }
+  .item .mark { font-family: var(--serif); color: var(--koji-deep); font-weight: 600; }
+  .item b { color: var(--ai-700); }
+  .item p { font-size: 14px; margin-top: 2px; }
+  .note { font-size: 12px; color: rgba(43,39,33,0.7); margin-top: 40px; line-height: 1.8; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p class="en">SEISAKU NOTE</p>
+  <h1>このサイトが「集客のために」やっていること</h1>
+  <p class="sub">デモサイト「炭火焼鳥と日本酒 とり藍」制作解説シート ── 見た目の裏にある設計を、店主さま向けの言葉でまとめたものです。実案件では、このシートを納品物に同梱します。</p>
+
+  <h2>一、お客さまを逃さない導線</h2>
+  <div class="item"><span class="mark">壱</span><div><b>スマホの画面下に「電話する/Web予約」を常時固定。</b><p>飲食店のサイト閲覧はほとんどがスマホ。どこまで読み進めても、予約まで指1本で届きます。</p></div></div>
+  <div class="item"><span class="mark">弐</span><div><b>予約フォームは24時間の受付窓口。</b><p>仕込み中・焼き台に立っている間の電話の取りこぼしを、時間帯選択つきのリクエストフォームが拾います。折り返しに必要な電話番号は必須入力です。</p></div></div>
+  <div class="item"><span class="mark">参</span><div><b>営業時間・定休日・席数・駅からの距離を開いた瞬間の画面に。</b><p>お客さまが調べる情報の1位は「場所」88.9%、2位は「営業時間」75.9%(消費者調査)。探させた時点で離脱されます。</p></div></div>
+  <div class="item"><span class="mark">四</span><div><b>地図は「眺める」ではなく「経路案内を開く」ボタンつき。</b><p>Googleマップ検索経由の来店が主流の今、ワンタップでナビが始まることが来店率に直結します。</p></div></div>
+
+  <h2>二、Googleに正しく見つけてもらう仕組み</h2>
+  <div class="item"><span class="mark">五</span><div><b>店舗情報を「構造化データ」でGoogleに直接渡しています。</b><p>店名・住所・営業時間・料理ジャンルを検索エンジンが読める形式(Restaurantスキーマ)で埋め込み済み。Googleビジネスプロフィールと合わせて、検索とマップでの見え方が整います。</p></div></div>
+  <div class="item"><span class="mark">六</span><div><b>SNSでシェアされたとき、写真つきカードで表示されます。</b><p>OGP設定済み。LINEやXにURLを貼ると、料理写真と店名が自動で出ます。文字だけのリンクとはクリック率が違います。</p></div></div>
+
+  <h2>三、誰にでも使える、速い</h2>
+  <div class="item"><span class="mark">七</span><div><b>文字の読みやすさは国際基準(WCAG AA)をクリア。</b><p>年配のお客さまや屋外の明るい場所でも読めるコントラストを、全ページで計算して確保しています。</p></div></div>
+  <div class="item"><span class="mark">八</span><div><b>写真は画面サイズに合わせて自動で軽くなります。</b><p>移動中の電波でもすぐ開くよう、スマホには小さい画像を配信。表示の速さは離脱率と検索順位の両方に効きます。</p></div></div>
+
+  <p class="note">※このデモの数値出典: ONE COMPATH 店舗検索行動調査(2022, n=8,576)。<br>※「とり藍」は架空の店舗です。本シートはポートフォリオ用の制作解説であり、実案件では店舗さまの内容に合わせて作成します。</p>
+</div>
+</body>
+</html>

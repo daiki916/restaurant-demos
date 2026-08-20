@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="デモサイト「燭」の制作解説シート。見た目の裏にある集客設計と、日本語組版・演出の設計意図をまとめています。">
+<title>制作ノート | 燭 SHOKU KAGURAZAKA(デモサイト)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sumi: #0C0A08; --shitsu: #17130F; --kinari: #F3EBDD;
+    --usu: #BFAE99; --kage: #8A7F72;
+    --hono: #C98A3D; --hono-fukai: #8E5F27; --shu: #6B2733;
+    --line: #2E2A26;
+    --mincho: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+    --oubun: "Cormorant Garamond", Georgia, serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--mincho); color: var(--kinari); background: var(--sumi);
+    line-height: 1.9; font-size: 15px; letter-spacing: .03em;
+    padding: 56px 24px 72px;
+    word-break: auto-phrase; line-break: strict;
+  }
+  .sheet { max-width: 720px; margin: 0 auto; }
+  .en { font-family: var(--oubun); font-size: 12px; letter-spacing: .34em; color: var(--hono); text-transform: uppercase; }
+  h1 { font-size: 26px; font-weight: 400; margin: 12px 0 6px; line-height: 1.5; }
+  .sub { font-size: 14px; color: var(--usu); margin-bottom: 48px; }
+  h2 { font-size: 18px; font-weight: 400; margin: 48px 0 12px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  h2 .num { font-family: var(--oubun); font-size: 12px; letter-spacing: .3em; color: var(--hono); margin-right: 12px; }
+  .item { display: grid; grid-template-columns: 32px 1fr; gap: 12px; padding: 16px 0; border-bottom: 1px solid rgba(46,42,38,.6); }
+  .item .mark { font-size: 15px; color: var(--hono-fukai); }
+  .item b { font-weight: 500; color: var(--kinari); }
+  .item p { font-size: 14px; color: var(--usu); margin-top: 4px; }
+  .why { display: inline-block; font-size: 11px; letter-spacing: .1em; color: var(--sumi); background: var(--hono); padding: 1px 8px; margin-right: 8px; vertical-align: 2px; }
+  .note { font-size: 12px; color: var(--kage); margin-top: 48px; line-height: 1.9; border-top: 1px solid var(--line); padding-top: 20px; }
+  a { color: var(--hono); }
+  @media (max-width: 480px) { body { padding: 40px 20px 56px; } h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <p class="en">Seisaku Note</p>
+  <h1>このサイトが「集客のために」やっていること</h1>
+  <p class="sub">デモサイト「燭（しょく）」制作解説シート ── 画面に見えている装飾の裏で、実際に何を仕込んでいるかを店主さま向けの言葉でまとめたものです。実案件では、このシートを納品物に同梱します。</p>
+
+  <h2><span class="num">One</span>お客さまを逃さない導線</h2>
+  <div class="item"><span class="mark">壱</span><div><b>スマホでは、画面の下に予約ボタンが出続けます。</b><p>ヒーロー画像を過ぎた時点から常時表示。どこまで読み進めても、予約まで指一本で届きます。飲食店のサイト閲覧はほとんどがスマホです。</p></div></div>
+  <div class="item"><span class="mark">弐</span><div><b>電話番号はタップで発信、住所はタップで経路案内。</b><p>番号を書くだけでは足りません。押せば発信、押せばナビが始まる形にしてあります。仕込み中の取りこぼしと、道に迷っての離脱を同時に潰します。</p></div></div>
+  <div class="item"><span class="mark">参</span><div><b>予約フォームは24時間の受付窓口。</b><p>日付・時間・人数・要望を選ぶだけ。入力漏れはその場で赤字で指摘し、送信後は読み上げソフトにも伝わる形で完了を知らせます。</p></div></div>
+  <div class="item"><span class="mark">四</span><div><b>営業時間・定休日・価格帯・住所を一箇所にまとめています。</b><p>お客さまが最初に探すのは「場所」と「営業時間」です。探させた時点で離脱されます。よくある質問（アレルギー・人数・服装）も同じ面に置いてあります。</p></div></div>
+
+  <h2><span class="num">Two</span>検索とSNSでの見え方</h2>
+  <div class="item"><span class="mark">五</span><div><b>店舗情報を「構造化データ」でGoogleに直接渡しています。</b><p>店名・住所・電話・営業時間・料理ジャンル・予約可否を、検索エンジンが読める形式（Restaurantスキーマ）で埋め込み済み。Googleビジネスプロフィールと合わせると、検索とマップでの見え方が整います。</p></div></div>
+  <div class="item"><span class="mark">六</span><div><b>LINEやSNSにURLを貼ると、写真つきのカードで表示されます。</b><p>OGP設定済み。専用のカード画像（1200×630）も用意してあります。文字だけのリンクとはクリック率が違います。</p></div></div>
+  <div class="item"><span class="mark">七</span><div><b>万一プログラムが動かない環境でも、真っ白になりません。</b><p>店名・営業時間・住所・注意書きが必ず残るようにしてあります。凝った演出のあるサイトほど、ここが抜けていると事故になります。</p></div></div>
+
+  <h2><span class="num">Three</span>日本語を、読める形に組む</h2>
+  <div class="item"><span class="mark">八</span><div><b><span class="why">ここが差</span>語の途中で改行されません。</b><p>「十一席」が“十／一席”に割れる、「盛り合わせ」が“盛り合わ／せ”に割れる。日本語サイトで頻繁に起きる事故です。文節単位で折り返す設定を全文に入れてあります。</p></div></div>
+  <div class="item"><span class="mark">九</span><div><b>和文の字間を詰めていません。行間は広めに取っています。</b><p>明朝体は文字そのものに余白を持っています。欧文の感覚で詰めると、画数の多い漢字が潰れます。本文の行間は1.85、字間はわずかに開ける設定です。</p></div></div>
+  <div class="item"><span class="mark">十</span><div><b>書体は日本語用の明朝体を選んでいます。</b><p>字形が中国語向けの書体を当てると、一部の漢字だけ別の書体に化けて一行の中で書体が割れます。日本語の字形を持つ書体（Noto Serif JP）を指定済みです。</p></div></div>
+
+  <h2><span class="num">Four</span>動きは「店の音量」に従わせる</h2>
+  <div class="item"><span class="mark">十一</span><div><b>スクロールに合わせて、コース三皿が切り替わります。</b><p>静かな店なので、動きもゆっくり。賑やかな店なら速く、大きく動かします。動きの速さと大きさは、店の雰囲気に合わせて設計するものです。</p></div></div>
+  <div class="item"><span class="mark">十二</span><div><b>写真は一枚ずつ違う速さで動きます。</b><p>同じ速さで動かすと平面に見えます。速度差が奥行きになります。写真を「貼った」のではなく「置いた」ように見せるための処理です。</p></div></div>
+  <div class="item"><span class="mark">十三</span><div><b>動きが苦手な方には、動かない形で表示されます。</b><p>端末側で「視差効果を減らす」を設定している方には、演出を止めた静かな状態で届きます。乗り物酔いに似た症状が出る方への配慮で、国際的な基準にもなっています。</p></div></div>
+  <div class="item"><span class="mark">十四</span><div><b>キーボードだけでも操作できます。</b><p>先頭に「本文へ移動」の飛び先を用意し、押せる場所には必ず光る枠が出ます。マウスが使いにくい方も、最後まで到達できます。</p></div></div>
+
+  <p class="note">
+    ※「燭」は架空の店舗です。店名・住所・電話番号・人物・価格・ワインの銘柄と造り手は、すべてこのポートフォリオのための架空設定であり、実在のものとは関係ありません。<br>
+    ※本シートはポートフォリオ用の制作解説です。実案件では、店舗さまの実際の内容に合わせて作成します。<br>
+    ※このデモは通信を行いません。予約フォームを送信しても、実際の予約は成立しません。
+  </p>
+</div>
+</body>
+</html>
