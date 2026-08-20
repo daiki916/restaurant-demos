@@ -174,7 +174,14 @@
   .fuda-group:nth-child(3) li:nth-child(3) { --r: 1.9deg; }
   .fuda-group:nth-child(3) li:nth-child(4) { --r: -1.2deg; }
   .fuda-group:nth-child(3) li:nth-child(5) { --r: 0.5deg; --ml: 8px; }
-  .fuda .ne { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  /* 住所・電話・時間は単位で不可分。折るなら単位の間で */
+    footer .finfo span { white-space: nowrap; display: inline-block; }
+    footer .finfo .fsep { margin: 0 0.5em; }
+    @media (max-width: 640px) {
+      footer .finfo .fsep { display: none; }
+      footer .finfo span { display: block; line-height: 2; }
+    }
+    .fuda .ne { white-space: nowrap; font-variant-numeric: tabular-nums; }
   .fuda .meibutsu { background: var(--aka); color: var(--shiro); }
   .menu-note { margin-top: var(--sp-4); font-size: 14px; }
 
@@ -550,7 +557,7 @@
 
 <footer>
   <p class="fbrand">大衆酒場 まるきん</p>
-  <p>東京都品川区大井0-0-0 ｜ 03-0000-0000 ｜ 16:00〜23:30(日曜定休)</p>
+  <p class="finfo"><span>東京都品川区大井0-0-0</span><span class="fsep">｜</span><span>03-0000-0000</span><span class="fsep">｜</span><span>16:00〜23:30(日曜定休)</span></p>
   <p class="demo-note">※本サイトは制作実績紹介のためのデモサイトです。店舗・人物・住所・電話番号はすべて架空のものです。<br>Photo: Unsplash</p>
 </footer>
 
