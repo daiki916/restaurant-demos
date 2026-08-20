@@ -46,6 +46,10 @@
     --header-h: 60px;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  /* 和文の折り返し: 語の途中で改行される中割れを防ぐ(文節単位で折る)。
+     非対応ブラウザは無視するだけなので安全。 */
+  p, h1, h2, h3, dt, dd, li, figcaption { word-break: auto-phrase; line-break: strict; }
   html { scroll-behavior: smooth; }
   body {
     position: relative;
