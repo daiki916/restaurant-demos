@@ -268,8 +268,9 @@
   .insta-inner { max-width: 1080px; margin: 0 auto; }
   .insta-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; }
   .insta-grid img:nth-child(2) { aspect-ratio: 1; }
-  .insta-more { display: flex; align-items: flex-end; padding: var(--sp-2); font-family: var(--serif); color: var(--ai-koi); border: 1px solid var(--line); aspect-ratio: 1; }
-  .insta-more a { overflow-wrap: anywhere; color: var(--ai-koi); text-decoration: none; letter-spacing: var(--ls-ui); }
+  .insta-more { display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; padding: var(--sp-2); font-family: var(--serif); color: var(--ai-koi); border: 1px solid var(--line); aspect-ratio: 1; }
+  .insta-more .imlabel { font-size: var(--fs-cap); letter-spacing: 0.18em; opacity: 0.65; }
+    .insta-more a { font-size: var(--fs-sm); line-height: 1.7; overflow-wrap: break-word; max-width: 100%; color: var(--ai-koi); text-decoration: none; letter-spacing: var(--ls-ui); }
 
   /* ---------- footer ---------- */
   footer { background: var(--ai-yoru); color: rgba(242, 239, 231, 0.88); padding: var(--sp-6); text-align: center; font-size: var(--fs-sm); border-top: 1px solid rgba(242, 239, 231, 0.15); }
@@ -316,6 +317,7 @@
     .about-band p { writing-mode: horizontal-tb; height: auto; letter-spacing: var(--ls-title); font-size: var(--fs-lead); }
     .about-photo img { height: 260px; }
     .insta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .insta-more a { font-size: var(--fs-cap); letter-spacing: 0.02em; }
     .mobile-bar {
       display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
       position: fixed; bottom: 0; left: 0; right: 0; z-index: 60;
@@ -573,7 +575,7 @@
   </section>
 
   <!-- Instagram -->
-  <section class="insta-section">
+  <section class="insta-section" id="insta">
     <div class="insta-inner">
       <p class="lead fade">今日の串と酒は、Instagramで。</p>
       <p class="handle fade">@toriai_nakameguro(架空アカウント・デモ)</p>
@@ -593,7 +595,7 @@
           srcset="img/u1626379907626-2863cc76a526-w250.webp 250w, img/u1626379907626-2863cc76a526-w500.webp 500w"
           sizes="(max-width: 900px) 50vw, 25vw"
           alt="">
-        <div class="insta-more"><a href="#" onclick="return false;">@toriai_nakameguro →</a></div>
+        <div class="insta-more"><span class="imlabel">Instagram</span><a href="#" onclick="return false;">@toriai_<wbr>nakameguro&nbsp;&rarr;</a></div>
       </div>
     </div>
   </section>
