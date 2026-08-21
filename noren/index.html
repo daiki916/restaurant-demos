@@ -162,7 +162,8 @@ a:focus-visible,button:focus-visible{
 .work-caution{margin-top:var(--sp-m); font-size:13px; color:var(--sumi-usu); line-height:1.9}
 
 /* ================= STORY ================= */
-.story-figure{overflow:hidden}
+/* 万一読み込めなくても、壊れた画像アイコンではなく藍の面として収まるようにしておく */
+.story-figure{overflow:hidden; background:var(--ai)}
 .story-figure img{width:100%; aspect-ratio:4/5; object-fit:cover}
 .story-body{margin-top:var(--sp-m)}
 .story-quote{position:relative; padding:32px 0 0}
@@ -429,7 +430,8 @@ a:focus-visible,button:focus-visible{
                PC/スマホの出し分けだけを media で行う単純な形にしている。 -->
           <picture>
             <source media="(min-width:768px)" srcset="../assets/noren/story-noren-wide.webp">
-            <img src="../assets/noren/story-noren-800.webp" alt="のれんを掛ける店主の後ろ姿" decoding="async" width="800" height="1000">
+            <img src="../assets/noren/story-noren-800.webp" alt="のれんを掛ける店主の後ろ姿" decoding="async" width="800" height="1000"
+                 onerror="this.onerror=null;this.src='../assets/noren/story-noren-wide.webp'">
           </picture>
         </div>
       </figure>
