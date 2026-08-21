@@ -157,7 +157,11 @@ a:focus-visible,button:focus-visible{
 .work-badge{display:inline-block; border:1px solid var(--ai); color:var(--ai); font-size:13px; letter-spacing:.04em; padding:3px 12px}
 .work-name{font-family:var(--mincho); font-size:22px; font-weight:700; margin-top:var(--sp-xs); line-height:1.4}
 .work-note{margin-top:var(--sp-xs); font-size:16px; color:var(--sumi-usu)}
-.work-more{display:inline-block; margin-top:20px; color:var(--ai); font-size:16px; text-decoration:none}
+/* 指で押す領域は44px以上を確保する。演出用の入替は内側の .c-swap に閉じ込め、
+   余白を親のリンク側に持たせることで、切り取りと当たり判定を両立させる。 */
+.work-more{display:inline-block; margin-top:12px; padding:8px 4px; color:var(--ai); font-size:16px; text-decoration:none}
+.work-more:hover .c-swap-in,.work-more:focus-visible .c-swap-in{transform:translateY(-100%)}
+.work-more:hover .c-swap-out,.work-more:focus-visible .c-swap-out{transform:translateY(0)}
 .work-caution{margin-top:var(--sp-m); font-size:13px; color:var(--sumi-usu); line-height:1.9}
 
 /* ================= STORY ================= */
@@ -278,7 +282,7 @@ a:focus-visible,button:focus-visible{
 
   /* スマホでは、のれんを画面上部いっぱいに掛けて、その下に文字を置く。
      右上の小さな飾りではなく「くぐる一枚」として見せる。
-     中央寄せに transform を使わない（GSAPの視差と取り合いになるため）。 */
+     中央寄せに transform を使わない（視差が transform を上書きするため）。 */
   .hero-noren-wrap{right:0; left:0; margin:0 auto; width:min(88%,420px)}
   .hero-body{padding:290px 0 110px}
 }
@@ -373,12 +377,12 @@ a:focus-visible,button:focus-visible{
           </div>
           <div class="work-body">
             <span class="work-badge">焼鳥・日本酒</span>
-            <h3 class="work-name">炭火焼鳥と<span class="u-nw">とり藍</span></h3>
+            <h3 class="work-name">炭火焼鳥と日本酒 <span class="u-nw">とり藍</span></h3>
             <p class="work-note">白木のカウンター八席。写真を大きく見せるより、席数と予約の空きが先に目に入る順番にしました。</p>
-            <a class="work-more c-swap" href="../demo1-toriai/">
+            <a class="work-more" href="../demo1-toriai/"><span class="c-swap">
               <span class="c-swap-in">デモを見る →</span>
               <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
-            </a>
+            </span></a>
           </div>
         </div>
       </article>
@@ -392,10 +396,10 @@ a:focus-visible,button:focus-visible{
             <span class="work-badge">大衆酒場</span>
             <h3 class="work-name">大衆酒場 <span class="u-nw">まるきん</span></h3>
             <p class="work-note">串カツ120円から。短冊の品書きも提灯の赤も、通りで見たままの並びにしています。</p>
-            <a class="work-more c-swap" href="../demo2-marukin/">
+            <a class="work-more" href="../demo2-marukin/"><span class="c-swap">
               <span class="c-swap-in">デモを見る →</span>
               <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
-            </a>
+            </span></a>
           </div>
         </div>
       </article>
@@ -409,10 +413,10 @@ a:focus-visible,button:focus-visible{
             <span class="work-badge">ワインバル</span>
             <h3 class="work-name">燭 <span class="u-nw">SHOKU KAGURAZAKA</span></h3>
             <p class="work-note">十一席だけの夜。スクロールに合わせて皿が入れ替わります。動きを止める設定の端末には、静かなまま届きます。</p>
-            <a class="work-more c-swap" href="../demo3-shoku/">
+            <a class="work-more" href="../demo3-shoku/"><span class="c-swap">
               <span class="c-swap-in">デモを見る →</span>
               <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
-            </a>
+            </span></a>
           </div>
         </div>
       </article>
@@ -592,7 +596,9 @@ window.addEventListener('DOMContentLoaded', function () {
     odo.appendChild(strip);
   });
 
+  var ioFired = false;
   var io = new IntersectionObserver(function (entries) {
+    ioFired = true;
     entries.forEach(function (e) {
       if (!e.isIntersecting) return;
       var el = e.target;
@@ -630,9 +636,11 @@ window.addEventListener('DOMContentLoaded', function () {
     if (box) box.classList.add('is-shown');
   });
 
-  // 最後の安全網。何かの理由で出現が動かなくても、6秒で全部見せる。
-  // 「読めないまま」だけは絶対に起こさない。
+  // 最後の安全網。出現の仕組みが一度も動かなかったときだけ、全部見せる。
+  // 無条件に全部出すと、6秒より長くヒーローを読んだ人には
+  // それ以降のスクロール演出が一切起きなくなるので、発火済みなら手を出さない。
   setTimeout(function () {
+    if (ioFired) return;
     document.querySelectorAll('.c-mask,.c-rise,.c-rule,.c-wipe,.steps-line').forEach(function (el) {
       el.classList.add('is-shown');
     });
