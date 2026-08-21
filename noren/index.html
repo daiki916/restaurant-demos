@@ -9,7 +9,6 @@
 <title>元店長だいき｜飲食店専門のホームページ制作（実績はデモ）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Noto+Serif+JP:wght@400;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -641,18 +640,27 @@ window.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-<!-- GSAP はのれんの視差だけに使う。読めなくても本文の表示には影響しない。 -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
-<script defer>
+<!-- のれんの視差。以前は GSAP を読んでいたが、この一箇所のために 116KB は割に合わない。
+     やることは transform を1つ動かすだけなので、標準の機能で足りる。 -->
+<script>
 window.addEventListener('load', function () {
   if (!document.documentElement.classList.contains('js-anim')) return;
-  if (!window.gsap || !window.ScrollTrigger) return;
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.to('.hero-noren-wrap', {
-    yPercent: 14, ease: 'none',
-    scrollTrigger: { trigger: '.l-hero', start: 'top top', end: 'bottom top', scrub: 0 }
-  });
+  var wrap = document.querySelector('.hero-noren-wrap');
+  var hero = document.querySelector('.l-hero');
+  if (!wrap || !hero) return;
+
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var h = hero.offsetHeight;
+    if (!h) return;
+    var y = Math.min(Math.max(window.pageYOffset, 0), h);
+    wrap.style.transform = 'translate3d(0,' + (y / h * 14).toFixed(2) + '%,0)';
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  update();
 });
 </script>
 </body>
