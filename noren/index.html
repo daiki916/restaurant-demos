@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="のれんを掛けてきた元店長が、飲食店のホームページをつくります。制作実績（架空店舗のデモ3本）と、進め方・料金。">
+<meta name="theme-color" content="#1e3a5f">
+<title>元店長だいき｜飲食店専門のホームページ制作（実績はデモ）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Noto+Serif+JP:wght@400;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ai:#1e3a5f; --ai-mid:#2d4f7c; --ai-deep:#16304a;
+  --kinari:#f5f2ea; --kinari-usu:#ede9df;
+  --sumi:#26231f; --sumi-usu:#5b554d;
+  --haku:#c8a95a;        /* 暗い面でだけ使う金 */
+  --haku-dark:#7a6220;   /* 明るい面で使う金（生成り上で4.6:1） */
+
+  --mincho:"Noto Serif JP",serif;
+  --gothic:"Noto Sans JP",sans-serif;
+  --suji:"DM Serif Display","Noto Serif JP",serif;
+
+  --emerge:cubic-bezier(.165,.84,.44,1);
+  --wipe:cubic-bezier(.77,0,.175,1);
+
+  --d-emerge:1000ms;
+  --d-line:800ms;
+  --d-wipe:1400ms;
+  --d-hover:700ms;
+  --d-tone:200ms;
+
+  --sp-xs:12px; --sp-s:24px; --sp-m:48px; --sp-l:96px;
+  --gutter:24px;
+  --maxw:1100px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background-color:var(--kinari);
+  background-image:url("../assets/noren/tex-kinari.webp");
+  color:var(--sumi);
+  font-family:var(--gothic); font-size:16px; line-height:1.8;
+  letter-spacing:.02em;
+  word-break:auto-phrase; line-break:strict;
+  overflow-x:hidden;
+}
+img{display:block; max-width:100%; height:auto}
+a{color:inherit}
+.u-nw{white-space:nowrap}
+.u-sr{position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+
+.c-skip{position:absolute; left:-9999px}
+.c-skip:focus{
+  left:16px; top:16px; z-index:20; padding:12px 20px;
+  background:var(--ai); color:var(--kinari); text-decoration:none;
+}
+
+.c-wrap{width:100%; max-width:var(--maxw); margin:0 auto; padding:0 var(--gutter)}
+.c-eyebrow{
+  font-family:var(--gothic); font-size:13px; letter-spacing:.14em;
+  color:var(--haku-dark); margin-bottom:var(--sp-xs);
+}
+.c-h2{font-family:var(--mincho); font-size:30px; font-weight:700; line-height:1.3}
+.c-rule{width:48px; height:2px; background:var(--haku-dark); margin-top:20px; transform-origin:left center}
+.c-lead{margin-top:var(--sp-s); max-width:34em; color:var(--sumi-usu)}
+
+/* 暗い面では金をそのまま使う（コントラストが足りる） */
+.l-section--dark .c-eyebrow,.l-section--ai .c-eyebrow{color:var(--haku)}
+.l-section--dark .c-rule,.l-section--ai .c-rule{background:var(--haku)}
+
+/* ---- のれん ---- */
+.c-noren{display:block; width:100%; height:auto}
+.c-noren-rod{fill:#1a1512}
+.c-noren-cloth{filter:drop-shadow(0 8px 16px rgba(8,20,32,.45))}
+
+/* ---- リンク（2枚重ねの入替） ---- */
+.c-swap{display:inline-block; position:relative; overflow:hidden; vertical-align:bottom; text-decoration:none}
+.c-swap-in{display:block; transition:transform var(--d-hover) var(--emerge)}
+.c-swap-out{position:absolute; inset:0; transform:translateY(100%); transition:transform var(--d-hover) var(--emerge)}
+.c-swap:hover .c-swap-in,.c-swap:focus-visible .c-swap-in{transform:translateY(-100%)}
+.c-swap:hover .c-swap-out,.c-swap:focus-visible .c-swap-out{transform:translateY(0)}
+
+/* フォーカスは明背景=藍・暗背景=金の二重リングで必ず見えるようにする */
+a:focus-visible,button:focus-visible{
+  outline:2px solid var(--ai); outline-offset:3px;
+  box-shadow:0 0 0 5px var(--kinari);
+}
+.l-hero a:focus-visible,.l-section--dark a:focus-visible,
+.l-section--ai a:focus-visible,.l-footer a:focus-visible{
+  outline-color:var(--haku); box-shadow:0 0 0 5px rgba(15,36,56,.9);
+}
+
+/* ---- ボタン ---- */
+.c-btn{
+  display:inline-flex; align-items:center; gap:12px;
+  min-height:56px; padding:0 32px;
+  border:1px solid currentColor; text-decoration:none;
+  font-size:15px; letter-spacing:.04em;
+  position:relative; overflow:hidden;
+}
+.c-btn span{position:relative; z-index:1; transition:color var(--d-tone) linear}
+.c-btn::before{
+  content:""; position:absolute; inset:0; background:currentColor;
+  transform:scaleX(0); transform-origin:left center;
+  transition:transform var(--d-hover) var(--wipe);
+}
+.c-btn:hover::before,.c-btn:focus-visible::before{transform:scaleX(1)}
+.c-btn--light{color:var(--kinari)}
+.c-btn--light:hover span,.c-btn--light:focus-visible span{color:var(--ai)}
+.c-btn--fill{
+  background:var(--ai); color:var(--kinari); border-color:var(--ai);
+  width:100%; justify-content:center;
+}
+.c-btn--fill::before{background:var(--kinari)}
+.c-btn--fill:hover span,.c-btn--fill:focus-visible span{color:var(--ai)}
+
+/* ================= HERO ================= */
+.l-hero{
+  position:relative; min-height:100svh; display:flex; align-items:center;
+  background:var(--ai) url("../assets/noren/hero-ai.webp") center/cover no-repeat;
+  color:var(--kinari); overflow:hidden;
+}
+.hero-noren-wrap{
+  position:absolute; right:-2%; top:0; width:min(48%,520px);
+  pointer-events:none; will-change:transform;
+}
+.hero-body{position:relative; z-index:1; padding:var(--sp-l) 0}
+.hero-eyebrow{font-size:13px; letter-spacing:.14em; color:var(--haku); margin-bottom:20px}
+.hero-title{font-family:var(--mincho); font-weight:700; font-size:clamp(36px,8vw,52px); line-height:1.15}
+.hero-promise{
+  margin-top:var(--sp-s); font-family:var(--mincho);
+  font-size:clamp(18px,3.4vw,22px); line-height:1.8; max-width:24em;
+}
+.hero-cta{margin-top:var(--sp-m)}
+.hero-scroll{
+  position:absolute; left:50%; bottom:28px; transform:translateX(-50%);
+  z-index:1; font-size:13px; letter-spacing:.14em; color:var(--kinari);
+  display:flex; flex-direction:column; align-items:center; gap:8px; text-decoration:none;
+}
+.hero-scroll::after{content:"↓"; font-size:14px}
+
+/* ================= 共通セクション ================= */
+.l-section{padding:var(--sp-l) 0}
+.l-section--dark{background-color:var(--sumi); background-image:url("../assets/noren/tex-sumi.webp"); color:var(--kinari)}
+.l-section--ai{background-color:var(--ai); background-image:url("../assets/noren/tex-ai.webp"); color:var(--kinari)}
+
+/* ================= WORKS ================= */
+.works-list{margin-top:var(--sp-m); display:grid; gap:var(--sp-s)}
+.work{background:var(--kinari-usu)}
+.work-figure{overflow:hidden}
+.work-figure img{width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform var(--d-hover) var(--emerge)}
+.work:hover .work-figure img{transform:scale(1.03)}
+.work-body{padding:var(--sp-s) var(--sp-s) 32px}
+.work-badge{display:inline-block; border:1px solid var(--ai); color:var(--ai); font-size:13px; letter-spacing:.04em; padding:3px 12px}
+.work-name{font-family:var(--mincho); font-size:22px; font-weight:700; margin-top:var(--sp-xs); line-height:1.4}
+.work-note{margin-top:var(--sp-xs); font-size:16px; color:var(--sumi-usu)}
+.work-more{display:inline-block; margin-top:20px; color:var(--ai); font-size:16px; text-decoration:none}
+.work-caution{margin-top:var(--sp-m); font-size:13px; color:var(--sumi-usu); line-height:1.9}
+
+/* ================= STORY ================= */
+.story-figure{overflow:hidden}
+.story-figure img{width:100%; aspect-ratio:4/5; object-fit:cover}
+.story-body{margin-top:var(--sp-m)}
+.story-quote{position:relative; padding:32px 0 0}
+.story-quote::before,.story-quote::after{content:""; position:absolute; width:22px; height:22px; border:1px solid var(--haku)}
+.story-quote::before{top:0; left:0; border-right:0; border-bottom:0}
+.story-quote::after{right:0; bottom:-8px; border-left:0; border-top:0}
+.story-text p+p{margin-top:1.6em}
+.story-sign{margin-top:var(--sp-s); font-family:var(--mincho); font-size:16px; color:var(--kinari)}
+
+/* ================= VALUES ================= */
+.values-list{margin-top:var(--sp-m)}
+.value{padding:32px 0; border-top:1px solid var(--kinari-usu)}
+.value:last-child{border-bottom:1px solid var(--kinari-usu)}
+.value-no{font-family:var(--suji); font-size:13px; color:var(--haku-dark); letter-spacing:.1em}
+.value-name{font-family:var(--mincho); font-size:22px; font-weight:700; margin-top:var(--sp-xs)}
+.value-text{margin-top:var(--sp-xs); color:var(--sumi-usu); max-width:36em}
+
+/* ================= PROCESS ================= */
+.steps{margin-top:var(--sp-m); position:relative; padding-left:52px}
+.steps-line{position:absolute; left:17px; top:14px; bottom:14px; width:1px; background:var(--haku); opacity:.45; transform-origin:top center}
+.step{position:relative; padding-bottom:var(--sp-m)}
+.step:last-child{padding-bottom:0}
+.step-mark{
+  position:absolute; left:-52px; top:-2px;
+  width:36px; height:36px; border:1px solid rgba(245,242,234,.55); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--suji); font-size:16px; color:var(--kinari);
+  background:var(--ai);
+}
+.step-name{font-family:var(--mincho); font-size:22px; font-weight:700}
+.step-text{margin-top:8px; opacity:.9; max-width:32em}
+.price{margin-top:var(--sp-l); padding-top:var(--sp-m); border-top:1px solid rgba(245,242,234,.22)}
+.price-label{font-size:13px; letter-spacing:.14em; color:var(--haku)}
+.price-figure{
+  margin-top:10px; display:flex; align-items:baseline; gap:2px;
+  font-family:var(--suji); font-weight:400;
+  font-size:clamp(36px,9vw,52px); line-height:1.1;
+}
+.price-unit{font-family:var(--mincho); font-weight:700; font-size:.62em; margin-left:.12em}
+/* 桁のロールは CSS だけで完結させる（移動量を実測に頼らないので壊れにくい）。
+   align-items:flex-start が要。既定の stretch だと帯が窓の高さに潰れる。 */
+.odo{display:inline-flex; overflow:hidden; height:1.1em; width:.62em; justify-content:center; align-items:flex-start}
+.odo-strip{display:flex; flex-direction:column; transition:transform var(--d-emerge) var(--emerge) var(--d,0ms)}
+.odo-strip span{height:1.1em; line-height:1.1}
+.price.is-shown .odo-strip{transform:translateY(calc(var(--n,0) * -1.1em))}
+.price-note{margin-top:20px; font-size:13px; opacity:.86; max-width:36em; line-height:1.9}
+.price-note+.price-note{margin-top:var(--sp-xs)}
+
+/* ================= CONTACT ================= */
+.contact{text-align:center}
+.contact .c-rule{margin:20px auto 0}
+.contact-lead{margin-top:var(--sp-s); color:var(--sumi-usu)}
+.contact-cta{margin-top:var(--sp-m); max-width:420px; margin-left:auto; margin-right:auto}
+
+/* ================= FOOTER ================= */
+.l-footer{
+  background-color:var(--ai); background-image:url("../assets/noren/tex-ai.webp");
+  color:var(--kinari); padding:72px 0 40px; text-align:center; position:relative; overflow:hidden;
+}
+.footer-noren{width:min(46%,240px); margin:0 auto var(--sp-s)}
+.footer-name{font-family:var(--mincho); font-size:22px; font-weight:700}
+.footer-note{margin-top:var(--sp-xs); font-size:13px; opacity:.78}
+.footer-copy{margin-top:var(--sp-xs); font-family:var(--gothic); font-size:13px; opacity:.6; letter-spacing:.06em}
+
+/* ================= 出現アニメーション ================= */
+/* 隠すのは JS が起動してからに限る（JS が落ちても全文が読める） */
+.js-anim .c-mask{overflow:hidden}
+.js-anim .c-mask>*{transform:translate3d(0,110%,0)}
+.js-anim .c-mask.is-shown>*{transform:translate3d(0,0,0); transition:transform var(--d-emerge) var(--emerge)}
+
+.js-anim .c-rise{opacity:0; transform:translate3d(0,26px,0)}
+.js-anim .c-rise.is-shown{opacity:1; transform:none; transition:opacity var(--d-emerge) var(--emerge),transform var(--d-emerge) var(--emerge)}
+
+.js-anim .c-cloth{clip-path:inset(100% 0 0 0)}
+.js-anim .c-cloth.is-shown{clip-path:inset(0 0 0 0); transition:clip-path var(--d-wipe) var(--wipe)}
+
+.js-anim .c-rule{transform:scaleX(0)}
+.js-anim .c-rule.is-shown{transform:scaleX(1); transition:transform var(--d-line) var(--emerge)}
+
+.js-anim .steps-line{transform:scaleY(0)}
+.js-anim .steps-line.is-shown{transform:scaleY(1); transition:transform var(--d-line) var(--emerge)}
+
+/* 出るまでの間はフォーカスも当たらないようにする（見えない要素にTabが止まらない） */
+.js-anim .c-cloth:not(.is-shown) a{visibility:hidden}
+
+/* 環境アニメは布だけを揺らす。竿は動かない。 */
+@keyframes noren-sway{
+  0%{transform:rotate(-.3deg)}
+  50%{transform:rotate(.3deg)}
+  100%{transform:rotate(-.3deg)}
+}
+.hero-noren .c-noren-cloth{transform-origin:50% 6%; animation:noren-sway 90s linear infinite}
+
+/* ================= レスポンシブ ================= */
+@media (min-width:768px){
+  .l-section{padding:150px 0}
+  .c-h2{font-size:40px}
+  .works-list{grid-template-columns:repeat(3,1fr)}
+  .story-grid{display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center}
+  .story-body{margin-top:0}
+  .story-figure img{aspect-ratio:3/2}
+  .values-grid{display:grid; grid-template-columns:1fr 1.35fr; gap:64px; align-items:start}
+  .values-figure{aspect-ratio:4/5; background:url("../assets/noren/detail-apron@700.webp") center/cover}
+  .contact-cta{max-width:360px}
+}
+@media (max-width:767px){
+  .values-figure{display:none}
+  .c-h2{font-size:28px}
+  .work-name,.value-name,.step-name{font-size:18px}
+}
+
+/* ================= 動きを減らす設定 ================= */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:1ms !important; animation-iteration-count:1 !important; transition-duration:1ms !important}
+  .js-anim .c-mask>*,.js-anim .c-rise{transform:none; opacity:1}
+  .js-anim .c-cloth{clip-path:none}
+  .js-anim .c-cloth:not(.is-shown) a{visibility:visible}
+  .js-anim .c-rule{transform:scaleX(1)}
+  .js-anim .steps-line{transform:scaleY(1)}
+}
+</style>
+<script>
+  // 隠す指定は JS が生きているときだけ有効にする。
+  // 何かの理由で初期化が走らなくても 2.5 秒で解除して全文を必ず見せる。
+  (function () {
+    var r = document.documentElement;
+    if (!window.matchMedia || !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      r.className += ' js-anim';
+      setTimeout(function () {
+        if (!r.classList.contains('is-booted')) r.classList.remove('js-anim');
+      }, 2500);
+    }
+  })();
+</script>
+</head>
+<body>
+<a class="c-skip" href="#works">本文へ移動</a>
+
+<!-- ============ HERO ============ -->
+<header class="l-hero" id="top">
+  <div class="hero-noren-wrap">
+    <svg class="c-noren hero-noren" viewBox="0 0 400 320" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="nCloth" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#2a4a72"/>
+          <stop offset=".5" stop-color="#1b3652"/>
+          <stop offset="1" stop-color="#0f2437"/>
+        </linearGradient>
+        <linearGradient id="nFold" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#0a1926" stop-opacity="0"/>
+          <stop offset=".5" stop-color="#0a1926" stop-opacity=".4"/>
+          <stop offset="1" stop-color="#0a1926" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+      <rect class="c-noren-rod" x="2" y="14" width="396" height="7" rx="3.5"/>
+      <g class="c-noren-cloth">
+        <g fill="url(#nCloth)">
+          <path d="M18 20h112v272c0 5-4 9-9 9H27c-5 0-9-4-9-9z"/>
+          <path d="M146 20h108v272c0 5-4 9-9 9h-90c-5 0-9-4-9-9z"/>
+          <path d="M270 20h112v272c0 5-4 9-9 9h-94c-5 0-9-4-9-9z"/>
+        </g>
+        <g fill="url(#nFold)">
+          <rect x="60" y="20" width="28" height="278"/>
+          <rect x="186" y="20" width="28" height="278"/>
+          <rect x="312" y="20" width="28" height="278"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <div class="c-wrap hero-body">
+    <p class="hero-eyebrow c-mask js-seq"><span>飲食店専門 ／ ホームページ制作</span></p>
+    <h1 class="hero-title c-mask js-seq"><span>元店長だいき</span></h1>
+    <p class="hero-promise c-mask js-seq"><span>のれんを掛けてきた人間が、<br>お店のホームページをつくります。</span></p>
+    <div class="hero-cta c-mask js-seq">
+      <a class="c-btn c-btn--light" href="#contact"><span>ご相談はこちら</span></a>
+    </div>
+  </div>
+
+  <a class="hero-scroll" href="#works">下へ進む</a>
+</header>
+
+<main>
+
+<!-- ============ WORKS ============ -->
+<section class="l-section" id="works" aria-labelledby="works-h">
+  <div class="c-wrap">
+    <p class="c-eyebrow c-rise">Works</p>
+    <h2 class="c-h2 c-mask" id="works-h"><span>制作実績（デモ）</span></h2>
+    <div class="c-rule"></div>
+    <p class="c-lead c-rise">架空のお店を立てて、一から作ったデモです。3軒とも同じ作り方はしていません。静けさで単価を上げる店と、賑わいで回転を上げる店では、必要な画面がまるで違うからです。</p>
+
+    <div class="works-list">
+      <article class="work c-cloth">
+        <div class="work-figure">
+          <img src="../assets/u1727281970324-4bda7bab3073-w600.webp" alt="炭火で焼かれる焼鳥" loading="lazy" decoding="async" width="600" height="400">
+        </div>
+        <div class="work-body">
+          <span class="work-badge">焼鳥・日本酒</span>
+          <h3 class="work-name">炭火焼鳥と<span class="u-nw">とり藍</span></h3>
+          <p class="work-note">白木のカウンター八席。写真を大きく見せるより、席数と予約の空きが先に目に入る順番にしました。</p>
+          <a class="work-more c-swap" href="../demo1-toriai/">
+            <span class="c-swap-in">デモを見る →</span>
+            <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="work c-cloth">
+        <div class="work-figure">
+          <img src="../assets/u1767265581515-afe9ff46ad76-w600.webp" alt="赤提灯の下がる大衆酒場の店先" loading="lazy" decoding="async" width="600" height="397">
+        </div>
+        <div class="work-body">
+          <span class="work-badge">大衆酒場</span>
+          <h3 class="work-name">大衆酒場 <span class="u-nw">まるきん</span></h3>
+          <p class="work-note">串カツ120円から。短冊の品書きも提灯の赤も、通りで見たままの並びにしています。</p>
+          <a class="work-more c-swap" href="../demo2-marukin/">
+            <span class="c-swap-in">デモを見る →</span>
+            <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
+          </a>
+        </div>
+      </article>
+
+      <article class="work c-cloth">
+        <div class="work-figure">
+          <img src="../demo3-shoku/ogp.jpg" alt="雨上がりの路地の奥に灯る店の入口" loading="lazy" decoding="async" width="1200" height="630">
+        </div>
+        <div class="work-body">
+          <span class="work-badge">ワインバル</span>
+          <h3 class="work-name">燭 <span class="u-nw">SHOKU KAGURAZAKA</span></h3>
+          <p class="work-note">十一席だけの夜。スクロールに合わせて皿が入れ替わります。動きを止める設定の端末には、静かなまま届きます。</p>
+          <a class="work-more c-swap" href="../demo3-shoku/">
+            <span class="c-swap-in">デモを見る →</span>
+            <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <p class="work-caution c-rise">
+      ※ ここに載せているお店は、すべて架空です。店名・住所・電話番号・料金・人物・口コミは見本として用意した設定で、実在のものとは関係ありません。<br>
+      ※ 各デモの予約フォームは通信を行いません。送信しても予約は成立しません。
+    </p>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="l-section l-section--dark" id="story" aria-labelledby="story-h">
+  <div class="c-wrap">
+    <div class="story-grid">
+      <figure class="story-figure c-cloth">
+        <picture>
+          <source media="(min-width:768px)"
+                  srcset="../assets/noren/story-noren-wide@1000.webp 1000w, ../assets/noren/story-noren-wide.webp 1264w"
+                  sizes="(min-width:1100px) 518px, 46vw">
+          <img src="../assets/noren/story-noren@800.webp"
+               srcset="../assets/noren/story-noren@800.webp 800w, ../assets/noren/story-noren.webp 1200w"
+               sizes="(max-width:767px) 100vw, 46vw"
+               alt="のれんを掛ける店主の後ろ姿" loading="lazy" decoding="async" width="800" height="1000">
+        </picture>
+      </figure>
+
+      <div class="story-body">
+        <p class="c-eyebrow c-rise">A Word From Me</p>
+        <h2 class="c-h2 c-mask" id="story-h"><span>元店長の言葉</span></h2>
+        <div class="story-quote c-rise">
+          <div class="story-text">
+            <p>2015年から2024年まで、飲食の現場にいました。最後の数年は店長で、複数の店を見ていた時期もあります。</p>
+            <p>毎朝のれんを出しながら考えていたのは、今日ここを通る人に、この店が何の店なのか伝わるだろうか、ということでした。のれんは味の説明をしません。ただ「開いている」と言うだけです。それでもお客さんは、その一枚を見て入るかどうかを決めます。</p>
+            <p>ホームページも同じだと思っています。細かい説明の前に、まず店の温度が伝わるかどうか。私はそこをつくる仕事をしています。</p>
+          </div>
+          <p class="story-sign">元店長だいき</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VALUES ============ -->
+<section class="l-section" id="values" aria-labelledby="values-h">
+  <div class="c-wrap">
+    <div class="values-grid">
+      <div class="values-figure c-cloth" role="img" aria-label="紺のエプロンの紐を結ぶ手元"></div>
+      <div>
+        <p class="c-eyebrow c-rise">What Matters</p>
+        <h2 class="c-h2 c-mask" id="values-h"><span>大事にしていること</span></h2>
+        <div class="c-rule"></div>
+
+        <div class="values-list">
+          <div class="value c-rise">
+            <p class="value-no">01</p>
+            <h3 class="value-name">地図から探されている</h3>
+            <p class="value-text"><span class="u-nw">Googleマップ</span>のお店情報も、基本情報と写真とカテゴリまで一緒に登録します。地図から探している人は、もう店を選ぶ手前まで来ているからです。</p>
+          </div>
+          <div class="value c-rise">
+            <p class="value-no">02</p>
+            <h3 class="value-name">探させない</h3>
+            <p class="value-text">電話番号も予約も、スマホを持った親指が届くところに置きます。探させると、その一件は逃げやすくなります。</p>
+          </div>
+          <div class="value c-rise">
+            <p class="value-no">03</p>
+            <h3 class="value-name">止まっても、情報は残る</h3>
+            <p class="value-text">動きを止める設定の端末や、回線の細い端末。そういう画面でも、営業時間と場所と電話番号は先に出ます。飾りより先に、そこです。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section class="l-section l-section--ai" id="process" aria-labelledby="process-h">
+  <div class="c-wrap">
+    <p class="c-eyebrow c-rise">Process &amp; Price</p>
+    <h2 class="c-h2 c-mask" id="process-h"><span>進め方と料金</span></h2>
+    <div class="c-rule"></div>
+
+    <div class="steps">
+      <div class="steps-line"></div>
+
+      <div class="step c-rise">
+        <div class="step-mark">1</div>
+        <h3 class="step-name">ご相談</h3>
+        <p class="step-text">いまお困りのことを聞かせてください。写真も文章もない状態で構いません。ご相談だけなら無料です。</p>
+      </div>
+      <div class="step c-rise">
+        <div class="step-mark">2</div>
+        <h3 class="step-name">設計・制作</h3>
+        <p class="step-text">構成と文章は私が書きます。お店の言葉に直していただきながら進めます。質問シートにご回答いただいた日から2週間で仕上げ、修正は中間確認と納品前の2回まで承ります。</p>
+      </div>
+      <div class="step c-rise">
+        <div class="step-mark">3</div>
+        <h3 class="step-name">公開・その後</h3>
+        <p class="step-text">公開まで見届けます。営業時間やお品書きが変わったときの書き換えも、別料金で承ります。</p>
+      </div>
+    </div>
+
+    <div class="price c-rise">
+      <p class="price-label">ホームページ制作一式</p>
+      <p class="price-figure js-price">
+        <span class="odo" data-digit="2" style="--n:12;--d:0ms">2</span><span class="odo" data-digit="0" style="--n:10;--d:80ms">0</span>,<span class="odo" data-digit="0" style="--n:10;--d:160ms">0</span><span class="odo" data-digit="0" style="--n:10;--d:240ms">0</span><span class="odo" data-digit="0" style="--n:10;--d:320ms">0</span><span class="price-unit">円（税込）</span>
+      </p>
+      <p class="price-note">先着3名さまのモニター価格です。制作したサイトを、実績としてこのページに載せさせていただくことが条件になります。</p>
+      <p class="price-note">このほかにサーバー代とドメイン代がかかります。お客さまご自身のご契約・ご負担になります。金額は契約先とプランで変わるので、ご相談のうえ一緒に決めます。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="l-section contact" id="contact" aria-labelledby="contact-h">
+  <div class="c-wrap">
+    <p class="c-eyebrow c-rise">Contact</p>
+    <h2 class="c-h2 c-mask" id="contact-h"><span>まだ決まっていなくて大丈夫です</span></h2>
+    <div class="c-rule"></div>
+    <p class="contact-lead c-rise">うまく言葉にできなくて構いません。「なんとなく困っている」から始めていただければ、そこから私が形にします。</p>
+    <div class="contact-cta c-rise">
+      <a class="c-btn c-btn--fill" href="https://coconala.com/services/4360614" target="_blank" rel="noopener noreferrer">
+        <span><span class="u-nw">ココナラ</span>で相談する →<span class="u-sr">（新しいタブで開きます）</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="l-footer">
+  <svg class="c-noren footer-noren" viewBox="0 0 400 170" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="nClothFt" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#31547f"/>
+        <stop offset=".5" stop-color="#26466c"/>
+        <stop offset="1" stop-color="#1b3552"/>
+      </linearGradient>
+    </defs>
+    <rect class="c-noren-rod" x="2" y="10" width="396" height="6" rx="3"/>
+    <g class="c-noren-cloth" fill="url(#nClothFt)">
+      <path d="M18 15h112v134c0 5-4 9-9 9H27c-5 0-9-4-9-9z"/>
+      <path d="M146 15h108v134c0 5-4 9-9 9h-90c-5 0-9-4-9-9z"/>
+      <path d="M270 15h112v134c0 5-4 9-9 9h-94c-5 0-9-4-9-9z"/>
+    </g>
+  </svg>
+  <p class="footer-name">元店長だいき</p>
+  <p class="footer-note">掲載しているお店は、すべて架空の設定です。</p>
+  <p class="footer-copy">© 2026 元店長だいき</p>
+</footer>
+
+<!-- 出現はブラウザ標準の IntersectionObserver で完結させる。
+     コンテンツが見えるかどうかを CDN の到達性に賭けない。 -->
+<script>
+window.addEventListener('DOMContentLoaded', function () {
+  var root = document.documentElement;
+  if (!root.classList.contains('js-anim')) return;
+  if (!('IntersectionObserver' in window)) { root.classList.remove('js-anim'); return; }
+  root.classList.add('is-booted');
+
+  // ヒーローは即座に、120ms差で順に立ち上げる
+  document.querySelectorAll('.js-seq').forEach(function (el, i) {
+    setTimeout(function () { el.classList.add('is-shown'); }, 120 * i);
+  });
+
+  // 価格の桁を帯に差し替える（回すのは CSS の .price.is-shown 側）
+  document.querySelectorAll('.odo').forEach(function (odo) {
+    var strip = document.createElement('span');
+    strip.className = 'odo-strip';
+    for (var n = 0; n < 20; n++) {
+      var s = document.createElement('span');
+      s.textContent = String(n % 10);
+      strip.appendChild(s);
+    }
+    odo.textContent = '';
+    odo.appendChild(strip);
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var wait = parseInt(el.dataset.seq || '0', 10);
+      setTimeout(function () { el.classList.add('is-shown'); }, wait);
+      io.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.01 });
+
+  function watch(selector, stagger) {
+    var groups = {};
+    document.querySelectorAll(selector).forEach(function (el) {
+      var s = el.closest('section');
+      var key = s ? s.id : 'x';
+      (groups[key] = groups[key] || []).push(el);
+    });
+    Object.keys(groups).forEach(function (key) {
+      groups[key].forEach(function (el, i) {
+        el.dataset.seq = String((stagger || 0) * i);
+        io.observe(el);
+      });
+    });
+  }
+  watch('.l-section .c-mask', 0);
+  watch('.l-section .c-rise', 120);
+  watch('.l-section .c-rule', 0);
+  watch('.work.c-cloth', 150);
+  watch('.story-figure.c-cloth', 0);
+  watch('.values-figure.c-cloth', 0);
+  watch('.steps-line', 0);
+
+  // キーボードで先に到達したら、その場で開く
+  document.addEventListener('focusin', function (e) {
+    var box = e.target.closest && e.target.closest('.c-cloth,.c-rise');
+    if (box) box.classList.add('is-shown');
+  });
+});
+</script>
+
+<!-- GSAP はのれんの視差だけに使う。読めなくても本文の表示には影響しない。 -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
+<script defer>
+window.addEventListener('load', function () {
+  if (!document.documentElement.classList.contains('js-anim')) return;
+  if (!window.gsap || !window.ScrollTrigger) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to('.hero-noren-wrap', {
+    yPercent: 14, ease: 'none',
+    scrollTrigger: { trigger: '.l-hero', start: 'top top', end: 'bottom top', scrub: 0 }
+  });
+});
+</script>
+</body>
+</html>
