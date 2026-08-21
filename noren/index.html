@@ -276,6 +276,12 @@ a:focus-visible,button:focus-visible{
   .values-figure{display:none}
   .c-h2{font-size:28px}
   .work-name,.value-name,.step-name{font-size:18px}
+
+  /* スマホでは、のれんを画面上部いっぱいに掛けて、その下に文字を置く。
+     右上の小さな飾りではなく「くぐる一枚」として見せる。
+     中央寄せに transform を使わない（GSAPの視差と取り合いになるため）。 */
+  .hero-noren-wrap{right:0; left:0; margin:0 auto; width:min(88%,420px)}
+  .hero-body{padding:290px 0 110px}
 }
 
 /* ================= 動きを減らす設定 ================= */
