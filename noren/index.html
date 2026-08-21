@@ -268,7 +268,7 @@ a:focus-visible,button:focus-visible{
   .story-figure img{aspect-ratio:3/2}
   .values-grid{display:grid; grid-template-columns:1fr 1.35fr; gap:64px; align-items:start}
   .values-figure{aspect-ratio:4/5}
-  .values-figure .c-wipe-in{display:block; height:100%; background:url("../assets/noren/detail-apron@700.webp") center/cover}
+  .values-figure .c-wipe-in{display:block; height:100%; background:url("../assets/noren/detail-apron-700.webp") center/cover}
   .contact-cta{max-width:360px}
 }
 @media (max-width:767px){
@@ -425,14 +425,11 @@ a:focus-visible,button:focus-visible{
     <div class="story-grid">
       <figure class="story-figure c-wipe">
         <div class="c-wipe-in">
+          <!-- 幅記述子つき srcset は環境によって読み込みに失敗したため、
+               PC/スマホの出し分けだけを media で行う単純な形にしている。 -->
           <picture>
-            <source media="(min-width:768px)"
-                    srcset="../assets/noren/story-noren-wide@1000.webp 1000w, ../assets/noren/story-noren-wide.webp 1264w"
-                    sizes="(min-width:1100px) 518px, 46vw">
-            <img src="../assets/noren/story-noren@800.webp"
-                 srcset="../assets/noren/story-noren@800.webp 800w, ../assets/noren/story-noren.webp 1200w"
-                 sizes="(max-width:767px) 100vw, 46vw"
-                 alt="のれんを掛ける店主の後ろ姿" decoding="async" width="800" height="1000">
+            <source media="(min-width:768px)" srcset="../assets/noren/story-noren-wide.webp">
+            <img src="../assets/noren/story-noren-800.webp" alt="のれんを掛ける店主の後ろ姿" decoding="async" width="800" height="1000">
           </picture>
         </div>
       </figure>
