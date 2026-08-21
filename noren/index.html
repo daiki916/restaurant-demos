@@ -236,8 +236,10 @@ a:focus-visible,button:focus-visible{
 .js-anim .c-rise{opacity:0; transform:translate3d(0,26px,0)}
 .js-anim .c-rise.is-shown{opacity:1; transform:none; transition:opacity var(--d-emerge) var(--emerge),transform var(--d-emerge) var(--emerge)}
 
-.js-anim .c-cloth{clip-path:inset(100% 0 0 0)}
-.js-anim .c-cloth.is-shown{clip-path:inset(0 0 0 0); transition:clip-path var(--d-wipe) var(--wipe)}
+/* 布ワイプは「観測する箱」と「切り取る中身」を分ける。
+   観測対象を自分で clip すると面積ゼロになり、出現条件を永久に満たさなくなる。 */
+.js-anim .c-wipe-in{clip-path:inset(100% 0 0 0)}
+.js-anim .c-wipe.is-shown .c-wipe-in{clip-path:inset(0 0 0 0); transition:clip-path var(--d-wipe) var(--wipe)}
 
 .js-anim .c-rule{transform:scaleX(0)}
 .js-anim .c-rule.is-shown{transform:scaleX(1); transition:transform var(--d-line) var(--emerge)}
@@ -246,7 +248,7 @@ a:focus-visible,button:focus-visible{
 .js-anim .steps-line.is-shown{transform:scaleY(1); transition:transform var(--d-line) var(--emerge)}
 
 /* 出るまでの間はフォーカスも当たらないようにする（見えない要素にTabが止まらない） */
-.js-anim .c-cloth:not(.is-shown) a{visibility:hidden}
+.js-anim .c-wipe:not(.is-shown) a{visibility:hidden}
 
 /* 環境アニメは布だけを揺らす。竿は動かない。 */
 @keyframes noren-sway{
@@ -265,7 +267,8 @@ a:focus-visible,button:focus-visible{
   .story-body{margin-top:0}
   .story-figure img{aspect-ratio:3/2}
   .values-grid{display:grid; grid-template-columns:1fr 1.35fr; gap:64px; align-items:start}
-  .values-figure{aspect-ratio:4/5; background:url("../assets/noren/detail-apron@700.webp") center/cover}
+  .values-figure{aspect-ratio:4/5}
+  .values-figure .c-wipe-in{display:block; height:100%; background:url("../assets/noren/detail-apron@700.webp") center/cover}
   .contact-cta{max-width:360px}
 }
 @media (max-width:767px){
@@ -279,8 +282,8 @@ a:focus-visible,button:focus-visible{
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:1ms !important; animation-iteration-count:1 !important; transition-duration:1ms !important}
   .js-anim .c-mask>*,.js-anim .c-rise{transform:none; opacity:1}
-  .js-anim .c-cloth{clip-path:none}
-  .js-anim .c-cloth:not(.is-shown) a{visibility:visible}
+  .js-anim .c-wipe-in{clip-path:none}
+  .js-anim .c-wipe:not(.is-shown) a{visibility:visible}
   .js-anim .c-rule{transform:scaleX(1)}
   .js-anim .steps-line{transform:scaleY(1)}
 }
@@ -357,48 +360,54 @@ a:focus-visible,button:focus-visible{
     <p class="c-lead c-rise">架空のお店を立てて、一から作ったデモです。3軒とも同じ作り方はしていません。静けさで単価を上げる店と、賑わいで回転を上げる店では、必要な画面がまるで違うからです。</p>
 
     <div class="works-list">
-      <article class="work c-cloth">
-        <div class="work-figure">
-          <img src="../assets/u1727281970324-4bda7bab3073-w600.webp" alt="炭火で焼かれる焼鳥" loading="lazy" decoding="async" width="600" height="400">
-        </div>
-        <div class="work-body">
-          <span class="work-badge">焼鳥・日本酒</span>
-          <h3 class="work-name">炭火焼鳥と<span class="u-nw">とり藍</span></h3>
-          <p class="work-note">白木のカウンター八席。写真を大きく見せるより、席数と予約の空きが先に目に入る順番にしました。</p>
-          <a class="work-more c-swap" href="../demo1-toriai/">
-            <span class="c-swap-in">デモを見る →</span>
-            <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
-          </a>
-        </div>
-      </article>
-
-      <article class="work c-cloth">
-        <div class="work-figure">
-          <img src="../assets/u1767265581515-afe9ff46ad76-w600.webp" alt="赤提灯の下がる大衆酒場の店先" loading="lazy" decoding="async" width="600" height="397">
-        </div>
-        <div class="work-body">
-          <span class="work-badge">大衆酒場</span>
-          <h3 class="work-name">大衆酒場 <span class="u-nw">まるきん</span></h3>
-          <p class="work-note">串カツ120円から。短冊の品書きも提灯の赤も、通りで見たままの並びにしています。</p>
-          <a class="work-more c-swap" href="../demo2-marukin/">
-            <span class="c-swap-in">デモを見る →</span>
-            <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
-          </a>
+      <article class="work c-wipe">
+        <div class="c-wipe-in">
+          <div class="work-figure">
+            <img src="../assets/u1727281970324-4bda7bab3073-w600.webp" alt="炭火で焼かれる焼鳥" decoding="async" width="600" height="400">
+          </div>
+          <div class="work-body">
+            <span class="work-badge">焼鳥・日本酒</span>
+            <h3 class="work-name">炭火焼鳥と<span class="u-nw">とり藍</span></h3>
+            <p class="work-note">白木のカウンター八席。写真を大きく見せるより、席数と予約の空きが先に目に入る順番にしました。</p>
+            <a class="work-more c-swap" href="../demo1-toriai/">
+              <span class="c-swap-in">デモを見る →</span>
+              <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
+            </a>
+          </div>
         </div>
       </article>
 
-      <article class="work c-cloth">
-        <div class="work-figure">
-          <img src="../demo3-shoku/ogp.jpg" alt="雨上がりの路地の奥に灯る店の入口" loading="lazy" decoding="async" width="1200" height="630">
+      <article class="work c-wipe">
+        <div class="c-wipe-in">
+          <div class="work-figure">
+            <img src="../assets/u1767265581515-afe9ff46ad76-w600.webp" alt="赤提灯の下がる大衆酒場の店先" decoding="async" width="600" height="397">
+          </div>
+          <div class="work-body">
+            <span class="work-badge">大衆酒場</span>
+            <h3 class="work-name">大衆酒場 <span class="u-nw">まるきん</span></h3>
+            <p class="work-note">串カツ120円から。短冊の品書きも提灯の赤も、通りで見たままの並びにしています。</p>
+            <a class="work-more c-swap" href="../demo2-marukin/">
+              <span class="c-swap-in">デモを見る →</span>
+              <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
+            </a>
+          </div>
         </div>
-        <div class="work-body">
-          <span class="work-badge">ワインバル</span>
-          <h3 class="work-name">燭 <span class="u-nw">SHOKU KAGURAZAKA</span></h3>
-          <p class="work-note">十一席だけの夜。スクロールに合わせて皿が入れ替わります。動きを止める設定の端末には、静かなまま届きます。</p>
-          <a class="work-more c-swap" href="../demo3-shoku/">
-            <span class="c-swap-in">デモを見る →</span>
-            <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
-          </a>
+      </article>
+
+      <article class="work c-wipe">
+        <div class="c-wipe-in">
+          <div class="work-figure">
+            <img src="../demo3-shoku/ogp.jpg" alt="雨上がりの路地の奥に灯る店の入口" decoding="async" width="1200" height="630">
+          </div>
+          <div class="work-body">
+            <span class="work-badge">ワインバル</span>
+            <h3 class="work-name">燭 <span class="u-nw">SHOKU KAGURAZAKA</span></h3>
+            <p class="work-note">十一席だけの夜。スクロールに合わせて皿が入れ替わります。動きを止める設定の端末には、静かなまま届きます。</p>
+            <a class="work-more c-swap" href="../demo3-shoku/">
+              <span class="c-swap-in">デモを見る →</span>
+              <span class="c-swap-out" aria-hidden="true">デモを見る →</span>
+            </a>
+          </div>
         </div>
       </article>
     </div>
@@ -414,16 +423,18 @@ a:focus-visible,button:focus-visible{
 <section class="l-section l-section--dark" id="story" aria-labelledby="story-h">
   <div class="c-wrap">
     <div class="story-grid">
-      <figure class="story-figure c-cloth">
-        <picture>
-          <source media="(min-width:768px)"
-                  srcset="../assets/noren/story-noren-wide@1000.webp 1000w, ../assets/noren/story-noren-wide.webp 1264w"
-                  sizes="(min-width:1100px) 518px, 46vw">
-          <img src="../assets/noren/story-noren@800.webp"
-               srcset="../assets/noren/story-noren@800.webp 800w, ../assets/noren/story-noren.webp 1200w"
-               sizes="(max-width:767px) 100vw, 46vw"
-               alt="のれんを掛ける店主の後ろ姿" loading="lazy" decoding="async" width="800" height="1000">
-        </picture>
+      <figure class="story-figure c-wipe">
+        <div class="c-wipe-in">
+          <picture>
+            <source media="(min-width:768px)"
+                    srcset="../assets/noren/story-noren-wide@1000.webp 1000w, ../assets/noren/story-noren-wide.webp 1264w"
+                    sizes="(min-width:1100px) 518px, 46vw">
+            <img src="../assets/noren/story-noren@800.webp"
+                 srcset="../assets/noren/story-noren@800.webp 800w, ../assets/noren/story-noren.webp 1200w"
+                 sizes="(max-width:767px) 100vw, 46vw"
+                 alt="のれんを掛ける店主の後ろ姿" decoding="async" width="800" height="1000">
+          </picture>
+        </div>
       </figure>
 
       <div class="story-body">
@@ -446,7 +457,7 @@ a:focus-visible,button:focus-visible{
 <section class="l-section" id="values" aria-labelledby="values-h">
   <div class="c-wrap">
     <div class="values-grid">
-      <div class="values-figure c-cloth" role="img" aria-label="紺のエプロンの紐を結ぶ手元"></div>
+      <div class="values-figure c-wipe" role="img" aria-label="紺のエプロンの紐を結ぶ手元"><span class="c-wipe-in"></span></div>
       <div>
         <p class="c-eyebrow c-rise">What Matters</p>
         <h2 class="c-h2 c-mask" id="values-h"><span>大事にしていること</span></h2>
@@ -604,16 +615,24 @@ window.addEventListener('DOMContentLoaded', function () {
   watch('.l-section .c-mask', 0);
   watch('.l-section .c-rise', 120);
   watch('.l-section .c-rule', 0);
-  watch('.work.c-cloth', 150);
-  watch('.story-figure.c-cloth', 0);
-  watch('.values-figure.c-cloth', 0);
+  watch('.work.c-wipe', 150);
+  watch('.story-figure.c-wipe', 0);
+  watch('.values-figure.c-wipe', 0);
   watch('.steps-line', 0);
 
   // キーボードで先に到達したら、その場で開く
   document.addEventListener('focusin', function (e) {
-    var box = e.target.closest && e.target.closest('.c-cloth,.c-rise');
+    var box = e.target.closest && e.target.closest('.c-wipe,.c-rise');
     if (box) box.classList.add('is-shown');
   });
+
+  // 最後の安全網。何かの理由で出現が動かなくても、6秒で全部見せる。
+  // 「読めないまま」だけは絶対に起こさない。
+  setTimeout(function () {
+    document.querySelectorAll('.c-mask,.c-rise,.c-rule,.c-wipe,.steps-line').forEach(function (el) {
+      el.classList.add('is-shown');
+    });
+  }, 6000);
 });
 </script>
 
