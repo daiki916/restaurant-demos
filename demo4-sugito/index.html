@@ -12,13 +12,31 @@
 <meta property="og:description" content="埼玉県飯能市。年に六棟。木は反るし、無垢の床は夏に鳴きます。※架空のデモサイトです。">
 <meta property="og:locale" content="ja_JP">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EFEBE4'/%3E%3Cg fill='none' stroke='%232E4A54' stroke-width='1.4'%3E%3Cellipse cx='15' cy='17' rx='3' ry='2.6'/%3E%3Cellipse cx='15.4' cy='16.6' rx='7' ry='6.2'/%3E%3Cellipse cx='15.8' cy='16.2' rx='11' ry='9.8'/%3E%3C/g%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- 和文サブセットは1ウェイトあたり数百KB。使っていないウェイトを1つ宣言するだけで
-     その分がまるごと増える。実測でページが使うのは Sans 400/500 と Serif 400/500 のみ。
-     700 はフッターの strong 11文字だけだったので落とした（そちらは 500 に寄せた）。 -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<!-- 和文フォントは自前配信。Google Fonts は unicode-range で百数十個に分割して配るので、
+     このページでは 110ファイル・約2.5MB 取りに行っていた（本体HTML+画像の20倍）。
+     このページが使う文字だけに切って 4面 495KB に。生成は tools/subset-fonts.py。
+     **文言に新しい漢字を足したら流し直すこと**（--check で欠けを検出できる）。
+     同一オリジンなので、Googleへの2ホップ（CSS→font）が消えて preload が直接効く。 -->
+<link rel="preload" href="fonts/NotoSansJP-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/NotoSerifJP-500.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* 初回描画に効くのは本文の Sans 400 と見出しの Serif 500。残り2面は下のほうで少し使うだけ */
+@font-face {
+  font-family: "Noto Sans JP"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/NotoSansJP-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Noto Sans JP"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("fonts/NotoSansJP-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Noto Serif JP"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/NotoSerifJP-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Noto Serif JP"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("fonts/NotoSerifJP-500.woff2") format("woff2");
+}
 /* ============================================================
    杉戸工務店 — 架空のデモサイト
    コンセプトの1語 =「経年」。全ての型・色・動きはこの1語の翻訳。
