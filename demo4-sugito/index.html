@@ -42,9 +42,11 @@
   --mono: ui-monospace, "SFMono-Regular", "Roboto Mono", Menlo, Consolas, monospace;
 
   /* 型スケール：見出しは3段しか持たない */
-  /* 2行目「いちばん下手な状態です。」= 和文12字が、375px でも 1280px でも
-     1行に収まる範囲に抑えている。折れると語の途中で割れるため */
-  /* ヒーローは面で押すので、見出しも幅を使い切るところまで上げる（上限68→92px） */
+  /* ヒーローは面で押すので、見出しも幅を使い切るところまで上げる（上限68→92px）。
+     この結果「いちばん下手な状態です。」は1行に収まらなくなった（12字×92px＝1104px＞1020px）。
+     旧版のコメントは「375pxでも1280pxでも1行に収まる」と書いてあったが、
+     それは上限68pxのときの話で、いまは成り立たない。
+     2行に折れる前提に切り替え、字下げの段違いは外した（下の .l2 を参照） */
   --fs-display: clamp(28px, 6.4vw, 92px);
   --fs-h2:      clamp(21px, 3vw, 31px);
   --fs-h3:      17px;
@@ -160,6 +162,13 @@ body::before {
 .c-nav { display: flex; align-items: center; gap: 22px; font-size: 13px; }
 .c-nav a { text-decoration: none; }
 .c-nav a:not(.c-cta) { position: relative; }
+/* 当たり判定だけ 44px に広げる。文字の高さは 25px しかなく、タブレットでは指に薄い。
+   min-height で背を伸ばすと下の下線（::after）が文字から離れてしまうので、
+   見た目を変えない透明な箱を重ねる */
+.c-nav a:not(.c-cta)::before {
+  content: ""; position: absolute; left: 0; right: 0;
+  top: 50%; height: 44px; transform: translateY(-50%);
+}
 .c-nav a:not(.c-cta)::after {
   content: ""; position: absolute; left: 0; bottom: -3px;
   width: 100%; height: 1px; background: currentColor;
@@ -261,7 +270,11 @@ body::before {
   /* 和文の見出しは字間を詰めない（字面が余白を内蔵している）。
      精密さは行間・余白・階層で出す */
 }
-.hero-head .l2 { text-indent: 1.6em; }
+/* 段違いの字下げは、2行目が1行に収まるときだけ成立する意匠だった。
+   見出しを92pxまで上げた結果2行に折れ、字下げが2行目にだけ効いて
+   3行目が左端に戻る＝誤植にしか見えない形になっていた。
+   いまは3行が左揃いで長さの落ちる階段になるので、字下げは要らない */
+.hero-head .l2 { text-indent: 0; }
 .hero-lead {
   color: var(--usu);
   font-size: 16px;
@@ -351,7 +364,6 @@ body::before {
      つまり全スマホで見出しがリード文＋αの大きさになり、ヒーローの主役が消える。
      縦画面は縦画面の係数で引き直す（860px超はデスクトップ式に戻る） */
   .hero-head { font-size: clamp(32px, 8.8vw, 46px); }
-  .hero-head .l2 { text-indent: 0; }
   .hero-meta { margin-top: var(--sp-m); }
   /* 縦積みになると木口が主役を食うので上限をかける */
   .hero-wood { max-width: 240px; margin: var(--sp-m) auto 0; width: 100%; }
@@ -771,7 +783,10 @@ section { padding-block: var(--sp-x); }
       <p class="label c-fade hero-label" style="--d:0ms">Sugito Koumuten / est. 1961</p>
         <h1 class="hero-head">
           <span class="c-reveal"><span style="--d:100ms; --dur:900ms">引き渡しの日が、</span></span>
-          <span class="c-reveal l2"><span style="--d:240ms; --dur:900ms">いちばん下手な状態です。</span></span>
+          <!-- word-break: auto-phrase は新しく、非対応エンジンでは normal に落ちて
+               「いちばん下手な状態で／す。」と助動詞が割れる。折り返しが起きるのは
+               この行だけなので、後半を nowrap で括って折り位置を固定する -->
+          <span class="c-reveal l2"><span style="--d:240ms; --dur:900ms">いちばん下手な<span class="nowrap">状態です。</span></span></span>
         </h1>
         <div class="hero-body">
         <p class="hero-lead c-fade" style="--d:500ms">
@@ -794,7 +809,7 @@ section { padding-block: var(--sp-x); }
                srcset="img/koguchi-380.webp 380w, img/koguchi-760.webp 760w"
                sizes="(max-width: 860px) 240px, 33vw" width="760" height="760"
                alt="杉の丸太の木口。中心からずれた髄のまわりに約50本の年輪が広がり、外側に淡い辺材と樹皮が見える。"
-               fetchpriority="high" decoding="async">
+               decoding="async">
           <div class="koguchi-grow" aria-hidden="true">
             <img src="img/koguchi-760.webp"
                  srcset="img/koguchi-380.webp 380w, img/koguchi-760.webp 760w"
