@@ -41,7 +41,8 @@
   /* 型スケール：見出しは3段しか持たない */
   /* 2行目「いちばん下手な状態です。」= 和文12字が、375px でも 1280px でも
      1行に収まる範囲に抑えている。折れると語の途中で割れるため */
-  --fs-display: clamp(26px, 5.9vw, 68px);
+  /* ヒーローは面で押すので、見出しも幅を使い切るところまで上げる（上限68→92px） */
+  --fs-display: clamp(28px, 6.4vw, 92px);
   --fs-h2:      clamp(21px, 3vw, 31px);
   --fs-h3:      17px;
 
@@ -190,12 +191,43 @@ body::before {
 
 /* ── ヒーロー ─────────────────────────────────────── */
 .s-hero {
+  /* 焼杉の面の上に立つので、文字と枠は漆喰側へ反転する */
   position: relative;
+  isolation: isolate;
   min-height: 100svh;
   display: grid;
   align-content: center;
   padding: 140px 0 var(--sp-l);
+  background: var(--yami);
+  color: var(--shikkui);
 }
+.hero-bg { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+/* 沈めるのは幕ではなく乗算で。アルファ幕は黒を持ち上げて木目（局所コントラスト）を潰すが、
+   brightness は階調比を保ったまま暗くする。見出しは全幅なので右の明るい板にも乗る。
+   実測: 無処理だと見出し 2.8:1・label 3.9:1・リード 4.3:1 とAAを割っていた */
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.78); }
+/* 焼杉はもともと暗いので幕は薄くてよい。厚くすると素材が消え、ただの黒い面になる
+   （＝インパクトの出所を自分で潰す）。
+   黒ではなく焦茶で沈めるのは、夕方の光の暖かさを殺さないため。
+   ここを黒でやると、下の年輪の写真とまた温度がずれる。 */
+.s-hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(100deg, rgba(26,18,12,.74) 0%, rgba(26,18,12,.58) 42%, rgba(26,18,12,.28) 76%, rgba(26,18,12,.14) 100%),
+    linear-gradient(to top, rgba(26,18,12,.52) 0%, rgba(26,18,12,0) 32%);
+}
+.s-hero .hero-lead { color: #CFC9C0; }
+/* 添え字は写真の上に乗るので --yami-bun（無地の闇に対して設計した色）では足りない。
+   実測: 焼杉の明るい板の上で 3.4:1 まで落ちる。#C6C0B6 で 5.0:1 以上。
+   リード #CFC9C0 よりわずかに暗く、階層は保つ */
+.s-hero .label,
+.s-hero .hero-meta { color: #C6C0B6; }
+.s-hero .hero-meta::before { background: rgba(239,235,228,.34); }
+.s-hero .btn { border-color: var(--shikkui); color: var(--shikkui); }
+.s-hero .btn-fill { background: var(--shikkui); color: var(--sumi); border-color: var(--shikkui); }
+.s-hero .btn-fill:hover { background: var(--ao); border-color: var(--ao); color: var(--shikkui); }
+.s-hero .btn-line::before { background: var(--shikkui); }
+.s-hero .btn-line::after { color: var(--sumi); }
 /* 見出しは全幅を使い、その下だけ2段組にする。
    狭い左カラムに大きな和文見出しを流し込むと必ず語の途中で折れるため */
 .s-hero .wrap {
@@ -214,8 +246,9 @@ body::before {
 .hero-wood  { grid-area: wood; }
 .hero-head {
   font-size: var(--fs-display);
-  line-height: 1.3;
+  line-height: 1.22;
   margin: 18px 0 var(--sp-m);
+  text-shadow: 0 2px 24px rgba(16,17,18,.55);
   /* 和文の見出しは字間を詰めない（字面が余白を内蔵している）。
      精密さは行間・余白・階層で出す */
 }
@@ -284,24 +317,47 @@ body::before {
 .btn-line:active { transform: translateY(1px); }
 
 @media (max-width: 860px) {
-  .s-hero { min-height: auto; padding: 116px 0 var(--sp-l); }
+  .s-hero { min-height: 100svh; padding: 100px 0 var(--sp-l); }
+  /* 縦画面は文字が上から下まで乗るので、横方向の幕では効かない。
+     ただし一律のアルファ幕で沈めると黒が持ち上がり、局所コントラスト＝木目が消える。
+     実測でも幕 .78/.56/.70 の一枚掛けは素材を平らにしたうえで
+     リード 3.55:1・meta 2.54:1 とAA基準を割っていた。
+     沈めるのは乗算（brightness）で、幕は文字の下を均すぶんだけに留める。 */
+  /* 縦画面は横幅の65%しか映らない。中央で切ると画像左端の遠景（明るい空と丘）が
+     数十pxだけ入り、板の面に沿った明るい縦帯＝汚れに見える。右へ寄せて落とす */
+  .hero-bg img { filter: brightness(.40); object-position: 62% center; }
+  .s-hero::before {
+    background:
+      linear-gradient(to bottom, rgba(26,18,12,.32) 0%, rgba(26,18,12,.12) 46%, rgba(26,18,12,.32) 100%);
+  }
+  /* 縦画面では「宣言→説明→行動」を1画面に収める。
+     木口を見出しとリードの間に挟むと 293px 積まれてCTAが画面外へ出るため、
+     木口は次の拍として本文の下に置く */
   .s-hero .wrap {
     grid-template-columns: 1fr;
-    grid-template-areas: "label" "head" "wood" "body";
+    grid-template-areas: "label" "head" "body" "wood";
     row-gap: 0;
   }
+  /* --fs-display の 6.4vw は 390px 幅では 25px にしかならず、常に下限の 28px に張り付く。
+     つまり全スマホで見出しがリード文＋αの大きさになり、ヒーローの主役が消える。
+     縦画面は縦画面の係数で引き直す（860px超はデスクトップ式に戻る） */
+  .hero-head { font-size: clamp(32px, 8.8vw, 46px); }
   .hero-head .l2 { text-indent: 0; }
+  .hero-meta { margin-top: var(--sp-m); }
   /* 縦積みになると木口が主役を食うので上限をかける */
-  .hero-wood { max-width: 260px; margin: 0 auto var(--sp-m); width: 100%; }
+  .hero-wood { max-width: 240px; margin: var(--sp-m) auto 0; width: 100%; }
 }
 
 /* ── 木口（実写＋図解の動き） ─────────────────────── */
 .hero-wood { perspective: 900px; }
 .koguchi {
   position: relative; aspect-ratio: 1 / 1;
-  /* 記録写真の「プリント」として扱う：ヘアライン＋淡い影で紙面に座らせる */
-  border: 1px solid var(--kei);
-  box-shadow: 0 26px 50px -34px rgba(31, 29, 26, .4);
+  /* 記録写真の「プリント」として扱う：ヘアライン＋淡い影で紙面に座らせる。
+     暗い写真の上に置くようになったので、細いヘアラインでは
+     「切り取った長方形」に見えてしまう。白い縁と落ち影で
+     "壁に留めた一枚のプリント" として読ませ、境界を意図的にする。 */
+  border: 7px solid #EDE7DC;
+  box-shadow: 0 30px 60px -28px rgba(10, 7, 4, .78), 0 2px 6px rgba(10, 7, 4, .4);
   /* スクロール追従＋カーソルへの微傾（±3°）。全て描画のみ、レイアウト不変 */
   transform: translate3d(0, calc(var(--par, 0) * -26px), 0)
              rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
@@ -320,6 +376,9 @@ body::before {
 /* 育つ前の部分。暗く沈めると背景（漆喰色）の上で黒い塊になるので、
    彩度を抜いて明るく飛ばし、輪郭だけ残す */
 .koguchi-base { filter: grayscale(.92) brightness(1.14) contrast(.5); opacity: .5; }
+/* ヒーローが暗い写真になったので、白く飛ばす処理では下敷きが消えてしまう。
+   暗い側へ沈めて輪郭を残し、年輪が育つと色と明るさが戻る、という向きに反転させる */
+.s-hero .koguchi-base { filter: grayscale(.6) brightness(.62) contrast(.95); opacity: .9; }
 /* 上に重ねた同じ写真を、髄を中心にした円で切り出して広げる */
 .koguchi-grow {
   position: absolute; inset: 0;
@@ -335,6 +394,8 @@ body::before {
   font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--usu);
   text-align: right;
 }
+/* ヒーローが暗くなったので、添え書きも漆喰側へ */
+.s-hero .koguchi-note { color: var(--yami-bun); }
 .koguchi-note b { font-weight: 400; font-variant-numeric: tabular-nums; }
 /* 余白が十分ある画面では、写真の右の余白に縦で添える（数字は縦中横） */
 @media (min-width: 1100px) {
@@ -493,8 +554,35 @@ section { padding-block: var(--sp-x); }
   margin-top: var(--sp-s); padding-left: var(--sp-m);
   border-left: 2px solid var(--kei); font-family: var(--mincho); color: var(--sumi);
 }
+
+/* 記録票。この工務店が「記録を渡す」と言っている、その現物を右に置く。
+   罫線が引いた幅に対して本文が6割しか埋めていなかったので、
+   空きを装飾ではなく証拠で埋める。 */
+.shigoto-rec { align-self: start; background: var(--kinari); padding: var(--sp-m); }
+.shigoto-rec-num {
+  font-family: var(--mincho); color: var(--ao);
+  display: flex; align-items: baseline; gap: 5px; line-height: 1;
+}
+.shigoto-rec-num b { font-size: 44px; font-weight: 400; letter-spacing: .01em; }
+.shigoto-rec-num span { font-size: 13px; }
+.shigoto-rec-cap { font-family: var(--gothic); font-size: 12px; color: var(--usu); margin-top: 8px; }
+.shigoto-rec dl { margin-top: var(--sp-m); border-top: 1px solid var(--kei); }
+.shigoto-rec div {
+  display: flex; justify-content: space-between; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid var(--kei);
+  font-family: var(--mono); font-size: 12px; line-height: 1.6;
+}
+.shigoto-rec dt { color: var(--usu); white-space: nowrap; }
+.shigoto-rec dd { color: var(--sumi); text-align: right; }
+
+@media (min-width: 900px) {
+  .shigoto-item { grid-template-columns: 88px minmax(0, 1fr) 292px; }
+  /* 3列のときは列幅が行長を決めるので、本文側の上限は外す（和文で約33字になる） */
+  .shigoto-item p { max-width: none; }
+}
 @media (max-width: 640px) {
   .shigoto-item { grid-template-columns: 1fr; gap: var(--sp-s); }
+  .shigoto-rec { margin-top: var(--sp-m); }
 }
 
 /* ── 矩計図 ───────────────────────────────────────── */
@@ -645,7 +733,22 @@ section { padding-block: var(--sp-x); }
 <main id="main">
 
   <!-- ══ ヒーロー ══════════════════════════════════ -->
-  <section class="s-hero">
+  <section class="s-hero" data-dark>
+    <!-- 外壁の焼杉を面として敷く。工務店が売っているのは材料なので、
+         インパクトを色や飾りではなく「実物」で出す。
+         暗い外に立ってから、次の節で明るい屋内へ入る流れにもなる。 -->
+    <div class="hero-bg" aria-hidden="true">
+      <!-- 横長のまま縦画面に流すと、板一枚まで寄って構図が消える。
+           縦画面には縦位置で撮った別カットを渡す。 -->
+      <picture>
+        <source media="(max-width: 860px)"
+                srcset="img/hero-yakisugi-v-600.webp 600w, img/hero-yakisugi-v-1000.webp 768w"
+                sizes="100vw" width="768" height="1376">
+        <img src="img/hero-yakisugi-1800.webp"
+             srcset="img/hero-yakisugi-900.webp 900w, img/hero-yakisugi-1800.webp 1376w"
+             sizes="100vw" width="1376" height="768" alt="" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
     <div class="wrap">
       <p class="label c-fade hero-label" style="--d:0ms">Sugito Koumuten / est. 1961</p>
         <h1 class="hero-head">
@@ -671,13 +774,13 @@ section { padding-block: var(--sp-x); }
         <div class="koguchi" id="koguchi">
           <img class="koguchi-base" src="img/koguchi-760.webp"
                srcset="img/koguchi-380.webp 380w, img/koguchi-760.webp 760w"
-               sizes="(max-width: 860px) 260px, 33vw" width="760" height="760"
+               sizes="(max-width: 860px) 240px, 33vw" width="760" height="760"
                alt="杉の丸太の木口。中心からずれた髄のまわりに約50本の年輪が広がり、外側に淡い辺材と樹皮が見える。"
                fetchpriority="high" decoding="async">
           <div class="koguchi-grow" aria-hidden="true">
             <img src="img/koguchi-760.webp"
                  srcset="img/koguchi-380.webp 380w, img/koguchi-760.webp 760w"
-                 sizes="(max-width: 860px) 260px, 33vw" width="760" height="760"
+                 sizes="(max-width: 860px) 240px, 33vw" width="760" height="760"
                  alt="" decoding="async">
           </div>
           <svg class="koguchi-edge" viewBox="0 0 100 100" aria-hidden="true">
@@ -797,6 +900,16 @@ section { padding-block: var(--sp-x); }
             <p>影がどこに落ちるかを、季節を変えて二回測ります。隣家の屋根の高さと、風がどちらから抜けるかもここで見ます。図面はそのあとです。</p>
             <p>この工程だけで二週間もらいます。着工を急いでいる方には向きません。</p>
           </div>
+          <aside class="shigoto-rec">
+            <p class="shigoto-rec-num"><b>4</b><span>回</span></p>
+            <p class="shigoto-rec-cap">敷地に立って日影を測った回数</p>
+            <dl>
+              <div><dt>春</dt><dd>03.14　8:00 / 16:00</dd></div>
+              <div><dt>夏</dt><dd>06.09　8:00 / 16:00</dd></div>
+              <div><dt>隣家の棟高</dt><dd>GL＋6,420</dd></div>
+              <div><dt>抜ける風</dt><dd>南南東</dd></div>
+            </dl>
+          </aside>
         </article>
 
         <article class="shigoto-item c-fade">
@@ -805,6 +918,16 @@ section { padding-block: var(--sp-x); }
             <h3>構造材は、車で 20 分の山から。</h3>
             <p>西川材の杉と檜。伐った日付と、山主さんの名前を書いた紙を引き渡しの資料に入れます。どの柱がどの木かも記録しています。</p>
           </div>
+          <aside class="shigoto-rec">
+            <p class="shigoto-rec-num"><b>42</b><span>本</span></p>
+            <p class="shigoto-rec-cap">産地を記録して渡した柱の数</p>
+            <dl>
+              <div><dt>樹種</dt><dd>杉・檜（西川材）</dd></div>
+              <div><dt>伐採</dt><dd>2025.01.20</dd></div>
+              <div><dt>山</dt><dd>飯能・南川</dd></div>
+              <div><dt>現場まで</dt><dd>車で 20 分</dd></div>
+            </dl>
+          </aside>
         </article>
 
         <article class="shigoto-item c-fade">
@@ -814,6 +937,16 @@ section { padding-block: var(--sp-x); }
             <p>耐力壁の位置は動かせないと言い張って、代わりに天井の高さを二段に分けました。低いほうを 2,150mm まで下げて、居間だけ 2,600mm にしています。</p>
             <p class="quote">今はその段差のところに、下のお子さんがいつも座っているそうです。</p>
           </div>
+          <aside class="shigoto-rec">
+            <p class="shigoto-rec-num"><b>450</b><span>mm</span></p>
+            <p class="shigoto-rec-cap">居間とその他でつけた天井の段差</p>
+            <dl>
+              <div><dt>居間</dt><dd>2,600</dd></div>
+              <div><dt>その他</dt><dd>2,150</dd></div>
+              <div><dt>耐力壁</dt><dd>変更なし</dd></div>
+              <div><dt>聞かれた回数</dt><dd>3 回</dd></div>
+            </dl>
+          </aside>
         </article>
       </div>
     </div>
