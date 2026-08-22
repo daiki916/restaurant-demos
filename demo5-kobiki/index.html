@@ -191,6 +191,7 @@ h2 { font-size: var(--fs-h2); color: var(--hakua); }
 .hero {
   position: relative;
   height: var(--h-hero);
+  height: 100svh;      /* 「下へ」の目印を初期表示で見切れさせない */
   display: grid;
   align-content: center;
   padding: 0 22px;
@@ -252,6 +253,7 @@ h2 { font-size: var(--fs-h2); color: var(--hakua); }
 .koguchi-stage {
   position: sticky; top: 0;
   height: 100vh;
+  height: 100svh;      /* iOSでアドレスバーが出ている間も、貼り付いた木口が切れないように */
   display: grid; place-items: center;
   z-index: 1;
 }
@@ -372,11 +374,14 @@ html.js .js-fade.is-show { opacity: 1; }
   .blk-in {
     margin-left: 0; max-width: none;
     padding: var(--sp-m) var(--sp-m) var(--sp-m) var(--sp-m);
-    background: rgba(20,19,18,.84);
-    backdrop-filter: blur(2px);
+    /* ぼかし（backdrop-filter）は入れない。地が .84 まで濃いので見た目はほぼ変わらないのに、
+       動いているcanvasの上でぼかすと、スマホの合成負荷だけが乗る */
+    background: rgba(20,19,18,.86);
   }
   .blk-in p { max-width: none; }
   .beat { min-height: 68vh; }
+  /* 指で押せる大きさ（44px）を確保する。下線は文字の近くに残す */
+  .foot-back { display: inline-block; padding: 14px 2px 4px; }
   .koguchi { width: min(92vw, 62vh); }
   .k-txt { font-size: 34px; }
   .k-txt.sub { font-size: 29px; }

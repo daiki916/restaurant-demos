@@ -767,7 +767,17 @@ async function init3D() {
 
   /* スクロールでは値を控えるだけ。描画はRAFに任せる */
   addEventListener("scroll", () => { scrollY = window.scrollY; }, { passive: true });
-  addEventListener("resize", () => { resize(); track.measure(); }, { passive: true });
+  /* スマホはスクロール中にアドレスバーが出入りして innerHeight が動く。
+     そのたびに描画バッファを作り直すとつっかえるので、
+     幅が同じで高さの変化が小さいときは作り直さず、章の位置だけ測り直す */
+  let lastW = window.innerWidth, lastH = window.innerHeight;
+  addEventListener("resize", () => {
+    const w = window.innerWidth, h = window.innerHeight;
+    const barOnly = w === lastW && Math.abs(h - lastH) < 140;
+    lastW = w; lastH = h;
+    if (!barOnly) resize();
+    track.measure();
+  }, { passive: true });
   document.addEventListener("visibilitychange", () => {
     /* 見えていないタブでは回さない */
     if (document.hidden) { running = false; }
