@@ -1253,8 +1253,14 @@ section { padding-block: var(--sp-x); }
 
   /* ── 出現 ───────────────────────────────────── */
   var targets = document.querySelectorAll(".c-fade, .c-reveal, .koguchi");
+  function revealAll() {
+    Array.prototype.forEach.call(targets, function (el) { el.classList.add("is-show"); });
+    growKoguchi();
+  }
   if ("IntersectionObserver" in window) {
+    var ioFired = false;
     var io = new IntersectionObserver(function (entries) {
+      ioFired = true;
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         e.target.classList.add("is-show");
@@ -1267,9 +1273,28 @@ section { padding-block: var(--sp-x); }
       });
     }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
     targets.forEach(function (el) { io.observe(el); });
+
+    /* 保険。IntersectionObserver が「存在するのに一度も配信されない」環境がある
+       （描画パイプラインが止まる埋め込みブラウザ・強い省電力・特殊な合成状態）。
+       そこでは本文26要素が opacity:0 のまま残り、ページがほぼ白紙に見える。
+       一度でも発火していれば何もしない ── 無条件に発動させると、
+       ヒーローに6秒以上留まった人の出現アニメを全部潰すことになる。
+       裏タブで読み込まれた場合は表に出るまで待つ（そこから通常どおり発火するため）。 */
+    var netTimer;
+    function safetyNet() {
+      if (ioFired) return;
+      if (document.visibilityState === "hidden") {
+        document.addEventListener("visibilitychange", function onShow() {
+          document.removeEventListener("visibilitychange", onShow);
+          netTimer = setTimeout(safetyNet, 1500);
+        });
+        return;
+      }
+      revealAll();
+    }
+    netTimer = setTimeout(safetyNet, 6000);
   } else {
-    targets.forEach(function (el) { el.classList.add("is-show"); });
-    growKoguchi();
+    revealAll();
   }
 
   /* ── 経年：スクロールを時間軸に変える ────────── */
