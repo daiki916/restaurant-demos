@@ -14,7 +14,10 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EFEBE4'/%3E%3Cg fill='none' stroke='%232E4A54' stroke-width='1.4'%3E%3Cellipse cx='15' cy='17' rx='3' ry='2.6'/%3E%3Cellipse cx='15.4' cy='16.6' rx='7' ry='6.2'/%3E%3Cellipse cx='15.8' cy='16.2' rx='11' ry='9.8'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<!-- 和文サブセットは1ウェイトあたり数百KB。使っていないウェイトを1つ宣言するだけで
+     その分がまるごと増える。実測でページが使うのは Sans 400/500 と Serif 400/500 のみ。
+     700 はフッターの strong 11文字だけだったので落とした（そちらは 500 に寄せた）。 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    杉戸工務店 — 架空のデモサイト
@@ -105,9 +108,15 @@ h1, h2, h3 { font-family: var(--mincho); font-weight: 500; letter-spacing: norma
 
 a { color: inherit; }
 a:focus-visible, button:focus-visible, summary:focus-visible {
-  outline: 2px solid var(--ao);
+  outline: 2px solid var(--focus, var(--ao));
   outline-offset: 3px;
 }
+/* 暗い面ではリングを反転する。outline-offset で輪は要素の外＝その節の地の上に出るので、
+   藍鉄のままだと闇に対して 1.81:1、ヒーローの写真の上では 1.15:1 まで落ちる。
+   WCAG 1.4.11 は 3:1 を要求し、UA既定のリングは潰してあるので見えないと代わりがない。
+   逆に全面を明色にすると明背景の9箇所が 1.14:1 になる。面ごとに出し分けるしかない */
+[data-dark],
+.is-dark .c-header { --focus: #E8DCC4; }
 
 .skip {
   position: absolute; left: -9999px; top: 0;
@@ -580,9 +589,14 @@ section { padding-block: var(--sp-x); }
   /* 3列のときは列幅が行長を決めるので、本文側の上限は外す（和文で約33字になる） */
   .shigoto-item p { max-width: none; }
 }
+/* 900px以上は3列。640px以下は1列。その間（タブレット縦 768/810/834、スマホ横 844/932）が
+   素通しになっていて、記録票が 88px の番号カラムに落ち、中身が46pxはみ出していた。
+   横スクロールが出ないので気づけない。本文の2段組は保ったまま、記録票だけ全幅に渡す */
+@media (max-width: 899px) {
+  .shigoto-rec { grid-column: 1 / -1; margin-top: var(--sp-m); }
+}
 @media (max-width: 640px) {
   .shigoto-item { grid-template-columns: 1fr; gap: var(--sp-s); }
-  .shigoto-rec { margin-top: var(--sp-m); }
 }
 
 /* ── 矩計図 ───────────────────────────────────────── */
@@ -672,6 +686,10 @@ section { padding-block: var(--sp-x); }
   border-top: 1px solid var(--kei);
   font-size: 12px; color: var(--usu); line-height: 1.9;
 }
+/* ページ全体で 700 を使っているのはここの 11 文字だけだった。
+   そのために和文ウェイトを1本まるごと落とすのは割に合わない。
+   500 でも架空である旨は地の文から十分に立ち上がる（色も濃くして補う） */
+.foot-note strong { font-weight: 500; color: var(--sumi); }
 @media (max-width: 640px) {
   .foot-grid { grid-template-columns: 1fr; }
   /* 狭い画面では区切り記号を消して1単位1行に積む */
@@ -1107,7 +1125,7 @@ section { padding-block: var(--sp-x); }
                srcset="img/kouzou-640.webp 640w, img/kouzou-1100.webp 1100w"
                sizes="(max-width: 700px) 92vw, 32vw" width="1100" height="822"
                alt="建て方を終えた木造の骨組み。柱と梁と筋交いが見えていて、壁はまだ張られていない。" loading="lazy" decoding="async">
-          <p class="date">2026.09.13 SAT — 09.14 SUN</p>
+          <p class="date">2026.09.12 SAT — 09.13 SUN</p>
           <h3>構造見学会｜飯能市阿須</h3>
           <p>壁を張る前の状態です。このページで見た 8 層のうち、5 層目まで実物で見られます。上着が汚れてもいい格好でお越しください。</p>
           <a class="btn btn-fill" href="#">日時を選んで申し込む</a>
@@ -1117,7 +1135,7 @@ section { padding-block: var(--sp-x); }
                srcset="img/kansei-640.webp 640w, img/kansei-1100.webp 1100w"
                sizes="(max-width: 700px) 92vw, 32vw" width="1100" height="822"
                alt="引き渡し前の台所。杉の無垢材のカウンターにステンレスの天板、漆喰の壁、あらわしの梁。" loading="lazy" decoding="async">
-          <p class="date">2026.09.27 SAT</p>
+          <p class="date">2026.09.26 SAT</p>
           <h3>完成見学会｜日高市高麗本郷</h3>
           <p>お引き渡しの前日にお借りします。三人家族＋犬一頭の 32 坪。予約は 1 組 45 分で、当日は 6 組までです。</p>
           <a class="btn btn-fill" href="#">日時を選んで申し込む</a>
