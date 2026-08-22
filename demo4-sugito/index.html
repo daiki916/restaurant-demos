@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杉戸工務店｜埼玉県飯能市の木造住宅（架空のデモサイト）</title>
+<meta name="description" content="飯能で三代、年に六棟だけ建てている工務店。西川材の構造材と、12年かけて動きが止まるまでの話。構造見学会のご案内。※制作実績紹介のための架空の工務店です。">
+<meta name="theme-color" content="#EFEBE4">
+<meta property="og:type" content="website">
+<meta property="og:title" content="杉戸工務店｜引き渡しの日が、いちばん下手な状態です。">
+<meta property="og:description" content="埼玉県飯能市。年に六棟。木は反るし、無垢の床は夏に鳴きます。※架空のデモサイトです。">
+<meta property="og:locale" content="ja_JP">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23EFEBE4'/%3E%3Cg fill='none' stroke='%232E4A54' stroke-width='1.4'%3E%3Cellipse cx='15' cy='17' rx='3' ry='2.6'/%3E%3Cellipse cx='15.4' cy='16.6' rx='7' ry='6.2'/%3E%3Cellipse cx='15.8' cy='16.2' rx='11' ry='9.8'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   杉戸工務店 — 架空のデモサイト
+   コンセプトの1語 =「経年」。全ての型・色・動きはこの1語の翻訳。
+   register = 静（出現 600–900ms / 常時アニメほぼ無し）
+   ============================================================ */
+
+:root {
+  /* 色：漆喰の壁と、青焼き図面のインク。純白・純黒は使わない */
+  --shikkui: #EFEBE4;
+  --kinari:  #E4DFD6;
+  --sumi:    #1F1D1A;
+  --usu:     #635D57;   /* 対 --shikkui で 5.4:1 */
+  --kei:     #D6CFC4;
+  --ao:      #2E4A54;   /* 藍鉄＝図面のインク色。対 --shikkui で 7.9:1 */
+  --yami:    #1A1C1D;
+  --yami-bun:#9A948B;   /* 対 --yami で 5.7:1 */
+
+  /* 書体 */
+  --mincho: "Noto Serif JP", serif;
+  --gothic: "Noto Sans JP", sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", "Roboto Mono", Menlo, Consolas, monospace;
+
+  /* 型スケール：見出しは3段しか持たない */
+  /* 2行目「いちばん下手な状態です。」= 和文12字が、375px でも 1280px でも
+     1行に収まる範囲に抑えている。折れると語の途中で割れるため */
+  --fs-display: clamp(26px, 5.9vw, 68px);
+  --fs-h2:      clamp(21px, 3vw, 31px);
+  --fs-h3:      17px;
+
+  /* 動きのトークン。easing は3種類まで */
+  --ease-out-quart:   cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-inout-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur: 800ms;
+
+  /* 余白：4段しか持たない */
+  --sp-s: 12px;
+  --sp-m: 28px;
+  --sp-l: 64px;
+  --sp-x: clamp(88px, 13vw, 168px);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: var(--gothic);
+  background: var(--shikkui);
+  color: var(--sumi);
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: .02em;
+  /* 和文の中割れ対策。サイト全体に1本で入れる */
+  word-break: auto-phrase;
+  line-break: strict;
+  overflow-x: hidden;
+}
+p, h1, h2, h3, dd, dt, li, blockquote, summary, label, figcaption {
+  word-break: auto-phrase;
+  line-break: strict;
+}
+
+/* 見出しは和文なので字間を詰めない（normal が基準） */
+h1, h2, h3 { font-family: var(--mincho); font-weight: 500; letter-spacing: normal; }
+
+.wrap { width: min(100% - 44px, 1020px); margin-inline: auto; }
+.narrow { max-width: 46ch; }  /* 和文で約23字 */
+
+/* 欧文の小ラベルだけ字間を開ける */
+.label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--ao);
+}
+.nowrap { white-space: nowrap; }
+/* 目には見えないが読み上げには届く。袋文字の年数は装飾扱いなので、
+   意味のほうはこちらで各ステップの見出しに持たせる */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+a { color: inherit; }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 2px solid var(--ao);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute; left: -9999px; top: 0;
+  background: var(--sumi); color: var(--shikkui);
+  padding: 12px 20px; z-index: 100;
+}
+.skip:focus { left: 0; }
+
+/* ── 質感レイヤー：無菌感を消すための紙目 ──────────────── */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 50;
+  opacity: .5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");
+}
+
+/* ── ヘッダー ─────────────────────────────────────── */
+.c-header {
+  position: fixed; inset: 0 0 auto 0; z-index: 40;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-m);
+  padding: 18px max(22px, calc((100vw - 1020px) / 2));
+  color: var(--sumi);
+  transition: color 200ms linear, background-color 200ms linear;
+}
+.c-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--shikkui);
+  opacity: 0; transition: opacity 200ms linear;
+}
+/* 透けさせると下の本文・図面文字が滲んで不具合に見えるので、不透明にする */
+.is-scrolled .c-header::before { opacity: 1; }
+/* 暗いセクションに入ったらヘッダーを反転 */
+.is-dark .c-header { color: var(--kinari); }
+.is-dark .c-header::before { background: var(--yami); }
+
+.c-logo { font-family: var(--mincho); font-size: 18px; text-decoration: none; }
+.c-logo small { font-family: var(--mono); font-size: 10px; letter-spacing: .24em; opacity: .6; display: block; margin-top: 2px; }
+.c-nav { display: flex; align-items: center; gap: 22px; font-size: 13px; }
+.c-nav a { text-decoration: none; }
+.c-nav a:not(.c-cta) { position: relative; }
+.c-nav a:not(.c-cta)::after {
+  content: ""; position: absolute; left: 0; bottom: -3px;
+  width: 100%; height: 1px; background: currentColor;
+  transform: scaleX(0); transform-origin: right;
+  transition: transform 500ms var(--ease-out-quart);
+}
+.c-nav a:not(.c-cta):hover::after { transform: scaleX(1); transform-origin: left; }
+.c-cta {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: 0 20px; border: 1px solid currentColor;
+  letter-spacing: .04em;
+  transition: background-color 200ms linear, color 200ms linear;
+}
+.c-cta:hover { background: var(--sumi); color: var(--shikkui); }
+.is-dark .c-cta:hover { background: var(--kinari); color: var(--yami); }
+@media (max-width: 760px) {
+  .c-nav .hide-sp { display: none; }
+}
+
+/* ── 出現アニメーション（マスク内せり上がり） ───────────── */
+.c-reveal { overflow: hidden; display: block; }
+.c-reveal > * { display: block; }
+.js-ready .c-reveal > * {
+  transform: translate3d(0, 105%, 0);
+  transition: transform var(--dur) var(--ease-out-quart);
+  transition-delay: var(--d, 0ms);
+}
+.js-ready .is-show .c-reveal > *,
+.js-ready .c-reveal.is-show > * { transform: translate3d(0, 0, 0); }
+
+.c-fade { }
+.js-ready .c-fade {
+  opacity: 0; transform: translate3d(0, 14px, 0);
+  transition: opacity var(--dur) var(--ease-out-quart), transform var(--dur) var(--ease-out-quart);
+  transition-delay: var(--d, 0ms);
+}
+.js-ready .c-fade.is-show { opacity: 1; transform: none; }
+
+/* ── ヒーロー ─────────────────────────────────────── */
+.s-hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  padding: 140px 0 var(--sp-l);
+}
+/* 見出しは全幅を使い、その下だけ2段組にする。
+   狭い左カラムに大きな和文見出しを流し込むと必ず語の途中で折れるため */
+.s-hero .wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 34%);
+  grid-template-areas:
+    "label label"
+    "head  head"
+    "body  wood";
+  column-gap: clamp(36px, 6vw, 96px);
+  align-items: start;
+}
+.hero-label { grid-area: label; }
+.hero-head  { grid-area: head; }
+.hero-body  { grid-area: body; }
+.hero-wood  { grid-area: wood; }
+.hero-head {
+  font-size: var(--fs-display);
+  line-height: 1.3;
+  margin: 18px 0 var(--sp-m);
+  /* 和文の見出しは字間を詰めない（字面が余白を内蔵している）。
+     精密さは行間・余白・階層で出す */
+}
+.hero-head .l2 { text-indent: 1.6em; }
+.hero-lead {
+  color: var(--usu);
+  font-size: 16px;
+  line-height: 2;
+  letter-spacing: .03em;
+  max-width: 42ch;
+}
+.hero-meta {
+  position: relative;
+  margin-top: var(--sp-l); padding-top: 14px;
+  display: flex; flex-wrap: wrap; gap: var(--sp-s) 36px;
+  font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--usu);
+}
+/* 罫線は引かれてから文字が立つ。no-JSでは最初から引いてある */
+.hero-meta::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: var(--kei);
+}
+.js-ready .hero-meta::before {
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 900ms var(--ease-inout-quart) 200ms;
+}
+.js-ready .hero-meta.is-show::before { transform: scaleX(1); }
+.hero-actions { margin-top: var(--sp-m); display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  position: relative; overflow: hidden;
+  display: inline-flex; align-items: center; min-height: 52px;
+  padding: 0 30px; text-decoration: none; font-size: 13.5px; letter-spacing: .06em;
+  border: 1px solid var(--sumi);
+  transition: background-color 200ms linear, color 200ms linear,
+              border-color 200ms linear,
+              transform 500ms var(--ease-out-quart),
+              box-shadow 500ms var(--ease-out-quart);
+}
+.btn-fill { background: var(--sumi); color: var(--shikkui); }
+.btn-fill:hover {
+  background: var(--ao); border-color: var(--ao);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -14px rgba(46, 74, 84, .5);
+}
+.btn-fill:active { transform: translateY(0); box-shadow: 0 6px 14px -10px rgba(46, 74, 84, .5); }
+/* 線ボタンは下から墨が満ちる。文字は二枚重ね：
+   下の字（墨色）の上に、同じ字（漆喰色）を墨と同じ境界のclip-pathで重ねる。
+   色替えを遷移させると墨の上昇と必ずずれ、明色文字が明色背景に乗る瞬間が出るため */
+.btn-line::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--sumi);
+  transform: scaleY(0); transform-origin: bottom;
+  transition: transform 480ms var(--ease-inout-quart);
+}
+.btn-line::after {
+  content: attr(data-label);
+  content: attr(data-label) / "";
+  position: absolute; inset: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--shikkui);
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 480ms var(--ease-inout-quart);
+}
+.btn-line:hover::before { transform: scaleY(1); }
+.btn-line:hover::after { clip-path: inset(0 0 0 0); }
+.btn-line:active { transform: translateY(1px); }
+
+@media (max-width: 860px) {
+  .s-hero { min-height: auto; padding: 116px 0 var(--sp-l); }
+  .s-hero .wrap {
+    grid-template-columns: 1fr;
+    grid-template-areas: "label" "head" "wood" "body";
+    row-gap: 0;
+  }
+  .hero-head .l2 { text-indent: 0; }
+  /* 縦積みになると木口が主役を食うので上限をかける */
+  .hero-wood { max-width: 260px; margin: 0 auto var(--sp-m); width: 100%; }
+}
+
+/* ── 木口（実写＋図解の動き） ─────────────────────── */
+.hero-wood { perspective: 900px; }
+.koguchi {
+  position: relative; aspect-ratio: 1 / 1;
+  /* 記録写真の「プリント」として扱う：ヘアライン＋淡い影で紙面に座らせる */
+  border: 1px solid var(--kei);
+  box-shadow: 0 26px 50px -34px rgba(31, 29, 26, .4);
+  /* スクロール追従＋カーソルへの微傾（±3°）。全て描画のみ、レイアウト不変 */
+  transform: translate3d(0, calc(var(--par, 0) * -26px), 0)
+             rotateX(var(--tiltX, 0deg)) rotateY(var(--tiltY, 0deg));
+  transition: transform 500ms var(--ease-out-quart);
+}
+/* 年輪が育ち切るほど影が深くなる＝物としての厚みを持つ。
+   box-shadowを毎フレーム動かすと再描画になるので、
+   深い影を持つ擬似要素の opacity（コンポジタ処理）だけを動かす */
+.koguchi::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  box-shadow: 0 38px 72px -40px rgba(31, 29, 26, .38);
+  opacity: var(--depth, 0);
+}
+.koguchi img { display: block; width: 100%; height: auto; }
+/* 下敷き：まだ育っていない部分。色を抜いて沈めておく */
+/* 育つ前の部分。暗く沈めると背景（漆喰色）の上で黒い塊になるので、
+   彩度を抜いて明るく飛ばし、輪郭だけ残す */
+.koguchi-base { filter: grayscale(.92) brightness(1.14) contrast(.5); opacity: .5; }
+/* 上に重ねた同じ写真を、髄を中心にした円で切り出して広げる */
+.koguchi-grow {
+  position: absolute; inset: 0;
+  clip-path: circle(calc(var(--grow, 1) * 92%) at 36% 37%);
+}
+/* 育っている先端＝「今の年輪」を細い線でなぞる */
+.koguchi-edge {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; mix-blend-mode: screen;
+}
+.koguchi-note {
+  margin-top: var(--sp-s);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--usu);
+  text-align: right;
+}
+.koguchi-note b { font-weight: 400; font-variant-numeric: tabular-nums; }
+/* 余白が十分ある画面では、写真の右の余白に縦で添える（数字は縦中横） */
+@media (min-width: 1100px) {
+  .hero-wood { position: relative; }
+  .koguchi-note {
+    position: absolute; top: 6px; right: -30px; margin-top: 0;
+    writing-mode: vertical-rl; text-align: left;
+    font-size: 10.5px; letter-spacing: .18em;
+  }
+  .koguchi-note b { text-combine-upright: all; }
+}
+
+/* ── セクション共通 ───────────────────────────────── */
+section { padding-block: var(--sp-x); }
+.s-head { margin-bottom: var(--sp-l); }
+.s-head h2 { font-size: var(--fs-h2); line-height: 1.6; margin-top: 10px; }
+.s-head p { color: var(--usu); margin-top: var(--sp-s); }
+
+/* ── 外観バンド（全幅） ───────────────────────────── */
+.s-gaikan { padding-block: 0; }
+.s-gaikan figure { margin: 0; }
+.s-gaikan img {
+  display: block; width: 100%; height: auto;
+  max-height: 78svh; object-fit: cover;
+  background: var(--kei);
+}
+.s-gaikan figcaption {
+  padding-top: var(--sp-s);
+  font-family: var(--mono); font-size: 11px; letter-spacing: .06em; color: var(--usu);
+}
+
+/* ── 矩計図の隣に置く実物写真 ─────────────────────── */
+.kabe-photo { margin: var(--sp-l) 0 0; max-width: 62ch; }
+.kabe-photo img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 4 / 3; object-fit: cover; background: var(--kei);
+}
+.kabe-photo figcaption {
+  margin-top: var(--sp-s); font-size: 13px; color: var(--usu); max-width: 44ch;
+}
+
+/* ── 見学会カードの写真（カード幅いっぱいに抜く） ───── */
+.kengaku-img {
+  display: block;
+  width: calc(100% + var(--sp-m) * 2);
+  margin: calc(var(--sp-m) * -1) calc(var(--sp-m) * -1) var(--sp-s);
+  height: auto; aspect-ratio: 4 / 3; object-fit: cover;
+  background: var(--kei);
+}
+
+/* ── 経年（このサイトの主役） ─────────────────────── */
+.s-keinen { background: var(--yami); color: var(--kinari); padding-block: 0; }
+.s-keinen .label { color: #7FA3AE; }
+.keinen-track { position: relative; }
+.keinen-sticky {
+  position: sticky; top: 0;
+  min-height: 100svh;
+  display: grid; align-content: center;
+  /* スクロール連動中は1画面に収める必要があるので余白を切り詰める。
+     畳んだモードでは通常のセクション余白に戻す（下の .keinen-static） */
+  padding-block: var(--sp-m);
+}
+.keinen-head { margin-bottom: var(--sp-s); }
+.keinen-head h2 { font-size: var(--fs-h2); line-height: 1.6; margin-top: 10px; }
+.keinen-head > p:last-child { color: var(--yami-bun); margin-top: var(--sp-s); max-width: 44ch; }
+.keinen-text { display: grid; align-content: center; gap: var(--sp-m); }
+
+/* 各ステップは〈本文｜その年の写真〉を1組で持つ。
+   こうしておくと、JSが死んでも・動きを減らす設定でも、
+   どの写真がどの年なのかが崩れない */
+/* 経過年数。袋文字にして、写真の邪魔をせず数だけ立たせる */
+.keinen-year {
+  font-family: var(--mono);
+  font-size: clamp(44px, 7vw, 82px);
+  line-height: .85; letter-spacing: -.02em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--yami-bun);
+  display: flex; align-items: baseline; gap: .1em;
+  margin-bottom: var(--sp-s);
+}
+.keinen-year b { font-weight: 400; }
+.keinen-year span {
+  font-size: .22em; letter-spacing: .2em;
+  color: var(--yami-bun); -webkit-text-stroke: 0;
+}
+
+.keinen-steps { position: relative; }
+.keinen-step {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr);
+  gap: clamp(20px, 4vw, 56px);
+  align-items: center;
+}
+.keinen-step + .keinen-step { margin-top: var(--sp-l); }
+.keinen-step h3 { font-size: var(--fs-h3); margin-bottom: var(--sp-s); }
+.keinen-step p { color: var(--yami-bun); max-width: 42ch; }
+
+.keinen-step-photo { margin: 0; }
+.keinen-step-photo img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 3 / 2; object-fit: cover;
+  background: #24262A;
+}
+
+/* JSが動いているときだけ、4組を重ねて入れ替える。
+   1組目だけ通常フローに残して器の高さを決めさせる（高さが飛ばない） */
+.js-ready .keinen-step { position: absolute; inset: 0; margin-top: 0; }
+.js-ready .keinen-step:first-child { position: relative; }
+.js-ready .keinen-step {
+  opacity: 0; transform: translate3d(0, 14px, 0);
+  /* 退場は速く、入場は退場の後ろにずらす（重なると文字が二重に見える） */
+  transition: opacity 220ms var(--ease-out-quart), transform 220ms var(--ease-out-quart);
+  pointer-events: none;
+}
+.js-ready .keinen-step.is-active {
+  opacity: 1; transform: none; pointer-events: auto;
+  transition: opacity 420ms var(--ease-out-quart) 200ms,
+              transform 620ms var(--ease-out-quart) 200ms;
+}
+
+.keinen-bar {
+  margin-top: var(--sp-m);
+  display: flex; gap: 6px;
+}
+.keinen-bar i {
+  flex: 1; height: 2px; background: #3A3E40; position: relative; overflow: hidden;
+}
+.keinen-bar i::after {
+  content: ""; position: absolute; inset: 0;
+  background: var(--kinari);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 600ms var(--ease-inout-quart);
+}
+.keinen-bar i.is-done::after { transform: scaleX(1); }
+@media (max-width: 860px) {
+  .keinen-step { grid-template-columns: 1fr; gap: var(--sp-m); }
+  /* 狭い画面では写真を先に見せる（言葉より先に色の違いが伝わる） */
+  .keinen-step-photo { order: -1; }
+  .keinen-step-photo img { aspect-ratio: 4 / 3; }
+}
+
+/* ── 仕事のしかた ─────────────────────────────────── */
+.shigoto { display: grid; gap: 0; }
+.shigoto-item {
+  display: grid; grid-template-columns: 88px 1fr;
+  gap: var(--sp-m);
+  padding-block: var(--sp-l);
+  border-top: 1px solid var(--kei);
+}
+.shigoto-item:last-child { border-bottom: 1px solid var(--kei); }
+.shigoto-no { font-family: var(--mono); font-size: 12px; letter-spacing: .16em; color: var(--ao); padding-top: 6px; }
+.shigoto-item h3 { font-size: var(--fs-h3); margin-bottom: var(--sp-s); }
+.shigoto-item p { color: var(--usu); max-width: 44ch; }
+.shigoto-item p + p { margin-top: .9em; }
+.shigoto-item .quote {
+  margin-top: var(--sp-s); padding-left: var(--sp-m);
+  border-left: 2px solid var(--kei); font-family: var(--mincho); color: var(--sumi);
+}
+@media (max-width: 640px) {
+  .shigoto-item { grid-template-columns: 1fr; gap: var(--sp-s); }
+}
+
+/* ── 矩計図 ───────────────────────────────────────── */
+.s-kabe { background: var(--kinari); }
+.kabe-fig {
+  display: grid; grid-template-columns: minmax(0, 300px) 1fr;
+  gap: clamp(20px, 4vw, 56px); align-items: start;
+}
+.kanabakari { width: 100%; height: auto; display: block; }
+.kabe-list { margin: 0; padding: 0; list-style: none; }
+.kabe-list li {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: var(--sp-s);
+  align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px dashed var(--kei);
+  transition: background-color 200ms linear;
+}
+.kabe-list li b { font-weight: 500; }
+.kabe-list li em { display: block; font-style: normal; font-size: 12.5px; color: var(--usu); letter-spacing: .04em; }
+.kabe-list li var {
+  font-family: var(--mono); font-style: normal; font-size: 12px;
+  letter-spacing: .06em; color: var(--ao); white-space: nowrap;
+}
+.kabe-list li.is-lit { background: rgba(46,74,84,.07); }
+@media (max-width: 760px) {
+  .kabe-fig { grid-template-columns: 1fr; }
+  .kanabakari { max-width: 260px; margin-inline: auto; }
+}
+
+/* ── 数字 ─────────────────────────────────────────── */
+.suuji {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1px; background: var(--kei);
+  border: 1px solid var(--kei);
+}
+.suuji div { background: var(--shikkui); padding: var(--sp-m) var(--sp-m) 26px; }
+.suuji dt { font-size: 12.5px; color: var(--usu); letter-spacing: .06em; margin-bottom: 10px; }
+.suuji dd { font-family: var(--mono); font-size: 30px; line-height: 1.2; letter-spacing: -.01em; }
+.suuji dd small { font-family: var(--gothic); font-size: 13px; letter-spacing: .06em; margin-left: 4px; color: var(--usu); }
+
+/* ── 向いていないこと ─────────────────────────────── */
+.s-muki { background: var(--yami); color: var(--kinari); }
+.s-muki .label { color: #7FA3AE; }
+.s-muki .s-head h2 { color: var(--kinari); }
+.s-muki .s-head p { color: var(--yami-bun); }
+.muki { margin: 0; padding: 0; list-style: none; max-width: 62ch; }
+.muki li {
+  padding: 20px 0 20px 30px;
+  border-bottom: 1px solid #303436;
+  position: relative;
+  color: var(--kinari);
+}
+.muki li::before {
+  content: "×"; position: absolute; left: 0; top: 20px;
+  font-family: var(--mono); color: #7FA3AE;
+}
+.muki li em { font-style: normal; display: block; margin-top: 6px; font-size: 13.5px; color: var(--yami-bun); }
+
+/* ── 見学会 ───────────────────────────────────────── */
+.kengaku { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--sp-m); }
+.kengaku article {
+  border: 1px solid var(--kei); padding: var(--sp-m);
+  display: flex; flex-direction: column; gap: var(--sp-s);
+  transition: border-color 200ms linear;
+}
+.kengaku article:hover { border-color: var(--ao); }
+.kengaku .date { font-family: var(--mono); font-size: 13px; letter-spacing: .08em; color: var(--ao); }
+.kengaku h3 { font-size: var(--fs-h3); }
+.kengaku p { font-size: 13.5px; color: var(--usu); }
+.kengaku .btn { margin-top: auto; align-self: flex-start; }
+
+/* ── フッター ─────────────────────────────────────── */
+.c-footer { border-top: 1px solid var(--kei); padding-block: var(--sp-l) var(--sp-m); }
+.foot-grid { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-m); align-items: start; }
+.foot-name { font-family: var(--mincho); font-size: 20px; margin-bottom: var(--sp-s); }
+.foot-info { font-size: 13.5px; color: var(--usu); line-height: 2.1; }
+.foot-info span { display: inline-block; }
+/* 指で押す領域は 44px を下回らせない */
+.foot-back {
+  display: inline-flex; align-items: center; min-height: 44px;
+  font-size: 13px; text-decoration: none;
+  box-shadow: inset 0 -1px 0 var(--kei);
+}
+.foot-note {
+  margin-top: var(--sp-l); padding-top: var(--sp-m);
+  border-top: 1px solid var(--kei);
+  font-size: 12px; color: var(--usu); line-height: 1.9;
+}
+@media (max-width: 640px) {
+  .foot-grid { grid-template-columns: 1fr; }
+  /* 狭い画面では区切り記号を消して1単位1行に積む */
+  .foot-info .sep { display: none; }
+  .foot-info span { display: block; }
+}
+
+/* ── 動きを減らす設定 ─────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .js-ready .c-reveal > *,
+  .js-ready .c-fade { transform: none !important; opacity: 1 !important; transition: none !important; }
+  .c-nav a:not(.c-cta)::after { transition: none !important; }
+  .js-ready .hero-meta::before { transform: none !important; transition: none !important; }
+  .koguchi { transition: none !important; transform: none !important; }
+  .btn, .btn-line::before { transition: background-color 200ms linear, color 200ms linear !important; }
+  .btn-fill:hover, .btn-line:active { transform: none !important; box-shadow: none !important; }
+  .btn-line::before, .btn-line::after { transition: none !important; }
+  .btn-line::before { transform: none !important; opacity: 0; }
+  .btn-line::after { clip-path: inset(100% 0 0 0) !important; }
+  .btn-line:hover { background: var(--sumi); color: var(--shikkui); }
+}
+
+/* ── 経年を畳んで静的に読ませるモード ───────────────────
+   発動条件（JSが付ける）:
+     ・動きを減らす設定になっている
+     ・画面が低くて、スティッキー1画面に本文＋写真が収まらない
+   4組をそのまま縦に並べる。各組は本文とその年の写真を持ったままなので、
+   仕掛けを失っても「どの年の写真か」は崩れない */
+.keinen-static .keinen-sticky { position: static; min-height: 0; padding-block: var(--sp-x); }
+.keinen-static .keinen-year,
+.keinen-static .keinen-bar { display: none; }
+.keinen-static.js-ready .keinen-step {
+  position: static; opacity: 1 !important; transform: none !important;
+  transition: none !important; pointer-events: auto;
+}
+.keinen-static.js-ready .keinen-step + .keinen-step { margin-top: var(--sp-l); }
+/* 畳んだときは、読み上げ用に隠していた年数を見出しの上に出す */
+.keinen-static .keinen-step .sr-only {
+  position: static; width: auto; height: auto; margin: 0 0 6px;
+  clip-path: none; overflow: visible; display: block;
+  font-family: var(--mono); font-size: 11px; letter-spacing: .16em; color: #7FA3AE;
+}
+
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">本文へ移動</a>
+
+<header class="c-header">
+  <a class="c-logo" href="#main">杉戸工務店<small>SUGITO / HANNO</small></a>
+  <nav class="c-nav" aria-label="主要メニュー">
+    <a class="hide-sp" href="#keinen">12年のこと</a>
+    <a class="hide-sp" href="#kabe">壁の中身</a>
+    <a class="c-cta" href="#kengaku">見学会</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ══ ヒーロー ══════════════════════════════════ -->
+  <section class="s-hero">
+    <div class="wrap">
+      <p class="label c-fade hero-label" style="--d:0ms">Sugito Koumuten / est. 1961</p>
+        <h1 class="hero-head">
+          <span class="c-reveal"><span style="--d:100ms; --dur:900ms">引き渡しの日が、</span></span>
+          <span class="c-reveal l2"><span style="--d:240ms; --dur:900ms">いちばん下手な状態です。</span></span>
+        </h1>
+        <div class="hero-body">
+        <p class="hero-lead c-fade" style="--d:500ms">
+          飯能で三代、年に六棟だけ建てています。木は反ります。無垢の床は夏に鳴きます。それを承知のうえで、10年後に良くなっているほうを選びたい方のための工務店です。
+        </p>
+        <div class="hero-actions c-fade" style="--d:640ms">
+          <a class="btn btn-fill" href="#kengaku">今月の見学会を見る</a>
+          <a class="btn btn-line" href="#kabe" data-label="壁の中身を見る">壁の中身を見る</a>
+        </div>
+        <p class="hero-meta c-fade" style="--d:760ms">
+          <span>埼玉県飯能市</span><span>年間 6 棟</span><span>社員 9 名（うち大工 4 名）</span>
+        </p>
+      </div>
+
+      <figure class="c-fade hero-wood" style="--d:350ms">
+        <!-- 木口は「1年＝1輪」を見せる図解なので、実写に図解の動きを重ねる。
+             髄（中心）から外へ色が満ちていく＝木が育った58年 -->
+        <div class="koguchi" id="koguchi">
+          <img class="koguchi-base" src="img/koguchi-760.webp"
+               srcset="img/koguchi-380.webp 380w, img/koguchi-760.webp 760w"
+               sizes="(max-width: 860px) 260px, 33vw" width="760" height="760"
+               alt="杉の丸太の木口。中心からずれた髄のまわりに約50本の年輪が広がり、外側に淡い辺材と樹皮が見える。"
+               fetchpriority="high" decoding="async">
+          <div class="koguchi-grow" aria-hidden="true">
+            <img src="img/koguchi-760.webp"
+                 srcset="img/koguchi-380.webp 380w, img/koguchi-760.webp 760w"
+                 sizes="(max-width: 860px) 260px, 33vw" width="760" height="760"
+                 alt="" decoding="async">
+          </div>
+          <svg class="koguchi-edge" viewBox="0 0 100 100" aria-hidden="true">
+            <circle id="koguchiEdge" cx="36" cy="37" r="0" fill="none"
+                    stroke="#E8DCC4" stroke-width=".45" opacity=".85"/>
+          </svg>
+        </div>
+        <figcaption class="koguchi-note">
+          西川材の杉／伐採時 樹齢 <b id="koguchiYear">58</b> 年
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ 外観：施主が最初に見たいもの ══════════════ -->
+  <section class="s-gaikan">
+    <figure>
+      <img src="img/gaikan-1800.webp"
+           srcset="img/gaikan-900.webp 900w, img/gaikan-1800.webp 1800w"
+           sizes="100vw" width="1800" height="1004"
+           alt="焼杉の外壁の2階建て木造住宅。深い軒と黒い金属屋根。隣家とブロック塀のある郊外の通りに建っている。"
+           loading="lazy" decoding="async">
+      <figcaption class="wrap">飯能市阿須の家／焼杉の外壁・2階建て 32坪。<span class="nowrap">2014年12月</span> 引き渡し</figcaption>
+    </figure>
+  </section>
+
+  <!-- ══ 経年（主役の仕掛け） ═══════════════════════ -->
+  <section class="s-keinen" id="keinen" data-dark>
+    <div class="keinen-track" id="keinenTrack">
+      <div class="keinen-sticky">
+        <div class="wrap">
+          <div class="keinen-head">
+            <p class="label">Over 12 years</p>
+            <h2>同じ居間を、12年ぶん。</h2>
+            <p>上の写真と同じ、飯能市阿須の家の居間です。カメラの位置は12年間ずらしていません。変わったのは木のほうです。</p>
+          </div>
+          <div class="keinen-year" aria-hidden="true">
+            <b id="keinenYear">0</b><span>YEAR</span>
+          </div>
+
+          <div class="keinen-steps" aria-live="polite">
+              <article class="keinen-step is-active" data-year="0">
+                <div class="keinen-step-text">
+                  <h3><span class="sr-only">引き渡しから 0 年。</span>引き渡し。杉の床はまだ白い。</h3>
+                  <p>含水率 15% まで乾かしてから入れますが、それでも最初の冬は板と板の間が 1mm ほど開きます。木が部屋の空気に合わせている途中なので、直しません。</p>
+                </div>
+                <figure class="keinen-step-photo">
+                  <img width="1400" height="940"
+                       src="img/keinen-00-1400.webp"
+                       srcset="img/keinen-00-700.webp 700w, img/keinen-00-1400.webp 1400w"
+                       sizes="(max-width: 860px) 88vw, 46vw"
+                       alt="引き渡し直後の居間。杉の無垢床がまだ白く、窓から差す冬の日ざしが床に長い矩形をつくっている。" loading="lazy" decoding="async">
+                </figure>
+              </article>
+              <article class="keinen-step" data-year="3">
+                <div class="keinen-step-text">
+                  <h3><span class="sr-only">引き渡しから 3 年。</span>南側だけ先に飴色になる。</h3>
+                  <p>縁側の床が日に焼けて、北側と色が変わります。同じ部屋の中で色が揃わないので、たいていの方はここで一度連絡をくださいます。8年もすると差はほとんど分からなくなります。</p>
+                </div>
+                <figure class="keinen-step-photo">
+                  <img width="1400" height="940"
+                       src="img/keinen-03-1400.webp"
+                       srcset="img/keinen-03-700.webp 700w, img/keinen-03-1400.webp 1400w"
+                       sizes="(max-width: 860px) 88vw, 46vw"
+                       alt="3年後の同じ居間。窓際と縁側の床が飴色に焼け、日の当たらない左側はまだ白いまま。" loading="lazy" decoding="async">
+                </figure>
+              </article>
+              <article class="keinen-step" data-year="8">
+                <div class="keinen-step-text">
+                  <h3><span class="sr-only">引き渡しから 8 年。</span>ここで一度、脚立を出します。</h3>
+                  <p>3年目に気になっていた南と北の色差は、このころ埋まります。かわりに外壁の焼杉が板の下端から傷むので、8年目に脚立で点検して、悪い板だけ差し替える。全面の張り替えではありません。費用はだいたい 12〜20万円です。</p>
+                </div>
+                <figure class="keinen-step-photo">
+                  <img width="1400" height="940"
+                       src="img/keinen-08-1400.webp"
+                       srcset="img/keinen-08-700.webp 700w, img/keinen-08-1400.webp 1400w"
+                       sizes="(max-width: 860px) 88vw, 46vw"
+                       alt="8年後の同じ居間。南北の色差が埋まり、床全体が均一な飴色になっている。" loading="lazy" decoding="async">
+                </figure>
+              </article>
+              <article class="keinen-step" data-year="12">
+                <div class="keinen-step-text">
+                  <h3><span class="sr-only">引き渡しから 12 年。</span>柱の動きが止まる。</h3>
+                  <p>柱の含水率が周りの空気と釣り合って、伸び縮みが収まります。建具の建て付けを最後に調整して、ここでようやく完成だと思っています。ここからが長い。</p>
+                </div>
+                <figure class="keinen-step-photo">
+                  <img width="1400" height="940"
+                       src="img/keinen-12-1400.webp"
+                       srcset="img/keinen-12-700.webp 700w, img/keinen-12-1400.webp 1400w"
+                       sizes="(max-width: 860px) 88vw, 46vw"
+                       alt="12年後の同じ居間。床は深い飴色に落ち着き、柱と梁も茶色く変わっている。" loading="lazy" decoding="async">
+                </figure>
+              </article>
+          </div>
+
+          <div class="keinen-bar" id="keinenBar" aria-hidden="true">
+            <i class="is-done"></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 仕事のしかた ══════════════════════════════ -->
+  <section id="shigoto">
+    <div class="wrap">
+      <div class="s-head narrow">
+        <p class="label c-fade">How we work</p>
+        <h2 class="c-fade" style="--d:80ms">図面を引く前に、二週間かかります。</h2>
+      </div>
+
+      <div class="shigoto">
+        <article class="shigoto-item c-fade">
+          <p class="shigoto-no">01</p>
+          <div>
+            <h3>朝の 8 時と、夕方の 4 時に敷地に立つ。</h3>
+            <p>影がどこに落ちるかを、季節を変えて二回測ります。隣家の屋根の高さと、風がどちらから抜けるかもここで見ます。図面はそのあとです。</p>
+            <p>この工程だけで二週間もらいます。着工を急いでいる方には向きません。</p>
+          </div>
+        </article>
+
+        <article class="shigoto-item c-fade">
+          <p class="shigoto-no">02</p>
+          <div>
+            <h3>構造材は、車で 20 分の山から。</h3>
+            <p>西川材の杉と檜。伐った日付と、山主さんの名前を書いた紙を引き渡しの資料に入れます。どの柱がどの木かも記録しています。</p>
+          </div>
+        </article>
+
+        <article class="shigoto-item c-fade">
+          <p class="shigoto-no">03</p>
+          <div>
+            <h3>「壁が少なすぎないか」と、三回聞かれました。</h3>
+            <p>耐力壁の位置は動かせないと言い張って、代わりに天井の高さを二段に分けました。低いほうを 2,150mm まで下げて、居間だけ 2,600mm にしています。</p>
+            <p class="quote">今はその段差のところに、下のお子さんがいつも座っているそうです。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 壁の中身（矩計図） ════════════════════════ -->
+  <section class="s-kabe" id="kabe">
+    <div class="wrap">
+      <div class="s-head narrow">
+        <p class="label c-fade">Wall section</p>
+        <h2 class="c-fade" style="--d:80ms">壁の中身を、先に見てください。</h2>
+        <p class="c-fade" style="--d:140ms">完成すると二度と見えなくなる部分です。うちの壁は外から内へ 8 層で、合計 162.5mm あります。</p>
+      </div>
+
+      <div class="kabe-fig c-fade">
+        <!-- 矩計図。写真では絶対に見えない部分なので、図で描く -->
+        <svg class="kanabakari" viewBox="0 0 300 470" role="img"
+             aria-label="外壁の断面図。外側から焼杉、通気層、透湿防水シート、構造用面材、セルロースファイバー、気密シート、石膏ボード、珪藻土の8層。">
+          <defs>
+            <linearGradient id="lyLight" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity=".18"/>
+              <stop offset="100%" stop-color="#000000" stop-opacity=".10"/>
+            </linearGradient>
+            <pattern id="cellulose" width="7" height="7" patternUnits="userSpaceOnUse">
+              <rect width="7" height="7" fill="#D9CDB6"/>
+              <circle cx="2" cy="2" r="1.1" fill="#BCAB8C" opacity=".8"/>
+              <circle cx="5.5" cy="5" r=".8" fill="#C7B79A"/>
+            </pattern>
+            <pattern id="tsuki" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <rect width="8" height="8" fill="#EFEBE4"/>
+              <line x1="0" y1="0" x2="0" y2="8" stroke="#C9C1B3" stroke-width="1"/>
+            </pattern>
+          </defs>
+
+          <!-- 外 -->
+          <text x="16" y="18" font-family="ui-monospace,monospace" font-size="9.5" letter-spacing="2" fill="#635D57">EXTERIOR</text>
+
+          <g data-layer="0"><rect x="16" y="28"  width="212" height="46" fill="#2B2521"/>
+            <rect x="16" y="28"  width="212" height="46" fill="url(#lyLight)"/>
+            <line x1="16" y1="45" x2="228" y2="45" stroke="#443B34" stroke-width="1.5"/>
+            <line x1="16" y1="60" x2="228" y2="60" stroke="#443B34" stroke-width="1.5"/></g>
+
+          <g data-layer="1"><rect x="16" y="74"  width="212" height="34" fill="url(#tsuki)"/>
+            <path d="M40 104 L40 80 M40 80 L36 86 M40 80 L44 86" stroke="#2E4A54" stroke-width="1.2" fill="none"/>
+            <path d="M92 104 L92 80 M92 80 L88 86 M92 80 L96 86" stroke="#2E4A54" stroke-width="1.2" fill="none"/>
+            <path d="M144 104 L144 80 M144 80 L140 86 M144 80 L148 86" stroke="#2E4A54" stroke-width="1.2" fill="none"/>
+            <path d="M196 104 L196 80 M196 80 L192 86 M196 80 L200 86" stroke="#2E4A54" stroke-width="1.2" fill="none"/></g>
+
+          <g data-layer="2"><rect x="16" y="108" width="212" height="9" fill="#F2F0EA"/>
+            <rect x="16" y="108" width="212" height="9" fill="none" stroke="#B9B2A5" stroke-width=".8"/></g>
+
+          <g data-layer="3"><rect x="16" y="117" width="212" height="26" fill="#C0AE8E"/>
+            <rect x="16" y="117" width="212" height="26" fill="url(#lyLight)"/></g>
+
+          <g data-layer="4"><rect x="16" y="143" width="212" height="150" fill="url(#cellulose)"/>
+            <rect x="16" y="143" width="26" height="150" fill="#CDB893"/>
+            <rect x="202" y="143" width="26" height="150" fill="#CDB893"/>
+            <rect x="16" y="143" width="212" height="150" fill="url(#lyLight)"/></g>
+
+          <g data-layer="5"><rect x="16" y="293" width="212" height="8" fill="#DCE6E9"/>
+            <rect x="16" y="293" width="212" height="8" fill="none" stroke="#9FB4BA" stroke-width=".8"/></g>
+
+          <g data-layer="6"><rect x="16" y="301" width="212" height="24" fill="#E8E4DA"/>
+            <rect x="16" y="301" width="212" height="24" fill="url(#lyLight)"/></g>
+
+          <g data-layer="7"><rect x="16" y="325" width="212" height="14" fill="#F4F1E9"/>
+            <rect x="16" y="325" width="212" height="14" fill="url(#lyLight)"/></g>
+
+          <line x1="16" y1="339" x2="228" y2="339" stroke="#1F1D1A" stroke-width="1.4"/>
+          <text x="16" y="358" font-family="ui-monospace,monospace" font-size="9.5" letter-spacing="2" fill="#635D57">INTERIOR</text>
+
+          <!-- 寸法線 -->
+          <g stroke="#2E4A54" stroke-width="1" fill="none">
+            <line x1="248" y1="28" x2="248" y2="339"/>
+            <line x1="243" y1="28" x2="253" y2="28"/>
+            <line x1="243" y1="339" x2="253" y2="339"/>
+          </g>
+          <text x="258" y="188" font-family="ui-monospace,monospace" font-size="11" fill="#2E4A54"
+                transform="rotate(-90 258 188)" text-anchor="middle">162.5 mm</text>
+
+          <text x="16" y="392" font-family="ui-monospace,monospace" font-size="9" fill="#635D57">S = 1 : 4</text>
+          <text x="16" y="408" font-family="ui-monospace,monospace" font-size="9" fill="#635D57">WALL-01 / 外壁標準納まり</text>
+          <text x="16" y="424" font-family="ui-monospace,monospace" font-size="9" fill="#635D57">UA 0.42 W/m2K</text>
+        </svg>
+
+        <ul class="kabe-list">
+          <li data-layer="0"><span><b>焼杉 押縁張り</b><em>表面を焼いて炭にした杉。塗り直しがいりません</em></span><var>15 mm</var></li>
+          <li data-layer="1"><span><b>通気胴縁</b><em>ここが空洞。壁の中の湿気を上に逃がします</em></span><var>18 mm</var></li>
+          <li data-layer="2"><span><b>透湿防水シート</b><em>雨は通さず、湿気だけ外へ出す向きがあります</em></span><var>—</var></li>
+          <li data-layer="3"><span><b>構造用面材</b><em>地震のときに踏ん張る板</em></span><var>9 mm</var></li>
+          <li data-layer="4"><span><b>セルロースファイバー</b><em>新聞紙が原料の断熱材。柱の間に吹き込みます</em></span><var>105 mm</var></li>
+          <li data-layer="5"><span><b>可変透湿気密シート</b><em>夏と冬で湿気の通し方が変わります</em></span><var>—</var></li>
+          <li data-layer="6"><span><b>石膏ボード</b><em>火に強い下地</em></span><var>12.5 mm</var></li>
+          <li data-layer="7"><span><b>珪藻土</b><em>左官が手で塗ります。継ぎ目にムラが出ます</em></span><var>3 mm</var></li>
+        </ul>
+      </div>
+
+      <figure class="kabe-photo c-fade">
+        <img src="img/cellulose-1100.webp"
+             srcset="img/cellulose-640.webp 640w, img/cellulose-1100.webp 1100w"
+             sizes="(max-width: 760px) 92vw, 62vw" width="1100" height="822"
+             alt="柱の間にセルロースファイバーを吹き込んでいる途中の壁。ネットの奥に灰色の繊維が詰まり、中央の一区画だけ半分まで入っている。"
+             loading="lazy" decoding="async">
+        <figcaption>5層目の吹き込み。ネットがふくらんでいるのが充填済みで、中央は途中です。詰め方が甘いと数年で沈むので、密度を測りながら入れます。</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ══ 数字 ══════════════════════════════════════ -->
+  <section id="suuji">
+    <div class="wrap">
+      <div class="s-head narrow">
+        <p class="label c-fade">Numbers</p>
+        <h2 class="c-fade" style="--d:80ms">先に数字を出しておきます。</h2>
+      </div>
+      <dl class="suuji c-fade">
+        <div><dt>年間の着工棟数</dt><dd>6<small>棟</small></dd></div>
+        <div><dt>坪単価（2026年 実績）</dt><dd>78–95<small>万円</small></dd></div>
+        <div><dt>初回相談から引き渡しまで</dt><dd>14–18<small>か月</small></dd></div>
+        <div><dt>社員（うち大工 4 名）</dt><dd>9<small>名</small></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ══ 向いていないこと ══════════════════════════ -->
+  <section class="s-muki" id="muki" data-dark>
+    <div class="wrap">
+      <div class="s-head narrow">
+        <p class="label c-fade">Not for everyone</p>
+        <h2 class="c-fade" style="--d:80ms">うちで建てないほうがいい場合。</h2>
+        <p class="c-fade" style="--d:140ms">先に言っておいたほうがお互い早いので、四つ書いておきます。</p>
+      </div>
+      <ul class="muki c-fade">
+        <li>来年の春までに入居したい
+          <em>最短でも 14 か月かかります。工期を縮める方法を持っていません。</em></li>
+        <li>坪単価を 70 万円以下に抑えたい
+          <em>断熱材と構造材の等級を落とせば届きますが、それならうちで建てる理由がなくなります。</em></li>
+        <li>床に傷がつくのが気になる
+          <em>無垢の杉は柔らかいので、椅子を引けば凹みます。夏は湿気を吸って鳴きます。</em></li>
+        <li>間取りを完全に自由にしたい
+          <em>耐力壁の位置だけは譲りません。ここを動かす提案はお断りしています。</em></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ══ 見学会（唯一のCTA） ═══════════════════════ -->
+  <section id="kengaku">
+    <div class="wrap">
+      <div class="s-head narrow">
+        <p class="label c-fade">Open house</p>
+        <h2 class="c-fade" style="--d:80ms">現場を見にきてください。</h2>
+        <p class="c-fade" style="--d:140ms">写真とカタログでは分からないことのほうが多いので、うちは資料をお送りしていません。かわりに現場を開けています。</p>
+      </div>
+
+      <div class="kengaku c-fade">
+        <article>
+          <img class="kengaku-img" src="img/kouzou-1100.webp"
+               srcset="img/kouzou-640.webp 640w, img/kouzou-1100.webp 1100w"
+               sizes="(max-width: 700px) 92vw, 32vw" width="1100" height="822"
+               alt="建て方を終えた木造の骨組み。柱と梁と筋交いが見えていて、壁はまだ張られていない。" loading="lazy" decoding="async">
+          <p class="date">2026.09.13 SAT — 09.14 SUN</p>
+          <h3>構造見学会｜飯能市阿須</h3>
+          <p>壁を張る前の状態です。このページで見た 8 層のうち、5 層目まで実物で見られます。上着が汚れてもいい格好でお越しください。</p>
+          <a class="btn btn-fill" href="#">日時を選んで申し込む</a>
+        </article>
+        <article>
+          <img class="kengaku-img" src="img/kansei-1100.webp"
+               srcset="img/kansei-640.webp 640w, img/kansei-1100.webp 1100w"
+               sizes="(max-width: 700px) 92vw, 32vw" width="1100" height="822"
+               alt="引き渡し前の台所。杉の無垢材のカウンターにステンレスの天板、漆喰の壁、あらわしの梁。" loading="lazy" decoding="async">
+          <p class="date">2026.09.27 SAT</p>
+          <h3>完成見学会｜日高市高麗本郷</h3>
+          <p>お引き渡しの前日にお借りします。三人家族＋犬一頭の 32 坪。予約は 1 組 45 分で、当日は 6 組までです。</p>
+          <a class="btn btn-fill" href="#">日時を選んで申し込む</a>
+        </article>
+        <article>
+          <img class="kengaku-img" src="img/hachinen-1100.webp"
+               srcset="img/hachinen-640.webp 640w, img/hachinen-1100.webp 1100w"
+               sizes="(max-width: 700px) 92vw, 32vw" width="1100" height="822"
+               alt="建てて8年の家の居間。飴色になった杉の床に座布団が置かれ、壁に子どもの絵が貼ってある。" loading="lazy" decoding="async">
+          <p class="date">随時</p>
+          <h3>8 年目の家を見る</h3>
+          <p>このページの「12年のこと」を実物で確認したい方向けに、建てて 8 年経った施主さんのお宅を年に数回お借りしています。人数を絞るので待つことがあります。</p>
+          <a class="btn btn-line" href="#" data-label="空きを問い合わせる">空きを問い合わせる</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="c-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-name">杉戸工務店</p>
+        <p class="foot-info">
+          <span class="nowrap">〒357-0000</span><span class="sep">　</span><span class="nowrap">埼玉県飯能市阿須 0-00-0</span><br>
+          <span class="nowrap">042-000-0000</span><span class="sep">　／　</span><span class="nowrap">8:00〜18:00</span><span class="sep">　／　</span><span class="nowrap">日曜・祝日 休</span><br>
+          <span class="nowrap">建設業許可（般-00）第00000号</span>
+        </p>
+      </div>
+      <a class="foot-back" href="../">制作実績の一覧へ戻る</a>
+    </div>
+
+    <p class="foot-note">
+      ※このサイトは制作実績を紹介するためのデモです。<strong>杉戸工務店は架空の会社</strong>で、社名・住所・電話番号・許可番号・価格・施工実績・見学会の日程・施主のお話は、すべて制作のための設定です。実在の会社や個人とは関係ありません。<br>
+      ※申し込みボタンは通信を行いません。押しても予約は成立しません。<br>
+      ※西川材・焼杉・セルロースファイバー・矩計の層構成は、実在の木造住宅の一般的な仕様にもとづいて作図しています。
+    </p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "杉戸工務店",
+  "description": "埼玉県飯能市の木造住宅工務店（制作実績紹介のための架空の設定）",
+  "areaServed": "埼玉県飯能市・日高市・入間市",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "埼玉県",
+    "addressLocality": "飯能市",
+    "postalCode": "357-0000"
+  },
+  "openingHours": "Mo-Sa 08:00-18:00",
+  "disambiguatingDescription": "架空。ウェブサイト制作のデモンストレーション用に作成された存在しない会社です。"
+}
+</script>
+
+<script>
+(function () {
+  "use strict";
+
+  var root = document.documentElement;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* JSが動いていることを確認してから隠す。
+     これを付けるまで全コンテンツは最初から見えている（no-JS可視） */
+  root.classList.add("js-ready");
+
+  /* ── 木口が育つ ─────────────────────────────────
+     clip-path の半径・なぞり線・樹齢の数字を1本の進捗から出す。
+     レイアウトは動かさない（描画のみ）ので 60fps を保てる */
+  var koguchi = document.getElementById("koguchi");
+  var kEdge   = document.getElementById("koguchiEdge");
+  var kYear   = document.getElementById("koguchiYear");
+  var RINGS = 58, GROW_MS = 2200, R_MAX = 92;
+
+  /* 樹齢は時間に対して等速で進める（「58年ぶんの時間」を見せるのが目的）。
+     半径はそれに √ で追随させる — 年輪は中心ほど幅が広いので、
+     半径は樹齢の平方根におおよそ比例する。UIのイージングではなく木の性質。 */
+  function paintGrowth(t) {
+    var r = Math.sqrt(t);
+    koguchi.style.setProperty("--grow", r.toFixed(4));
+    if (kEdge) {
+      kEdge.setAttribute("r", (r * R_MAX).toFixed(2));
+      /* 育ち切る手前で線を消す。輪郭に張り付くと縁取りに見えるため */
+      kEdge.setAttribute("opacity", (Math.sin(Math.PI * t) * 0.85).toFixed(3));
+    }
+    if (kYear) kYear.textContent = Math.round(t * RINGS);
+    /* 育つほど影が深くなる（奥行きは回転ではなく光で出す） */
+    koguchi.style.setProperty("--depth", t.toFixed(3));
+  }
+
+  var growStarted = false;
+  function growKoguchi() {
+    if (!koguchi || growStarted) return;
+    growStarted = true;
+    if (reduce) { paintGrowth(1); return; }
+    var t0 = null, done = false;
+    requestAnimationFrame(function step(now) {
+      if (done) return;
+      if (t0 === null) t0 = now;
+      var t = Math.min(1, (now - t0) / GROW_MS);
+      paintGrowth(t);
+      if (t < 1) requestAnimationFrame(step); else done = true;
+    });
+    /* タブが裏に回るなどして rAF が止まったまま戻らなかった場合の保険。
+       育ちかけの半端な状態で固まると、ただの汚れた円に見えるため */
+    setTimeout(function () { if (!done) { done = true; paintGrowth(1); } }, GROW_MS + 2000);
+  }
+  if (koguchi) koguchi.style.setProperty("--grow", "0");
+
+  /* 印画紙がカーソルにわずかに応える。マウス環境のみ・動きを減らす設定では無効 */
+  if (koguchi && !reduce && window.matchMedia("(pointer: fine)").matches) {
+    var woodFig = koguchi.closest(".hero-wood") || koguchi;
+    woodFig.addEventListener("mousemove", function (ev) {
+      var r = koguchi.getBoundingClientRect();
+      var dx = (ev.clientX - (r.left + r.width / 2)) / (r.width / 2);
+      var dy = (ev.clientY - (r.top + r.height / 2)) / (r.height / 2);
+      dx = dx < -1 ? -1 : dx > 1 ? 1 : dx;
+      dy = dy < -1 ? -1 : dy > 1 ? 1 : dy;
+      koguchi.style.setProperty("--tiltY", (dx * 3).toFixed(2) + "deg");
+      koguchi.style.setProperty("--tiltX", (dy * -3).toFixed(2) + "deg");
+    }, { passive: true });
+    woodFig.addEventListener("mouseleave", function () {
+      koguchi.style.setProperty("--tiltY", "0deg");
+      koguchi.style.setProperty("--tiltX", "0deg");
+    }, { passive: true });
+  }
+
+  /* ── 出現 ───────────────────────────────────── */
+  var targets = document.querySelectorAll(".c-fade, .c-reveal, .koguchi");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("is-show");
+        /* 見出しが立ってから育ち始める（時間の主役を最後に動かす） */
+        if (e.target === koguchi || e.target.contains(koguchi)) {
+          if (reduce) growKoguchi();
+          else setTimeout(growKoguchi, 600);
+        }
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: "0px 0px -12% 0px", threshold: 0.08 });
+    targets.forEach(function (el) { io.observe(el); });
+  } else {
+    targets.forEach(function (el) { el.classList.add("is-show"); });
+    growKoguchi();
+  }
+
+  /* ── 経年：スクロールを時間軸に変える ────────── */
+  var track = document.getElementById("keinenTrack");
+  var steps = Array.prototype.slice.call(document.querySelectorAll(".keinen-step"));
+  var bars  = Array.prototype.slice.call(document.querySelectorAll("#keinenBar i"));
+  var yearEl = document.getElementById("keinenYear");
+  var current = -1;
+
+  /* 仕掛けを畳むかどうか。動きを減らす設定か、画面が低くて
+     本文＋写真が1画面に収まらない端末では、スクロール連動をやめる */
+  function isStatic() {
+    return reduce                      /* 動きを減らす設定 */
+        || window.innerWidth  <= 860   /* 縦積みになる幅。畳んだほうが読みやすい */
+        || window.innerHeight <  740;  /* 本文と写真が1画面に収まらない高さ */
+  }
+  var staticMode = null;
+
+  function setStep(i) {
+    if (i === current) return;
+    current = i;
+    steps.forEach(function (s, n) { s.classList.toggle("is-active", n === i); });
+    bars.forEach(function (b, n) { b.classList.toggle("is-done", n <= i); });
+    if (yearEl && steps[i]) yearEl.textContent = steps[i].getAttribute("data-year");
+  }
+
+  function applyKeinenMode() {
+    var next = isStatic();
+    if (next === staticMode) return;
+    staticMode = next;
+    root.classList.toggle("keinen-static", next);
+    if (!track) return;
+    if (next) {
+      track.style.height = "";           /* 走行距離を作らない */
+    } else {
+      track.style.height = (100 + steps.length * 85) + "svh";
+      current = -1;
+      setStep(0);
+    }
+  }
+
+  if (track && steps.length) applyKeinenMode();
+
+  /* ── 暗いセクションでヘッダーを反転 ──────────── */
+  var darks = Array.prototype.slice.call(document.querySelectorAll("[data-dark]"));
+
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      ticking = false;
+
+      root.classList.toggle("is-scrolled", window.scrollY > 24);
+
+      /* 木口はスクロールより少し遅れて上がる。進捗だけ渡し、変換はCSSに任せる */
+      if (koguchi && !reduce) {
+        var hp = window.scrollY / (window.innerHeight || 1);
+        koguchi.style.setProperty("--par", (hp < 0 ? 0 : hp > 1 ? 1 : hp).toFixed(4));
+      }
+
+      /* 経年の進行度 */
+      if (track && steps.length && !staticMode) {
+        var r = track.getBoundingClientRect();
+        var travel = r.height - window.innerHeight;
+        if (travel > 0) {
+          var p = (-r.top) / travel;
+          p = p < 0 ? 0 : (p > 1 ? 1 : p);
+          var idx = Math.min(steps.length - 1, Math.floor(p * steps.length));
+          setStep(idx);
+        }
+      }
+
+      /* ヘッダー反転：ヘッダーの高さ帯に暗いセクションが掛かっているか */
+      var hit = darks.some(function (el) {
+        var b = el.getBoundingClientRect();
+        return b.top <= 34 && b.bottom >= 34;
+      });
+      root.classList.toggle("is-dark", hit);
+    });
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", function () { applyKeinenMode(); onScroll(); }, { passive: true });
+  onScroll();
+
+  /* ── 矩計図：一覧にホバーすると図の該当層が光る ── */
+  var rows = document.querySelectorAll(".kabe-list li");
+  Array.prototype.forEach.call(rows, function (li) {
+    var n = li.getAttribute("data-layer");
+    var g = document.querySelector('.kanabakari [data-layer="' + n + '"]');
+    if (!g) return;
+    function on()  { li.classList.add("is-lit");    g.style.opacity = ".55"; }
+    function off() { li.classList.remove("is-lit"); g.style.opacity = "";    }
+    li.addEventListener("mouseenter", on);
+    li.addEventListener("mouseleave", off);
+    li.addEventListener("focusin", on);
+    li.addEventListener("focusout", off);
+    if (g.style) g.style.transition = "opacity 200ms linear";
+  });
+
+  /* 予約導線はデモなので通信しない */
+  document.querySelectorAll('a.btn[href="#"]').forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      alert("架空のデモサイトのため、申し込みは受け付けていません。");
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
