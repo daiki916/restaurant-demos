@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="飲食店向けホームページの制作実績（デモ）。静かな焼鳥店、大衆酒場、ワインバルの3本。すべて架空の店舗です。">
+<meta name="description" content="飲食店向けホームページの制作実績（デモ）。静かな焼鳥店、大衆酒場、ワインバルの3本に加え、工務店と製材所も。すべて架空の店舗・会社です。">
 <meta name="theme-color" content="#F7F4EE">
 <title>制作実績（デモ）| 飲食店のホームページ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,6 +51,10 @@
   .links a.sub { border-color: var(--keisen); color: var(--usu); }
   .links a.sub:hover { background: transparent; border-color: var(--usu); color: var(--sumi); }
   a:focus-visible { outline: 2px solid var(--shu); outline-offset: 3px; }
+  /* 飲食店以外は別枠。看板(h1)は動かさず、読み進めた人にだけ守備範囲を見せる */
+  .other { margin-top: 72px; padding-top: 44px; border-top: 1px solid var(--keisen); }
+  .other > h2 { font-family: var(--mincho); font-size: 19px; font-weight: 500; line-height: 1.6; }
+  .other > p { color: var(--usu); font-size: 14px; margin: 10px 0 40px; max-width: 46ch; }
   .note { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--keisen);
           font-size: 12px; color: var(--usu); line-height: 1.9; }
   @media (max-width: 640px) {
@@ -123,6 +127,49 @@
     </article>
 
   </div>
+
+  <section class="other">
+    <h2>飲食店以外の制作</h2>
+    <p>どこまでやれるかを確かめるために、飲食店以外でも作っています。受け方も進め方も上の3本と同じです。</p>
+
+    <div class="works">
+
+      <article class="work">
+        <img class="thumb" src="demo4-sugito/img/gaikan-900.webp" alt="焼杉の外壁の木造2階建て住宅" loading="lazy" decoding="async" width="900" height="502">
+        <div>
+          <p class="kind">工務店 ／ 埼玉県飯能市</p>
+          <h2>杉戸工務店</h2>
+          <p>建てた後の話から始める構成です。同じ居間を引き渡しの日から12年ぶん、カメラの位置を変えずに並べました。</p>
+          <ul class="points">
+            <li>壁の8層を矩計図に描き、現場の写真と並べた</li>
+            <li>「うちで建てないほうがいい場合」を1画面つかって先に出す</li>
+            <li>スクロールが時間軸になる。動きを止める設定では畳んで読ませる</li>
+          </ul>
+          <div class="links">
+            <a href="demo4-sugito/">サイトを見る</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="work">
+        <img class="thumb" src="demo5-kobiki/img/koguchi-512.webp" alt="杉の丸太の木口。年輪が中心からずれて広がっている" loading="lazy" decoding="async" width="512" height="512">
+        <div>
+          <p class="kind">製材所 ／ 埼玉県飯能市</p>
+          <h2>木挽舎</h2>
+          <p>一本の丸太が柱になるまでを、スクロールで追う3Dです。演出の上限を出しました。</p>
+          <ul class="points">
+            <li>丸太を挽き、板が開いて桟積みになるまでを立体で見せる</li>
+            <li>3Dが動かない端末でも、同じ話が文章で最後まで読める</li>
+            <li>杉戸工務店と同じ木を使っている。2本は地続きです</li>
+          </ul>
+          <div class="links">
+            <a href="demo5-kobiki/">サイトを見る</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
 
   <p class="note">
     ※掲載しているのはすべて架空の店舗です。店名・住所・電話番号・価格・人物・口コミは制作実績紹介のための設定であり、実在のものとは関係ありません。<br>
