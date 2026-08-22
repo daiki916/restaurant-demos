@@ -132,6 +132,35 @@
   .hero-badges { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin: var(--sp-3) 0 var(--sp-4); }
   .hero-badges span { border: 2px solid var(--sumi); background: var(--shiro); padding: 5px 13px; font-size: 14px; font-weight: 500; box-shadow: 2px 2px 0 var(--sumi); }
   .hero-cta { display: flex; gap: var(--sp-3); flex-wrap: wrap; }
+  /* 右半分が提灯4つだけで空いていた。提灯は74pxしかなく、88pxの店名の対抗馬にならず
+     飾りにしか見えない。提灯を上に吊り、その下に名物の値段を札で貼って、
+     大衆酒場の店先そのものの構成にする（提灯の下に品書きの札が貼ってある） */
+  .hero-side { display: flex; flex-direction: column; align-items: center; gap: var(--sp-3); }
+  .hero-side .chochin-row { margin-bottom: -6px; }   /* 提灯は札のすぐ上に吊る */
+  .hero-fuda { list-style: none; width: 100%; max-width: 330px; }
+  .hero-fuda li {
+    display: flex; align-items: baseline; gap: 0;
+    font-family: var(--tegaki); font-size: 18px;
+    background: var(--shiro); border: 2.5px solid var(--sumi);
+    padding: 10px 16px; margin-bottom: 10px;
+    box-shadow: var(--kage) var(--sumi);
+    transform: rotate(var(--r, 0deg));
+  }
+  .hero-fuda li span { flex: 1; padding-right: 14px; }
+  /* 大きな数字＋小さな単位。値段を「主張」ではなく「事実」として置く。
+     「円」は数字にくっつける。離すと二つの要素に見えて、事実の density が落ちる */
+  .hero-fuda li b { font-size: 34px; font-weight: 400; line-height: 0.9; letter-spacing: 0.01em; }
+  .hero-fuda li small { font-size: 14px; margin-left: 3px; }
+  /* 名物の筆頭だけ一段大きく。この店でいちばん強い一行 */
+  .hero-fuda li:nth-child(1) { --r: -1.6deg; font-size: 20px; border-width: 3px; }
+  .hero-fuda li:nth-child(1) b { font-size: 46px; }
+  .hero-fuda li:nth-child(2) { --r: 0.7deg; margin-left: 8px; }
+  .hero-fuda li:nth-child(3) { --r: -0.7deg; margin-left: -4px; }
+  .hero-fuda-note {
+    font-family: var(--gothic); font-size: 12px; letter-spacing: 0.06em;
+    color: var(--sumi); opacity: 0.72; align-self: flex-end; margin: -14px 6px 0 0;
+  }
+
   /* 提灯 */
   .chochin-row { display: flex; justify-content: center; gap: var(--sp-2); align-items: flex-start; }
   .chochin { width: 74px; filter: drop-shadow(3px 4px 0 rgba(33,29,26,0.25)); transform-origin: 50% 0; animation: yure 3.6s ease-in-out infinite; }
@@ -299,6 +328,13 @@
     .nav a { padding: 13px 4px; border-bottom: 1px dashed rgba(33, 29, 26, 0.3); }
     .nav .btn { margin-top: var(--sp-2); text-align: center; }
     .hero .wrap, .about-grid, .access-grid { grid-template-columns: 1fr; }
+    /* 縦積みだと提灯(114px)が先に来て、値段が折り目の下(780px)に落ちる。
+       この店でいちばん強い材料は値段なので、札を先に出して3枚とも1画面に入れる。
+       提灯は最後にして、折り目からのぞかせスクロールの誘いにする */
+    .hero-side { align-items: stretch; gap: var(--sp-2); }
+    .hero-side .chochin-row { order: 3; margin-top: var(--sp-3); margin-bottom: 0; }
+    .hero-fuda { order: 1; max-width: none; }
+    .hero-fuda-note { order: 2; }
     .chochin-row { justify-content: flex-start; margin-top: var(--sp-4); }
     .chochin { width: 56px; }
     .menu-walls { grid-template-columns: 1fr; }
@@ -356,6 +392,7 @@
           <a class="btn btn-kon" href="#reserve">ネット予約</a>
         </div>
       </div>
+      <div class="hero-side">
       <div class="chochin-row" aria-hidden="true">
         <svg class="chochin" viewBox="0 0 64 96" xmlns="http://www.w3.org/2000/svg">
           <line x1="32" y1="0" x2="32" y2="10" stroke="#C9302C" stroke-width="3"/>
@@ -389,6 +426,16 @@
           <line x1="14" y1="62" x2="50" y2="62" stroke="rgba(33,29,26,0.5)" stroke-width="1"/>
           <text x="32" y="56" text-anchor="middle" font-size="22" fill="#FFF8E8" font-family="serif" font-weight="bold">ん</text>
         </svg>
+      </div>
+      <!-- この店が客に渡しているのは、料理そのものより「この値段で飲める」という事実。
+           大衆酒場でいちばん強い材料は写真ではなく値段なので、それを面に出す。
+           札は壁の品書きと同じ作り（.fuda）で、この店の世界にもとからある素材。 -->
+      <ul class="hero-fuda">
+        <li><span>串カツ（豚）</span><b>120</b><small>円</small></li>
+        <li><span>牛すじ煮込み</span><b>390</b><small>円</small></li>
+        <li><span>ホッピーセット</span><b>450</b><small>円</small></li>
+      </ul>
+      <p class="hero-fuda-note">表示はすべて税込</p>
       </div>
     </div>
   </div>
