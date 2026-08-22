@@ -45,13 +45,52 @@ CACHE = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".fontcache")
 # unicode-range 非対応のUAで問い合わせると、Google は分割していない一枚物を返す
 OLD_UA = {"User-Agent": "Mozilla/5.0 (Windows NT 6.1; rv:30.0) Gecko/20100101 Firefox/30.0"}
 
-# サイトごとに使う書体。Google Fonts の family 名 → CSSで使う名前とウェイト
+# サイトごとに使う書体。(Google Fontsのfamily名, CSSで書く名前, ウェイト, 斜体か)
+# 欧文書体も混ぜてよい。和文の文字集合を渡しても、その書体に無い字は無視されるだけ。
 SITES = {
+    "demo1-toriai": [
+        ("Shippori Mincho", "Shippori Mincho", 500, False),
+        ("Shippori Mincho", "Shippori Mincho", 600, False),
+        ("Shippori Mincho", "Shippori Mincho", 700, False),
+        ("Zen Kaku Gothic New", "Zen Kaku Gothic New", 400, False),
+        ("Zen Kaku Gothic New", "Zen Kaku Gothic New", 500, False),
+        ("Zen Kaku Gothic New", "Zen Kaku Gothic New", 700, False),
+    ],
+    "demo2-marukin": [
+        ("Yusei Magic", "Yusei Magic", 400, False),
+        ("Zen Kaku Gothic New", "Zen Kaku Gothic New", 400, False),
+        ("Zen Kaku Gothic New", "Zen Kaku Gothic New", 500, False),
+        ("Zen Kaku Gothic New", "Zen Kaku Gothic New", 700, False),
+    ],
+    "demo3-shoku": [
+        ("Noto Serif JP", "Noto Serif JP", 300, False),
+        ("Noto Serif JP", "Noto Serif JP", 400, False),
+        ("Noto Serif JP", "Noto Serif JP", 500, False),
+        ("Cormorant Garamond", "Cormorant Garamond", 400, False),
+        ("Cormorant Garamond", "Cormorant Garamond", 600, False),
+        ("Cormorant Garamond", "Cormorant Garamond", 400, True),
+    ],
     "demo4-sugito": [
-        ("Noto Sans JP", "Noto Sans JP", [400, 500]),
-        ("Noto Serif JP", "Noto Serif JP", [400, 500]),
+        ("Noto Sans JP", "Noto Sans JP", 400, False),
+        ("Noto Sans JP", "Noto Sans JP", 500, False),
+        ("Noto Serif JP", "Noto Serif JP", 400, False),
+        ("Noto Serif JP", "Noto Serif JP", 500, False),
+    ],
+    "demo5-kobiki": [
+        ("Noto Serif JP", "Noto Serif JP", 400, False),
+        ("Noto Sans JP", "Noto Sans JP", 400, False),
+    ],
+    "noren": [
+        ("Noto Sans JP", "Noto Sans JP", 400, False),
+        ("Noto Serif JP", "Noto Serif JP", 400, False),
+        ("Noto Serif JP", "Noto Serif JP", 700, False),
+        ("DM Serif Display", "DM Serif Display", 400, False),
     ],
 }
+
+
+def face_file(css_name: str, weight: int, italic: bool) -> str:
+    return f"{css_name.replace(' ', '')}-{weight}{'i' if italic else ''}.woff2"
 
 
 def ku_chars(ku: int) -> list[str]:
@@ -65,47 +104,81 @@ def ku_chars(ku: int) -> list[str]:
     return out
 
 
-def fixed_coverage() -> set[str]:
-    """常に載せる分。ASCII・記号・全角英数・ひらがな・カタカナ。"""
+def fixed_coverage(full_kana: bool) -> set[str]:
+    """常に載せる分。
+
+    ASCII と基本記号は必ず。かな全部（ひらがな83＋カタカナ86＋全角英数）は
+    **入力欄のあるページだけ**。来訪者が何を打つか分からないため。
+    入力欄が無いページは書いてある文字しか出ないので、載せると1面あたり
+    30〜50KB ほど無駄になる（demo5 実測: 98KB → 197KB）。
+    """
     s = {chr(c) for c in range(0x20, 0x7F)}
-    for ku in (1, 2, 3, 4, 5):          # 記号 / 記号2 / 全角英数 / ひらがな / カタカナ
+    for ku in (1, 2):                   # 記号・約物。組版で混ざりやすいので常に入れる
         s |= set(ku_chars(ku))
-    s |= set("〜－―…‥※→←↑↓①②③④⑤⑥⑦⑧⑨⑩㎡℃")
+    s |= set("〜－―…‥※→←↑↓")
+    if full_kana:
+        for ku in (3, 4, 5):            # 全角英数 / ひらがな / カタカナ
+            s |= set(ku_chars(ku))
+        s |= set("①②③④⑤⑥⑦⑧⑨⑩㎡℃")
     return s
 
 
-def page_text(path: str) -> str:
-    """HTMLから、画面に出る文字だけを拾う。scriptとstyleとコメントと属性は除く。"""
+def has_text_input(src: str) -> bool:
+    """来訪者が文字を打てる欄があるか。あればかなを全部載せる。"""
+    return bool(re.search(r"<textarea|<input[^>]+type=[\"']?(text|search|email|tel|url|password)", src, re.I))
+
+
+def page_text(path: str) -> tuple[str, str]:
+    """HTMLから、画面に出る文字だけを拾う。scriptとstyleとコメントは除く。"""
     src = io.open(path, encoding="utf-8").read()
+    return _visible(src), src
+
+
+def _visible(src: str) -> str:
+    scripts = re.findall(r"<script[^>]*>(.*?)</script>", src, flags=re.S)
     body = re.sub(r"<script[^>]*>.*?</script>", " ", src, flags=re.S)
+    styles = re.findall(r"<style[^>]*>(.*?)</style>", body, flags=re.S)
     body = re.sub(r"<style[^>]*>.*?</style>", " ", body, flags=re.S)
     body = re.sub(r"<!--.*?-->", " ", body, flags=re.S)
     # alt/aria-label/title/data-label は読み上げや代替表示で出るので拾う
     shown = " ".join(re.findall(r'(?:alt|aria-label|title|data-label|content)="([^"]*)"', body))
     body = re.sub(r"<[^>]+>", " ", body)
-    return htmllib.unescape(body + " " + shown)
+
+    # JS が差し込む文字と、CSS の content: に書いた文字も画面に出る。
+    # 静的HTMLだけ見ていると、ここが丸ごと抜けて「その字だけ別のフォント」になる。
+    # 文字列リテラルから和文だけ拾う（過剰に拾っても、無い字は無視されるだけ）
+    dynamic = []
+    for blk in scripts:
+        for lit in re.findall(r"""(['"`])((?:\\.|(?!\1)[^\\])*)\1""", blk):
+            dynamic.append(lit[1])
+    for blk in styles:
+        dynamic += re.findall(r'content:\s*"([^"]*)"', blk)
+    dyn = "".join(c for c in "".join(dynamic) if ord(c) >= 0x2E80 or ord(c) in (0x2015, 0x2026, 0x203B))
+
+    return htmllib.unescape(body + " " + shown) + dyn
 
 
-def source_font(family: str, weight: int) -> str:
+def source_font(family: str, weight: int, italic: bool = False) -> str:
     """分割前のフォントを取ってきて .fontcache に置く。2回目からはそれを使う。"""
     os.makedirs(CACHE, exist_ok=True)
     slug = family.replace(" ", "")
-    path = os.path.join(CACHE, f"{slug}-{weight}.woff")
-    if os.path.exists(path) and os.path.getsize(path) > 100_000:
+    path = os.path.join(CACHE, f"{slug}-{weight}{'i' if italic else ''}.woff")
+    if os.path.exists(path) and os.path.getsize(path) > 5_000:
         return path
-    q = family.replace(" ", "+") + f":wght@{weight}"
+    q = family.replace(" ", "+")
+    q += f":ital,wght@{1 if italic else 0},{weight}" if italic else f":wght@{weight}"
     css = urllib.request.urlopen(
         urllib.request.Request(f"https://fonts.googleapis.com/css2?family={q}", headers=OLD_UA),
         timeout=120,
     ).read().decode()
     urls = re.findall(r"url\((https[^)]+)\)", css)
     if not urls:
-        raise RuntimeError(f"{family} {weight} の元フォントURLが取れない")
+        raise RuntimeError(f"{family} {weight}{'i' if italic else ''} の元フォントURLが取れない")
     data = urllib.request.urlopen(
         urllib.request.Request(urls[0], headers=OLD_UA), timeout=300
     ).read()
     io.open(path, "wb").write(data)
-    print(f"    元フォント取得 {family} {weight}: {len(data)//1024} KB")
+    print(f"    元フォント取得 {family} {weight}{'i' if italic else ''}: {len(data)//1024} KB")
     return path
 
 
@@ -127,10 +200,7 @@ def subset(src: str, out: str, text: str) -> int:
 
 
 FACE_TMPL = """@font-face {{
-  font-family: "{css_name}";
-  font-style: normal;
-  font-weight: {weight};
-  font-display: swap;
+  font-family: "{css_name}"; font-style: {style}; font-weight: {weight}; font-display: swap;
   src: url("fonts/{file}") format("woff2");
 }}"""
 
@@ -141,28 +211,32 @@ def build(site: str, check_only: bool = False) -> bool:
     if not os.path.exists(index):
         print(f"{site}: index.html がない"); return False
 
-    text = page_text(index)
+    text, raw = page_text(index)
     used = set(text) - set(" \t\r\n　")
-    cover = fixed_coverage() | used
+    kana = has_text_input(raw)
+    cover = fixed_coverage(kana) | used
     kanji = sorted(c for c in used if "一" <= c <= "鿿")
-    print(f"{site}: 表示文字 {len(used)} 種（うち漢字 {len(kanji)}）／被覆 {len(cover)} 字")
+    print(f"{site}: 表示文字 {len(used)} 種（うち漢字 {len(kanji)}）／被覆 {len(cover)} 字"
+          f"／かな全載せ {'あり（入力欄がある）' if kana else 'なし'}")
 
     if check_only:
         missing = []
-        for _, css_name, weights in SITES[site]:
-            for w in weights:
-                f = os.path.join(site_dir, "fonts",
-                                 f"{css_name.replace(' ', '')}-{w}.woff2")
-                if not os.path.exists(f):
-                    missing.append(f"{css_name} {w}: ファイルがない")
-                    continue
-                from fontTools.ttLib import TTFont
-                cmap = set()
-                for t in TTFont(f)["cmap"].tables:
-                    cmap |= set(t.cmap.keys())
-                lack = sorted(c for c in used if ord(c) not in cmap)
-                if lack:
-                    missing.append(f"{css_name} {w}: {len(lack)}字が欠けている → {''.join(lack[:30])}")
+        for _, css_name, w, ital in SITES[site]:
+            f = os.path.join(site_dir, "fonts", face_file(css_name, w, ital))
+            if not os.path.exists(f):
+                missing.append(f"{css_name} {w}{'i' if ital else ''}: ファイルがない")
+                continue
+            from fontTools.ttLib import TTFont
+            cmap = set()
+            for t in TTFont(f)["cmap"].tables:
+                cmap |= set(t.cmap.keys())
+            # 欧文書体に和文が無いのは当然なので、その書体が元々持つ範囲だけを見る
+            lack = sorted(c for c in used if ord(c) not in cmap and ord(c) < 0x2E80)
+            jp_lack = sorted(c for c in used if ord(c) not in cmap and ord(c) >= 0x2E80)
+            if jp_lack and len(cmap) > 1000:      # 和文書体なのに和文が欠けている
+                missing.append(f"{css_name} {w}: 和文 {len(jp_lack)}字が欠けている → {''.join(jp_lack[:30])}")
+            if lack and len(cmap) > 1000:
+                missing.append(f"{css_name} {w}: 欧文 {len(lack)}字が欠けている → {''.join(lack[:30])}")
         if missing:
             print("  欠落あり。生成し直しが要る:")
             for m in missing:
@@ -174,22 +248,25 @@ def build(site: str, check_only: bool = False) -> bool:
     os.makedirs(os.path.join(site_dir, "fonts"), exist_ok=True)
     txt = "".join(sorted(cover))
     faces, total = [], 0
-    for gf_family, css_name, weights in SITES[site]:
-        for w in weights:
-            src = source_font(gf_family, w)
-            name = f"{css_name.replace(' ', '')}-{w}.woff2"
-            size = subset(src, os.path.join(site_dir, "fonts", name), txt)
-            total += size
-            faces.append((css_name, w, name, size))
-            print(f"    {name}: {size//1024} KB")
+    for gf_family, css_name, w, ital in SITES[site]:
+        src = source_font(gf_family, w, ital)
+        name = face_file(css_name, w, ital)
+        size = subset(src, os.path.join(site_dir, "fonts", name), txt)
+        total += size
+        faces.append((css_name, w, ital, name, size))
+        print(f"    {name}: {size//1024} KB")
     print(f"  合計 {total//1024} KB")
 
-    css = "\n".join(FACE_TMPL.format(css_name=n, weight=w, file=f) for n, w, f, _ in faces)
+    css = "\n".join(
+        FACE_TMPL.format(css_name=n, weight=w, file=f,
+                         style="italic" if i else "normal")
+        for n, w, i, f, _ in faces)
     print("\n--- HTMLに入れる @font-face ---")
     print(css)
-    print("--- 先頭に置く preload（最初に描かれる書体だけ）---")
-    print(f'<link rel="preload" href="fonts/{faces[0][2]}" as="font" '
-          f'type="font/woff2" crossorigin>')
+    print("--- preload は「最初の画面で描かれる書体」だけに絞ること ---")
+    for n, w, i, f, s in faces:
+        print(f'<link rel="preload" href="fonts/{f}" as="font" type="font/woff2" crossorigin>'
+              f'   <!-- {n} {w}{"i" if i else ""} / {s//1024}KB -->')
     return True
 
 

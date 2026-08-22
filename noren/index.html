@@ -7,10 +7,29 @@
 <meta name="description" content="のれんを掛けてきた元店長が、飲食店のホームページをつくります。制作実績（架空店舗のデモ3本）と、進め方・料金。">
 <meta name="theme-color" content="#1e3a5f">
 <title>元店長だいき｜飲食店専門のホームページ制作（実績はデモ）</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400&family=Noto+Serif+JP:wght@400;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<!-- 和文フォントは自前配信。Google Fonts は unicode-range で百数十個に分割配信するため、
+     このページでは 100ファイル・約2.2MB 取りに行っていた。使う文字だけに切って 4面 322KB に。
+     生成は tools/subset-fonts.py。**文言に新しい漢字を足したら流し直すこと**
+     （python tools/subset-fonts.py noren --check で欠けを検出できる）。 -->
+<link rel="preload" href="fonts/NotoSerifJP-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/NotoSansJP-400.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face {
+  font-family: "Noto Sans JP"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/NotoSansJP-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Noto Serif JP"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/NotoSerifJP-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Noto Serif JP"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("fonts/NotoSerifJP-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "DM Serif Display"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/DMSerifDisplay-400.woff2") format("woff2");
+}
 :root{
   --ai:#1e3a5f; --ai-mid:#2d4f7c; --ai-deep:#16304a;
   --kinari:#f5f2ea; --kinari-usu:#ede9df;

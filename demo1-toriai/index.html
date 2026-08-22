@@ -35,10 +35,38 @@
   "description": "架空店舗のデモサイトです。制作実績紹介のためのサンプルであり、実在の店舗ではありません。"
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<!-- 和文フォントは自前配信。Google Fonts は unicode-range で百数十個に分割配信するため、
+     このページでは 270ファイル・約3.3MB 取りに行っていた。使う文字だけに切って 6面 453KB に。
+     生成は tools/subset-fonts.py。**文言に新しい漢字を足したら流し直すこと**
+     （python tools/subset-fonts.py demo1-toriai --check で欠けを検出できる）。
+     このページは予約フォームがあるので、かなは全部載せてある（来訪者が何を打つか分からないため）。 -->
+<link rel="preload" href="fonts/ZenKakuGothicNew-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/ShipporiMincho-600.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face {
+  font-family: "Shippori Mincho"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("fonts/ShipporiMincho-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Shippori Mincho"; font-style: normal; font-weight: 600; font-display: swap;
+  src: url("fonts/ShipporiMincho-600.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Shippori Mincho"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("fonts/ShipporiMincho-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New"; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("fonts/ZenKakuGothicNew-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New"; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("fonts/ZenKakuGothicNew-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Zen Kaku Gothic New"; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("fonts/ZenKakuGothicNew-700.woff2") format("woff2");
+}
   :root {
     --kinari: #F6F3EC;      /* 生成り */
     --shiraki: #E8E0CF;     /* 白木 */
