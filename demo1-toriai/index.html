@@ -10,7 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="炭火焼鳥と日本酒 とり藍(とりあい)| 中目黒 ※デモサイト">
 <meta property="og:description" content="白木のカウンター八席。備長炭で焼く大山鶏と、蔵元を訪ねて選んだ日本酒。※架空店舗のデモサイトです。">
-<meta property="og:image" content="https://daiki916.github.io/restaurant-demos/demo1-toriai/img/u1727281970324-4bda7bab3073-w1200.webp">
+<meta property="og:image" content="https://daiki916.github.io/works/demo1-toriai/img/hero-sumibi-1376.webp">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314283A'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23F6F3EC' font-family='serif'%3E藍%3C/text%3E%3C/svg%3E">
 <script type="application/ld+json">
@@ -128,9 +128,19 @@
 
   /* フォーカスと押下 */
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
-    outline: 2px solid var(--ai-koi); outline-offset: 3px; border-radius: 2px;
+    outline: 2px solid var(--focus, var(--ai-koi)); outline-offset: 3px; border-radius: 2px;
   }
-  .access-section :focus-visible, .mobile-bar .rsv:focus-visible { outline-color: var(--koji); }
+  /* outline-offset で輪は要素の外＝その節の地の上に出る。藍夜の面に藍のリングだと
+     実測 1.42:1 で、WCAG 1.4.11 の 3:1 を満たさずキーボード位置が見えない。
+     麹に反転すると 5.06:1。逆に生成りの面で麹にすると 2.68:1 に落ちるので、面ごとに出し分ける。
+     （access節だけ個別に直してあったのを、暗い面すべてに広げてトークン化した） */
+  [data-dark], .about-band, .access-section, footer { --focus: var(--koji); }
+  /* 下部固定バーはボタン同士が1pxしか離れていない。輪を外側に出すと隣のボタンや
+     背後のページの上に乗り、地が定まらない（実測 2.68:1）。内側に描いて自分の地に乗せる。
+     予約は藍夜の面なので麹（5.06:1）、電話は生成りの面なので藍（9.59:1）。 */
+  .mobile-bar a:focus-visible { outline-offset: -3px; }
+  .mobile-bar .rsv { --focus: var(--koji); }
+  .mobile-bar .tel { --focus: var(--ai-koi); }
   .btn-reserve, .reserve-form button, .mobile-bar a, .nav-toggle {
     transition: transform 0.08s ease, background-color 0.2s ease, border-color 0.2s ease;
   }
@@ -163,24 +173,50 @@
 
   /* ---------- hero: 分割ペイン ---------- */
   .hero {
-    display: grid; grid-template-columns: 11fr 10fr;
-    min-height: 78vh; padding-top: var(--header-h);
+    position: relative; isolation: isolate;
+    /* 中央揃えだと縦組みキャッチが火の帯まで垂れる（実測 2.39:1）。
+       文字は上の闇に住むので、上詰めにする */
+    display: grid; align-content: start;
+    min-height: 88vh; padding-top: var(--header-h);
+    background: var(--ai-yoru);   /* 画像が来る前の地。ここが生成りだと一瞬白く光る */
+    color: var(--kinari);
+  }
+  .hero-bg { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+  /* 素材（火）は画面下、文字は上の闇。両者が重ならないので、幕は文字が乗る側だけに掛けられる。
+     火の上にアルファ幕を置く理由が無いので、乗算はごく軽く（.90）にして炭の橙を殺さない。
+     ＝「素材の上に幕を置かない」という原則の、この構図での解き方 */
+  .hero-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.90); }
+  /* 沈める色は黒ではなく藍夜。店名の藍であり、夜に火から離れた場所の環境光でもある。
+     写真の煙がもともと寒色に転んでいるので、掛けても嘘にならない */
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(to bottom,
+      rgba(20,40,58,.74) 0%, rgba(20,40,58,.62) 32%,
+      rgba(20,40,58,.26) 54%, rgba(20,40,58,0) 70%);
   }
   .hero-copy {
     display: flex; align-items: center; justify-content: center;
-    position: relative; padding: var(--sp-8) var(--sp-6);
+    position: relative; padding: var(--sp-4) var(--sp-6) var(--sp-8);
   }
-  .hero-inner { display: flex; flex-direction: row-reverse; gap: var(--sp-6); align-items: center; }
+  .hero-inner {
+    display: flex; flex-direction: row-reverse; align-items: center;
+    justify-content: space-between; gap: var(--sp-8);
+    width: 100%; max-width: 1080px;
+  }
   .hero-catch {
     writing-mode: vertical-rl; font-family: var(--serif);
-    font-size: var(--fs-display); font-weight: 600; color: var(--ai-koi);
-    letter-spacing: var(--ls-tate); line-height: 1.7; height: 15em; max-height: 52vh;
+    /* 縦組みの制約は縦なので、字の大きさも画面の高さで決める。
+       横幅基準の clamp のままだと、背の低い画面で火の帯に垂れる */
+    font-size: min(var(--fs-display), 4.6vh); font-weight: 600; color: var(--kinari);
+    letter-spacing: var(--ls-tate); line-height: 1.7;
+    /* 6字 × 1.3em(字間込み) = 7.8em。15em は空きすぎで、箱だけが火まで伸びていた */
+    height: 7.9em;
+    text-shadow: 0 2px 20px rgba(8,14,20,.7);
   }
-  .hero-sub { max-width: 300px; }
-  .hero-sub h1 { font-family: var(--serif); font-size: var(--fs-h3); color: var(--ai-koi); font-weight: 600; margin-bottom: var(--sp-2); letter-spacing: var(--ls-ui); }
-  .hero-sub p { font-size: var(--fs-sm); }
-  .hero-photo { position: relative; }
-  .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; }
+  .hero-sub { max-width: 340px; }
+  .hero-sub h1 { font-family: var(--serif); font-size: var(--fs-h3); color: var(--kinari); font-weight: 600; margin-bottom: var(--sp-2); letter-spacing: var(--ls-ui); }
+  /* 無地の生成りに対して設計した本文色は、写真の上では必ず足りない。暗い面用に別に持つ */
+  .hero-sub p { font-size: var(--fs-sm); color: #DED8CB; }
   .hero-info {
     display: flex; gap: var(--sp-6); flex-wrap: wrap;
     padding: var(--sp-3) var(--sp-6);
@@ -342,11 +378,23 @@
     .header.open .nav { display: flex; }
     .nav a { padding: 13px 4px; border-bottom: 1px dotted var(--line); font-size: 15px; }
     .nav .btn-reserve { margin-top: var(--sp-2); padding: 12px 22px; text-align: center; border-bottom: 1px solid var(--koji); }
-    .hero { grid-template-columns: 1fr; min-height: 0; }
-    .hero-copy { padding: var(--sp-6) var(--sp-3); }
-    .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: var(--sp-3); }
-    .hero-catch { writing-mode: horizontal-tb; height: auto; max-height: none; font-size: 27px; letter-spacing: 0.18em; line-height: 1.6; }
-    .hero-photo img { height: 46vh; }
+    .hero { min-height: 100svh; align-content: start; padding-top: calc(var(--header-h) + 4vh); }
+    /* 縦画面は火が下1/4・闇が上3/4。文字は全部その闇に乗る */
+    .hero-bg img { filter: brightness(.86); }
+    .hero::before {
+      background: linear-gradient(to bottom,
+        rgba(20,40,58,.78) 0%, rgba(20,40,58,.66) 40%,
+        rgba(20,40,58,.22) 62%, rgba(20,40,58,0) 76%);
+    }
+    .hero-copy { padding: var(--sp-4) var(--sp-3) var(--sp-8); align-items: flex-start; }
+    /* 縦積みでは宣言（キャッチ）が先。column-reverse だと店名が上に来て順序が逆になる */
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: var(--sp-3); }
+    /* 27px 固定だと本文＋αの大きさで主役にならない。縦画面の係数で引き直す */
+    .hero-catch {
+      writing-mode: horizontal-tb; height: auto; max-height: none;
+      font-size: clamp(30px, 8.2vw, 42px); letter-spacing: 0.14em; line-height: 1.55;
+    }
+    .hero-sub { max-width: none; }
     .hero-info { padding: var(--sp-3); gap: var(--sp-2) var(--sp-4); }
     section { padding: var(--sp-8) var(--sp-3); }
     .kodawari-grid, .menu-grid, .about-grid, .access-grid { grid-template-columns: 1fr; }
@@ -395,7 +443,23 @@
 <main id="top">
 
   <!-- hero -->
-  <div class="hero">
+  <div class="hero" data-dark>
+    <!-- この店が客に手渡すのは「炭で焼いた串」なので、盛り付けた皿ではなく
+         火にかかっている状態そのものを面にする。キャッチが「炭の呼吸」なのに、
+         これまでサイトのどこにも火が写っていなかった。
+         火を下・闇を上に置くと、文字を乗せる暗部が写真側にできる。 -->
+    <div class="hero-bg" aria-hidden="true">
+      <!-- 横長のまま縦画面に流すと火の帯しか映らない。縦画面には縦位置の別カットを渡す -->
+      <picture>
+        <source media="(max-width: 900px)"
+                srcset="img/hero-sumibi-v-560.webp 560w, img/hero-sumibi-v-768.webp 768w"
+                sizes="100vw" width="768" height="1376">
+        <img src="img/hero-sumibi-1376.webp"
+             srcset="img/hero-sumibi-860.webp 860w, img/hero-sumibi-1376.webp 1376w"
+             sizes="100vw" width="1376" height="768"
+             alt="" fetchpriority="high" decoding="async">
+      </picture>
+    </div>
     <div class="hero-copy">
       <div class="hero-inner">
         <p class="hero-catch">串一本に、<br>炭の呼吸を。</p>
@@ -404,14 +468,6 @@
           <p>白木のカウンター、八席だけ。備長炭の火を挟んで、今日の一番いい状態の串と酒をお出しします。</p>
         </div>
       </div>
-    </div>
-    <div class="hero-photo">
-      <img
-        src="img/u1727281970324-4bda7bab3073-w1200.webp"
-        srcset="img/u1727281970324-4bda7bab3073-w600.webp 600w, img/u1727281970324-4bda7bab3073-w1200.webp 1200w, img/u1727281970324-4bda7bab3073-w1800.webp 1800w"
-        sizes="(max-width: 900px) 100vw, 48vw"
-        fetchpriority="high"
-        alt="焼鳥の盛り合わせ">
     </div>
   </div>
   <div class="hero-info">
