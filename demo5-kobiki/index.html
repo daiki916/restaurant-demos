@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>木挽舎｜一本の丸太が、柱になるまで（架空のデモサイト）</title>
+<meta name="description" content="埼玉県飯能市の製材所。三代、帯鋸一台。末口径360mmのスギを六回挽いて、十四か月乾かして柱にするまで。※制作実績紹介のための架空の製材所です。">
+<meta name="theme-color" content="#141312">
+<meta property="og:type" content="website">
+<meta property="og:title" content="木挽舎｜一本の丸太が、柱になるまで。">
+<meta property="og:description" content="埼玉県飯能市。帯鋸一台。図面のうえでは八割取れます。実際に出荷できるのは六割いくかどうか。※架空のデモサイトです。">
+<meta property="og:locale" content="ja_JP">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23141312'/%3E%3Cg stroke='%23EDE7DA' stroke-width='1.2' fill='none'%3E%3Ccircle cx='16' cy='16' r='11'/%3E%3Cpath d='M6 12h20M5 20h22'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 書体は「このページで実際に使う字だけ」を取り寄せる（Google Fonts の text= 指定）。
+     和文の全字セットを2書体ぶん読むと 831KB。使う字だけなら 102KB で済む（§8の転送量予算）。
+     ★文言を足したときは、増えた字をこのURLにも足すこと。抜けるとその字だけ端末の書体で出る。
+     ?debug を付けて開くと、サブセットに無い字をコンソールが指摘する。 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto%20Serif%20JP:wght@400&text=%E3%80%81%E3%80%82%E3%81%81%E3%81%82%E3%81%83%E3%81%84%E3%81%85%E3%81%86%E3%81%87%E3%81%88%E3%81%89%E3%81%8A%E3%81%8B%E3%81%8C%E3%81%8D%E3%81%8E%E3%81%8F%E3%81%90%E3%81%91%E3%81%92%E3%81%93%E3%81%94%E3%81%95%E3%81%96%E3%81%97%E3%81%98%E3%81%99%E3%81%9A%E3%81%9B%E3%81%9C%E3%81%9D%E3%81%9E%E3%81%9F%E3%81%A0%E3%81%A1%E3%81%A2%E3%81%A3%E3%81%A4%E3%81%A5%E3%81%A6%E3%81%A7%E3%81%A8%E3%81%A9%E3%81%AA%E3%81%AB%E3%81%AC%E3%81%AD%E3%81%AE%E3%81%AF%E3%81%B0%E3%81%B1%E3%81%B2%E3%81%B3%E3%81%B4%E3%81%B5%E3%81%B6%E3%81%B7%E3%81%B8%E3%81%B9%E3%81%BA%E3%81%BB%E3%81%BC%E3%81%BD%E3%81%BE%E3%81%BF%E3%82%80%E3%82%81%E3%82%82%E3%82%83%E3%82%84%E3%82%85%E3%82%86%E3%82%87%E3%82%88%E3%82%89%E3%82%8A%E3%82%8B%E3%82%8C%E3%82%8D%E3%82%8E%E3%82%8F%E3%82%90%E3%82%91%E3%82%92%E3%82%93%E3%83%BC%E4%B8%80%E4%B8%B8%E4%BB%98%E5%89%8D%E5%8D%81%E5%8F%B0%E5%90%8D%E5%9B%9B%E5%A4%AA%E5%B8%AF%E6%8C%BD%E6%9C%88%E6%9C%A8%E6%9C%AC%E6%9D%A5%E6%9F%B1%E6%A0%97%E7%BD%AE%E8%88%8E%E8%B0%B7%E9%8B%B8&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto%20Sans%20JP:wght@400&text=%25-0123456789%3ADm%C3%97%E2%80%BB%E2%86%92%E3%80%81%E3%80%82%E3%80%8C%E3%80%8D%E3%80%92%E3%80%9C%E3%81%81%E3%81%82%E3%81%83%E3%81%84%E3%81%85%E3%81%86%E3%81%87%E3%81%88%E3%81%89%E3%81%8A%E3%81%8B%E3%81%8C%E3%81%8D%E3%81%8E%E3%81%8F%E3%81%90%E3%81%91%E3%81%92%E3%81%93%E3%81%94%E3%81%95%E3%81%96%E3%81%97%E3%81%98%E3%81%99%E3%81%9A%E3%81%9B%E3%81%9C%E3%81%9D%E3%81%9E%E3%81%9F%E3%81%A0%E3%81%A1%E3%81%A2%E3%81%A3%E3%81%A4%E3%81%A5%E3%81%A6%E3%81%A7%E3%81%A8%E3%81%A9%E3%81%AA%E3%81%AB%E3%81%AC%E3%81%AD%E3%81%AE%E3%81%AF%E3%81%B0%E3%81%B1%E3%81%B2%E3%81%B3%E3%81%B4%E3%81%B5%E3%81%B6%E3%81%B7%E3%81%B8%E3%81%B9%E3%81%BA%E3%81%BB%E3%81%BC%E3%81%BD%E3%81%BE%E3%81%BF%E3%82%80%E3%82%81%E3%82%82%E3%82%83%E3%82%84%E3%82%85%E3%82%86%E3%82%87%E3%82%88%E3%82%89%E3%82%8A%E3%82%8B%E3%82%8C%E3%82%8D%E3%82%8E%E3%82%8F%E3%82%90%E3%82%91%E3%82%92%E3%82%93%E3%82%A4%E3%82%A6%E3%82%AE%E3%82%B5%E3%82%B6%E3%82%B9%E3%83%87%E3%83%88%E3%83%96%E3%83%A2%E3%83%A9%E3%83%AB%E3%83%BB%E3%83%BC%E4%B8%80%E4%B8%8A%E4%B8%8B%E4%B8%AD%E4%B8%B8%E4%B9%BE%E4%BA%8B%E4%BA%8C%E4%BA%BA%E4%BB%8B%E4%BB%95%E4%BB%98%E4%BC%90%E4%BC%91%E4%BC%9A%E4%BD%8F%E4%BD%93%E4%BD%9C%E4%BD%BF%E4%BF%82%E5%80%8B%E5%80%A4%E5%81%B4%E5%85%A5%E5%85%AB%E5%85%AD%E5%86%85%E5%86%99%E5%87%BA%E5%88%83%E5%88%86%E5%88%B6%E5%89%8A%E5%89%B2%E5%8B%99%E5%8E%9A%E5%8E%9F%E5%8F%8D%E5%8F%96%E5%8F%A3%E5%8F%B0%E5%8F%B7%E5%90%8C%E5%90%8D%E5%90%AB%E5%96%B6%E5%9B%9E%E5%9B%B0%E5%9B%B2%E5%9B%B3%E5%9B%BD%E5%9C%9F%E5%9C%A8%E5%9E%82%E5%9F%8B%E5%9F%BC%E5%A0%B4%E5%A4%89%E5%A4%96%E5%A4%A7%E5%A4%A9%E5%A4%AA%E5%A4%AE%E5%AE%9A%E5%AE%9F%E5%AF%84%E5%AF%9D%E5%B1%B1%E5%B7%A5%E5%B7%A6%E5%B8%82%E5%B8%AF%E5%B9%B4%E5%BA%83%E5%BA%97%E5%BA%A6%E5%BB%BA%E5%BC%B1%E5%BE%84%E5%BF%83%E5%BF%85%E6%88%B8%E6%88%BB%E6%89%80%E6%8A%9C%E6%8C%81%E6%8C%BD%E6%8E%A1%E6%8F%8F%E6%95%B0%E6%96%87%E6%97%A5%E6%99%82%E6%9B%9C%E6%9C%88%E6%9C%9F%E6%9C%A8%E6%9C%AB%E6%9C%AC%E6%9D%89%E6%9D%90%E6%9D%9F%E6%9D%A5%E6%9D%BF%E6%9E%9A%E6%9E%AF%E6%9E%B6%E6%9F%B1%E6%A1%9F%E6%A2%85%E6%A5%AD%E6%A8%B9%E6%AD%A2%E6%AD%A9%E6%B0%B4%E6%B1%BA%E6%B8%9B%E7%84%A1%E7%84%B6%E7%87%A5%E7%89%B9%E7%8B%AD%E7%8E%87%E7%8E%89%E7%8F%BE%E7%90%86%E7%94%A3%E7%94%BA%E7%95%99%E7%95%AA%E7%99%BD%E7%9A%84%E7%9A%AE%E7%9B%B4%E7%9C%8C%E7%9C%9F%E7%A0%94%E7%A4%BE%E7%A8%AE%E7%A9%BA%E7%AB%8B%E7%AB%AF%E7%AC%AC%E7%AE%97%E7%AF%80%E7%AF%84%E7%B4%84%E7%B4%8D%E7%B4%A0%E7%B4%B9%E7%B5%8C%E7%B7%9A%E7%B8%BE%E7%BD%AE%E8%80%85%E8%80%B3%E8%81%9E%E8%81%B7%E8%83%BD%E8%87%AA%E8%88%8E%E8%88%AC%E8%8A%AF%E8%8D%B7%E8%90%BD%E8%91%89%E8%A1%8C%E8%A3%BD%E8%A6%8B%E8%A6%A7%E8%A7%92%E8%A8%88%E8%A8%AD%E8%A9%B1%E8%B2%B7%E8%B5%A4%E8%B7%9D%E8%BB%8A%E8%BE%BA%E9%80%81%E9%80%94%E9%80%9A%E9%80%9F%E9%80%B1%E9%81%85%E9%81%8E%E9%83%A8%E9%87%8D%E9%8B%B8%E9%96%93%E9%96%A2%E9%9A%94%E9%9A%9B%E9%9B%A2%E9%9B%A8%E9%9B%BB%E9%9D%A2%E9%9F%B3%E9%A3%AF%E9%A6%AC%E9%B3%B4%E9%B9%BF%E9%BD%A2%EF%BC%88%EF%BC%89%EF%BC%8F&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/koguchi-1024.webp" media="(min-width: 701px)">
+<style>
+/* ============================================================
+   木挽舎 — 架空のデモサイト
+   コンセプトの1語 =「木取り」。全ての動きは 切る・現れる・積む の翻訳。
+   register = 劇場（出現 1000–2000ms／常時アニメは90秒周期のみ／順序管理）
+   ============================================================ */
+
+:root {
+  /* 色：製材所の夜。純黒は使わない */
+  --yami:   #141312;   /* 背景 */
+  --hakua:  #EDE7DA;   /* 白亜（チョーク）。対 --yami 15.3:1 */
+  --hai:    #B8B2A6;   /* 本文。対 --yami 8.8:1 */
+  --usu:    #9A9489;   /* 補助。対 --yami 6.3:1／3Dの最も明るい所に地を重ねても 4.9:1 */
+  --kohaku: #C08A4A;   /* 作業灯。対 --yami 6.3:1 */
+
+  /* 書体（和文2ファミリ・各1ウェイトのみ） */
+  --mincho: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --gothic: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* 型スケール：見出しは3段しか持たない */
+  --fs-display: clamp(52px, 13vw, 132px);
+  --fs-h2:      clamp(23px, 3.1vw, 36px);
+  --fs-h3:      13px;
+
+  /* 余白：4段しか持たない */
+  --sp-s: 10px;
+  --sp-m: 26px;
+  --sp-l: 60px;
+  --sp-x: clamp(80px, 11vw, 150px);
+
+  /* 動き：easing は3種類まで */
+  --ease-out-quart:   cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-inout-quart: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur:  1200ms;   /* 出現系 */
+  --dur-l: 1600ms;  /* 遷移系 */
+
+  /* 章の高さ。全体 1200vh、スクロール量 1100vh。
+     章の境目が 15 / 35 / 60 / 80% に来るよう配分している */
+  --h-hero: 100vh;
+  --h-ch1:   65vh;
+  --h-ch2:  220vh;
+  --h-ch3:  275vh;
+  --h-ch4:  220vh;
+  --h-ch5:  240vh;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background: var(--yami); }
+
+body {
+  font-family: var(--gothic);
+  background: var(--yami);
+  color: var(--hai);
+  font-size: 15px;
+  line-height: 1.9;
+  letter-spacing: .02em;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 和文の中割れ対策。ページ全体に1本で入れる */
+body, p, h1, h2, h3, li, dt, dd, figcaption, blockquote, summary, label, a {
+  word-break: auto-phrase;
+  line-break: strict;
+}
+
+/* 和文見出しは字間を詰めない（normal が基準） */
+h1, h2 { font-family: var(--mincho); font-weight: 400; letter-spacing: normal; line-height: 1.5; }
+
+img, svg { display: block; max-width: 100%; }
+
+.nowrap { white-space: nowrap; }
+
+/* 欧文・数字の小ラベルだけ字間を開ける */
+.label {
+  font-family: var(--mono);
+  font-size: var(--fs-h3);
+  letter-spacing: .22em;
+  color: var(--usu);
+  text-transform: uppercase;
+}
+.num { font-family: var(--mono); letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+
+a { color: inherit; }
+:focus-visible {
+  outline: 2px solid var(--kohaku);
+  outline-offset: 4px;
+}
+
+.skip {
+  position: absolute; left: 12px; top: -60px; z-index: 90;
+  background: var(--hakua); color: var(--yami);
+  padding: 10px 18px; font-size: 14px; text-decoration: none;
+  transition: top 200ms linear;
+}
+.skip:focus { top: 12px; }
+
+/* ── 3Dの舞台。JSとWebGLが揃ったときだけ中身が描かれる ───────── */
+#stage {
+  position: fixed; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 800ms linear;
+}
+html.webgl #stage { opacity: 1; }
+
+/* 質感レイヤー：弱いフィルム粒子。無菌感を消すためだけに置く */
+.grain {
+  position: fixed; inset: 0; z-index: 3;
+  pointer-events: none;
+  opacity: .5;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+}
+
+/* ── 章の骨格 ───────────────────────────────────────────── */
+main { position: relative; z-index: 2; }
+
+.ch { position: relative; }
+.ch1 { height: var(--h-ch1); }
+.ch2 { height: var(--h-ch2); }
+.ch3 { height: var(--h-ch3); }
+.ch4 { height: var(--h-ch4); }
+.ch5 { height: var(--h-ch5); }
+
+/* 静止画（WebGLが動かないときの代替）。
+   絶対配置なので、消しても文字の位置は1pxも動かない（CLS 0） */
+.ch-fig {
+  position: absolute; inset: 0;
+  display: grid; place-items: center;
+  padding: 12vh 22px;
+  pointer-events: none;
+}
+.ch-fig svg { width: min(88%, 620px); height: auto; opacity: .72; }
+html.webgl .ch-fig { display: none; }
+
+/* 文字の帯。3Dの上に乗る */
+.beat {
+  position: relative;
+  min-height: 62vh;
+  display: grid;
+  align-content: center;
+  padding: 0 22px;
+}
+.blk { width: min(100% - 0px, 1180px); margin-inline: auto; }
+.blk-in {
+  max-width: 46ch;                 /* 和文で約23字 */
+  margin-left: auto;               /* デスクトップは右側に寄せる（中央揃え一辺倒を避ける） */
+  background: linear-gradient(to right, transparent, rgba(20,19,18,.84) 56px);
+  padding: var(--sp-m) var(--sp-m) var(--sp-m) var(--sp-l);
+  border-left: 1px solid rgba(237,231,218,.14);
+}
+.blk-in > * + * { margin-top: var(--sp-m); }
+.blk-in .label + h2 { margin-top: var(--sp-s); }
+
+h2 { font-size: var(--fs-h2); color: var(--hakua); }
+.blk-in p { max-width: 42ch; }
+
+/* 諸元表 */
+.spec { display: grid; grid-template-columns: auto 1fr; gap: 4px var(--sp-m); font-size: 14px; }
+.spec dt { color: var(--usu); }
+.spec dd { color: var(--hakua); font-family: var(--mono); letter-spacing: .04em; font-variant-numeric: tabular-nums; }
+
+/* ── 章0 入場 ──────────────────────────────────────────── */
+.hero {
+  position: relative;
+  height: var(--h-hero);
+  display: grid;
+  align-content: center;
+  padding: 0 22px;
+  overflow: hidden;
+}
+.hero-in { width: min(100% , 1180px); margin-inline: auto; }
+
+.hero h1 {
+  font-size: var(--fs-display);
+  color: var(--hakua);
+  line-height: 1;
+  letter-spacing: normal;
+}
+/* 題字は最初から描かれている。上の面（幕）が退場して現れる */
+.hero-veil {
+  position: absolute; inset: 0; z-index: 4;
+  background: var(--yami);
+  clip-path: inset(0 0 100% 0);
+  animation: veil 1400ms var(--ease-inout-quart) both;
+}
+@keyframes veil {
+  from { clip-path: inset(0 0 0 0); }
+  to   { clip-path: inset(0 0 100% 0); }
+}
+
+/* 副題：マスク内せり上がり。幕が退場したあと 200ms 遅れて動く */
+.mask { overflow: hidden; display: block; }
+.mask > span { display: block; }
+.hero-sub {
+  margin-top: var(--sp-m);
+  font-family: var(--mincho);
+  font-size: var(--fs-h2);
+  color: var(--hai);
+  letter-spacing: normal;
+}
+.hero-sub > span {
+  animation: rise var(--dur) var(--ease-out-quart) 1600ms both;
+}
+@keyframes rise {
+  from { transform: translate3d(0, 105%, 0); }
+  to   { transform: translate3d(0, 0, 0); }
+}
+.hero-meta {
+  margin-top: var(--sp-l);
+  animation: fade 1000ms linear 2400ms both;
+}
+@keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+
+.hero-scroll {
+  position: absolute; left: 22px; bottom: var(--sp-l); z-index: 5;
+  animation: fade 1000ms linear 2600ms both;
+}
+.hero-scroll .rule {
+  display: block; width: 1px; height: 54px; margin-top: var(--sp-s);
+  background: linear-gradient(var(--usu), transparent);
+}
+
+/* ── 章2 木取り：署名の瞬間 ────────────────────────────── */
+.koguchi-stage {
+  position: sticky; top: 0;
+  height: 100vh;
+  display: grid; place-items: center;
+  z-index: 1;
+}
+.koguchi {
+  position: relative;
+  width: min(86vw, 78vh);
+  aspect-ratio: 1;
+}
+/* WebGLが動いているときは、3Dの木口が正面に来たところで重ねる */
+html.webgl .koguchi { opacity: var(--kop, 0); }
+.koguchi img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.koguchi svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+/* 木取り線：白亜（チョーク）。太い柔らかい層と細い明るい層の2枚重ね */
+.kd { fill: none; stroke: var(--hakua); stroke-linecap: round; }
+.kd-dust { stroke-width: 10; opacity: .22; }      /* チョークの粉 */
+.kd-line { stroke-width: 3.2; opacity: .95; }     /* 芯の線 */
+.kd-thin { stroke-width: 2; opacity: .7; }
+/* 白太（明るい部分）の上でも読めるよう、文字の裏に暗い縁を敷く。
+   チョークが木に乗っている見え方とも噛み合う */
+.k-txt {
+  font-family: var(--gothic); font-size: 26px; letter-spacing: .05em;
+  fill: var(--hakua); opacity: .95;
+  paint-order: stroke fill;
+  stroke: rgba(16,14,12,.62); stroke-width: 6px; stroke-linejoin: round;
+}
+.k-txt.sub { font-size: 22px; opacity: .72; }
+.k-txt.hi { fill: #E9A85C; opacity: 1; }
+
+/* JSが動くまでは線は引かれた状態。JSが付いたら引き直す */
+html.js .kd-anim { stroke-dasharray: var(--len); stroke-dashoffset: var(--len); }
+html.js .k-late { opacity: 0; }
+
+.ch2 .beat { min-height: 0; padding-top: var(--sp-x); }
+/* 章2の文字は明るい木口の上に乗るので、地を濃くして 5.8:1 を確保する */
+.ch2 .blk-in { margin-left: 0; margin-right: auto; background: rgba(20,19,18,.88); }
+
+/* ── 章4 オドメーター ──────────────────────────────────── */
+.odo { display: flex; align-items: baseline; gap: 2px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.odo-d { display: inline-block; overflow: hidden; height: 1em; line-height: 1; }
+.odo-d i { display: block; font-style: normal; will-change: transform; }
+.gauge { display: grid; gap: var(--sp-s); font-size: 15px; }
+.gauge-row { display: flex; align-items: baseline; gap: var(--sp-m); }
+.gauge-row .k { color: var(--usu); min-width: 5em; }
+.gauge-row .v { color: var(--hakua); font-size: clamp(24px, 3.4vw, 34px); line-height: 1.2; }
+.gauge-row .u { color: var(--usu); font-size: 14px; }
+.gauge-from { color: var(--usu); font-family: var(--mono); }
+
+/* ── 導線 ──────────────────────────────────────────────── */
+.cta { display: flex; flex-wrap: wrap; gap: var(--sp-m); align-items: center; }
+.btn {
+  display: inline-block;
+  padding: 15px 30px;
+  background: var(--hakua); color: var(--yami);
+  text-decoration: none; font-size: 15px;
+  border: 1px solid var(--hakua);
+  transition: background 200ms linear, color 200ms linear;
+}
+.btn:hover { background: transparent; color: var(--hakua); }
+.btn-2 {
+  background: transparent; color: var(--hai);
+  border-color: rgba(237,231,218,.3);
+}
+.btn-2:hover { background: transparent; color: var(--hakua); border-color: var(--hakua); }
+
+/* ── フッター ──────────────────────────────────────────── */
+.foot {
+  position: relative; z-index: 2;
+  background: var(--yami);
+  border-top: 1px solid rgba(237,231,218,.14);
+  padding: var(--sp-x) 22px var(--sp-l);
+}
+.foot-in { width: min(100%, 1180px); margin-inline: auto; }
+.foot-grid { display: flex; flex-wrap: wrap; gap: var(--sp-l); justify-content: space-between; align-items: flex-start; }
+.foot-name { font-family: var(--mincho); font-size: 21px; color: var(--hakua); }
+.foot-info { margin-top: var(--sp-s); font-size: 14px; color: var(--usu); line-height: 2.1; }
+.foot-info .sep { color: rgba(154,148,137,.5); }
+.foot-back { font-size: 14px; color: var(--hai); text-decoration: none; border-bottom: 1px solid rgba(237,231,218,.3); padding-bottom: 3px; }
+.foot-back:hover { color: var(--hakua); border-color: var(--hakua); }
+.foot-note {
+  margin-top: var(--sp-x);
+  padding-top: var(--sp-m);
+  border-top: 1px solid rgba(237,231,218,.1);
+  font-size: 13px; line-height: 2; color: var(--usu); letter-spacing: .06em;
+  max-width: 72ch;
+}
+.foot-note strong { color: var(--hai); font-weight: 400; }
+
+/* ── 出現（JSが起動してから隠す。JSが死んでも全部見える）───── */
+html.js .js-rise > .in { transform: translate3d(0, 100%, 0); }
+html.js .js-rise.is-show > .in { transform: translate3d(0, 0, 0); }
+.js-rise { overflow: hidden; }
+.js-rise > .in { transition: transform var(--dur) var(--ease-out-quart); transition-delay: var(--d, 0ms); }
+
+html.js .js-fade { opacity: 0; transition: opacity var(--dur) linear; transition-delay: var(--d, 0ms); }
+html.js .js-fade.is-show { opacity: 1; }
+
+/* ── 開発用のフレーム計測（?debug のときだけ出る）─────────── */
+.hud {
+  position: fixed; right: 10px; bottom: 10px; z-index: 80;
+  font-family: var(--mono); font-size: 12px; line-height: 1.6;
+  color: var(--kohaku); background: rgba(20,19,18,.86);
+  border: 1px solid rgba(192,138,74,.4); padding: 8px 12px;
+  white-space: pre; pointer-events: none;
+}
+
+/* ── モバイル ──────────────────────────────────────────── */
+@media (max-width: 700px) {
+  :root {
+    --h-ch1: 70vh; --h-ch2: 210vh; --h-ch3: 260vh; --h-ch4: 215vh; --h-ch5: 235vh;
+  }
+  body { font-size: 15px; }
+  .blk-in {
+    margin-left: 0; max-width: none;
+    padding: var(--sp-m) var(--sp-m) var(--sp-m) var(--sp-m);
+    background: rgba(20,19,18,.84);
+    backdrop-filter: blur(2px);
+  }
+  .blk-in p { max-width: none; }
+  .beat { min-height: 68vh; }
+  .koguchi { width: min(92vw, 62vh); }
+  .k-txt { font-size: 34px; }
+  .k-txt.sub { font-size: 29px; }
+  .foot-grid { gap: var(--sp-m); }
+}
+
+/* ── 動きを減らす設定：出現は即時・3Dは起動しない ─────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-veil { animation: none; clip-path: inset(0 0 100% 0); }
+  .hero-sub > span, .hero-meta, .hero-scroll { animation: none; }
+  html.js .js-rise > .in { transform: none; }
+  html.js .js-fade { opacity: 1; }
+  #stage { display: none; }
+  .btn { transition: none; }
+}
+</style>
+<script>
+/* 出現の初期状態（隠し）はJSが起動したときだけ有効にする。
+   JSが無ければ全文が最初から見える。
+   万一 main.js が起動しなかった場合も 3秒後に隠しを解除して読める状態へ戻す。 */
+(function () {
+  var d = document.documentElement;
+  d.className += " js";
+  setTimeout(function () { if (!d.classList.contains("js-ready")) d.classList.remove("js"); }, 3000);
+})();
+</script>
+</head>
+<body>
+<a class="skip" href="#story">本文へ</a>
+
+<canvas id="stage" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<main id="story">
+
+  <!-- ══ 章0 入場 ══════════════════════════════════════════ -->
+  <section class="hero" aria-labelledby="t">
+    <div class="hero-veil" aria-hidden="true"></div>
+    <div class="hero-in">
+      <h1 id="t">木挽舎</h1>
+      <p class="hero-sub mask"><span>一本の丸太が、柱になるまで。</span></p>
+      <p class="hero-meta label">Kobikisha&nbsp;/&nbsp;Hanno, Saitama</p>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span class="label">下へ</span>
+      <span class="rule"></span>
+    </div>
+  </section>
+
+  <!-- ══ 章1 原木 ══════════════════════════════════════════ -->
+  <section class="ch ch1" aria-labelledby="h1x">
+    <div class="ch-fig" aria-hidden="true">
+      <!-- WebGLが動かないときの図：原木の側面 -->
+      <svg viewBox="0 0 620 300" role="img" aria-label="末口径360mm、長さ3.2mの原木の側面図">
+        <g fill="none" stroke="#EDE7DA" stroke-width="1.6" opacity=".85">
+          <rect x="60" y="96" width="500" height="108" rx="6"/>
+          <ellipse cx="560" cy="150" rx="16" ry="54"/>
+          <ellipse cx="60" cy="150" rx="16" ry="54"/>
+        </g>
+        <g fill="none" stroke="#8A857B" stroke-width="1" stroke-dasharray="5 5">
+          <path d="M596 96 H612 M596 204 H612 M604 96 V204"/>
+          <path d="M60 236 V252 M560 236 V252 M60 244 H560"/>
+        </g>
+        <g fill="#EDE7DA" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="13" opacity=".8">
+          <text x="588" y="88" text-anchor="middle">360</text>
+          <text x="310" y="270" text-anchor="middle">3,200</text>
+        </g>
+        <g fill="none" stroke="#8A857B" stroke-width=".9" opacity=".55">
+          <path d="M110 100 Q130 150 108 200 M180 98 Q200 150 176 202 M250 100 Q272 150 248 200 M330 99 Q352 150 328 201 M410 100 Q430 150 408 200 M480 98 Q502 150 478 202"/>
+        </g>
+      </svg>
+    </div>
+    <div class="beat">
+      <div class="blk">
+        <div class="blk-in">
+          <p class="label js-fade">一 ／ 原木</p>
+          <h2 id="h1x" class="js-rise"><span class="in">この一本は、名栗の谷から来た</span></h2>
+          <p class="js-fade" style="--d:150ms">一月に伐って、山で二か月寝かせたものです。葉枯らしといって、葉を付けたまま置いておくと水が抜けます。ただ、うちは山を持っていないので、いつ伐るかは自分では決められません。市場に出たものを買ってくるだけです。</p>
+          <dl class="spec js-fade" style="--d:300ms">
+            <dt>末口径</dt><dd>360mm</dd>
+            <dt>樹齢</dt><dd>68年</dd>
+            <dt>伐採</dt><dd>2025年1月</dd>
+            <dt>樹種</dt><dd>スギ（西川材）</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 章2 木取り（署名の瞬間）══════════════════════════ -->
+  <section class="ch ch2" aria-labelledby="h2x">
+    <div class="koguchi-stage">
+      <div class="koguchi" id="koguchi">
+        <picture>
+          <source srcset="img/koguchi-512.webp" media="(max-width: 700px)">
+          <img src="img/koguchi-1024.webp" width="1024" height="1024" decoding="async"
+               alt="伐り出したスギの木口。樹皮のすぐ内側に白い辺材、中心寄りに赤みの心材があり、芯は中央から左上へ寄っている。">
+        </picture>
+        <svg viewBox="0 0 1024 1024" id="kizuri" role="img" aria-label="木口に引いた六本の木取り線。下から順に、板48×199、板48×297、板58×343、芯を含む柱取り112×275、板36×193の五材と、上下の端材に分かれる。">
+          <!-- 六本の木取り線。芯（364.9, 360.1）を柱取りの帯に入れるため、線は下へ寄っている -->
+          <g class="kd kd-dust" aria-hidden="true">
+            <path d="M238.9 938.7 Q512 942.4 785.1 937.2"/>
+            <path d="M104.9 802.1 Q512 797.3 919.1 803.6"/>
+            <path d="M40.7 665.6 Q512 669.9 983.3 664.4"/>
+            <path d="M18.0 500.6 Q512 496.2 1006.0 501.9"/>
+            <path d="M134.2 182.0 Q512 186.1 889.8 181.0"/>
+            <path d="M247.3 79.6 Q512 76.0 776.7 80.8"/>
+          </g>
+          <g class="kd kd-line">
+            <path class="kd-anim" style="--len:548" d="M238.9 938.7 Q512 942.4 785.1 937.2"/>
+            <path class="kd-anim" style="--len:816" d="M104.9 802.1 Q512 797.3 919.1 803.6"/>
+            <path class="kd-anim" style="--len:945" d="M40.7 665.6 Q512 669.9 983.3 664.4"/>
+            <path class="kd-anim" style="--len:990" d="M18.0 500.6 Q512 496.2 1006.0 501.9"/>
+            <path class="kd-anim" style="--len:758" d="M134.2 182.0 Q512 186.1 889.8 181.0"/>
+            <path class="kd-anim" style="--len:531" d="M247.3 79.6 Q512 76.0 776.7 80.8"/>
+          </g>
+          <!-- 芯の位置。ここを板に入れないために線が寄っている -->
+          <g class="k-late" id="kPith">
+            <g class="kd kd-thin" stroke="#C08A4A" opacity=".9">
+              <circle cx="364.9" cy="360.1" r="17"/>
+              <path d="M364.9 331v-24 M364.9 389v24 M335.9 360.1h-24 M393.9 360.1h24"/>
+            </g>
+            <text class="k-txt hi" x="288" y="318" transform="rotate(-1.5 288 318)">芯</text>
+          </g>
+          <!-- 部材の記入。線を引き終えてから書き込む -->
+          <g class="k-late" id="kLabels">
+            <text class="k-txt sub" x="430" y="988" transform="rotate(1 430 988)">端材 30</text>
+            <text class="k-txt" x="600" y="879" transform="rotate(-1 600 879)">板 48×199</text>
+            <text class="k-txt" x="660" y="743" transform="rotate(1.5 660 743)">板 48×297</text>
+            <text class="k-txt" x="585" y="592" transform="rotate(-1 585 592)">板 58×343</text>
+            <text class="k-txt hi" x="612" y="352" transform="rotate(1 612 352)">柱取り 112×275</text>
+            <text class="k-txt" x="555" y="140" transform="rotate(-1.5 555 140)">板 36×193</text>
+            <text class="k-txt sub" x="430" y="56" transform="rotate(1 430 56)">端材 28</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="beat">
+      <div class="blk">
+        <div class="blk-in">
+          <p class="label js-fade">二 ／ 木取り</p>
+          <h2 id="h2x" class="js-rise"><span class="in">まだ挽かない</span></h2>
+          <p class="js-fade" style="--d:150ms">木口を見れば、中はだいたい分かります。この木は芯が左上に寄っている。真ん中で挽くと板が反るので、線は下へずらしました。</p>
+          <p class="js-fade" style="--d:300ms">芯は柱に回します。板に芯が入ると、乾く途中で必ず割れるので。</p>
+          <p class="js-fade" style="--d:450ms">六回挽けば刃厚のぶんだけ木が減ります。<span class="num">1.2mm</span> が六回で <span class="num">7.2mm</span>。一本なら大したことはありませんが、年間で見ると馬鹿になりません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 章3 製材 ══════════════════════════════════════════ -->
+  <section class="ch ch3" aria-labelledby="h3x">
+    <div class="ch-fig" aria-hidden="true">
+      <!-- WebGLが動かないときの図：五材が扇状に開いた断面 -->
+      <svg viewBox="0 0 620 340" role="img" aria-label="丸太から取り出した五つの部材が扇状に開いた断面図">
+        <g fill="none" stroke="#EDE7DA" stroke-width="1.5" opacity=".85">
+          <g transform="rotate(-11 310 300)"><rect x="200" y="36" width="220" height="26"/></g>
+          <g transform="rotate(-5.5 310 300)"><rect x="150" y="82" width="320" height="26"/></g>
+          <rect x="122" y="130" width="376" height="32"/>
+          <g transform="rotate(5.5 310 300)"><rect x="160" y="184" width="300" height="60" stroke="#C08A4A"/></g>
+          <g transform="rotate(11 310 300)"><rect x="204" y="268" width="212" height="20"/></g>
+        </g>
+        <g fill="#EDE7DA" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" opacity=".72">
+          <text x="440" y="30" >36</text>
+          <text x="492" y="78">58</text>
+          <text x="512" y="152">48</text>
+          <text x="480" y="228" fill="#C08A4A">112</text>
+          <text x="436" y="312">48</text>
+        </g>
+      </svg>
+    </div>
+    <div class="beat">
+      <div class="blk">
+        <div class="blk-in">
+          <p class="label js-fade">三 ／ 製材</p>
+          <h2 id="h3x" class="js-rise"><span class="in">帯鋸は一台きり</span></h2>
+          <p class="js-fade" style="--d:150ms">一度に一枚しか挽けません。同じ距離を六回通します。台車を送る速さは音で決めています。無理をさせると鋸が鳴くので、鳴いたら戻して挽き直します。</p>
+        </div>
+      </div>
+    </div>
+    <div class="beat">
+      <div class="blk">
+        <div class="blk-in">
+          <p class="js-fade">刃は二日に一度研ぎます。外に出すと戻りが一週間かかるので、研ぎ台は工場の中に置いてあります。</p>
+          <p class="js-fade" style="--d:150ms">図面のうえでは八割取れます。実際に出荷できるのは六割いくかどうか。耳を落として、乾かして、反ったぶんを削ると、そのくらいになります。</p>
+          <dl class="spec js-fade" style="--d:300ms">
+            <dt>帯鋸</dt><dd>1台</dd>
+            <dt>刃厚</dt><dd>1.2mm</dd>
+            <dt>挽き回数</dt><dd>6回</dd>
+            <dt>歩留まり</dt><dd>図面 80% ／ 実出荷 約58%</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 章4 桟積み ════════════════════════════════════════ -->
+  <section class="ch ch4" aria-labelledby="h4x">
+    <div class="ch-fig" aria-hidden="true">
+      <!-- WebGLが動かないときの図：桟積みの断面 -->
+      <svg viewBox="0 0 620 320" role="img" aria-label="板と板のあいだに30mm角の桟木を450mm間隔で挟んだ桟積みの断面図">
+        <g fill="none" stroke="#EDE7DA" stroke-width="1.4" opacity=".85">
+          <rect x="120" y="52" width="380" height="20"/>
+          <rect x="120" y="102" width="380" height="20"/>
+          <rect x="120" y="152" width="380" height="26"/>
+          <rect x="120" y="208" width="380" height="20"/>
+          <rect x="120" y="258" width="380" height="20"/>
+        </g>
+        <g fill="none" stroke="#C08A4A" stroke-width="1.4" opacity=".9">
+          <rect x="150" y="72" width="16" height="30"/><rect x="302" y="72" width="16" height="30"/><rect x="454" y="72" width="16" height="30"/>
+          <rect x="150" y="122" width="16" height="30"/><rect x="302" y="122" width="16" height="30"/><rect x="454" y="122" width="16" height="30"/>
+          <rect x="150" y="178" width="16" height="30"/><rect x="302" y="178" width="16" height="30"/><rect x="454" y="178" width="16" height="30"/>
+          <rect x="150" y="228" width="16" height="30"/><rect x="302" y="228" width="16" height="30"/><rect x="454" y="228" width="16" height="30"/>
+        </g>
+        <g fill="none" stroke="#8A857B" stroke-width=".9" stroke-dasharray="4 4">
+          <path d="M158 296 H310 M310 296 H462 M158 288 V304 M310 288 V304 M462 288 V304"/>
+        </g>
+        <g fill="#8A857B" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12">
+          <text x="234" y="292" text-anchor="middle">450</text>
+          <text x="386" y="292" text-anchor="middle">450</text>
+          <text x="536" y="92" fill="#C08A4A">桟 30角</text>
+        </g>
+      </svg>
+    </div>
+    <div class="beat">
+      <div class="blk">
+        <div class="blk-in">
+          <p class="label js-fade">四 ／ 桟積み</p>
+          <h2 id="h4x" class="js-rise"><span class="in">十四か月、置いておくだけ</span></h2>
+          <div class="gauge js-fade" style="--d:150ms" id="gauge">
+            <div class="gauge-row">
+              <span class="k">含水率</span>
+              <span class="v"><span class="gauge-from num">32%</span> <span aria-hidden="true">→</span> <span class="odo" data-odo="15" data-from="32" data-fixed="2">15</span>%</span>
+            </div>
+            <div class="gauge-row">
+              <span class="k">経過</span>
+              <span class="v"><span class="odo" data-odo="14" data-from="0" data-fixed="2">14</span> <span class="u">か月</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="beat">
+      <div class="blk">
+        <div class="blk-in">
+          <p class="js-fade">桟は <span class="num">30mm</span> 角を <span class="num">450mm</span> 間隔で入れます。狭いと乾きが遅い。広いと板が自分の重さで垂れます。</p>
+          <p class="js-fade" style="--d:150ms">それでも反りは止まりきりません。うちが約束できるのは「大きくは反らない」までです。</p>
+          <p class="js-fade" style="--d:300ms">納期を聞かれるのがいちばん困ります。乾く速さはその年の梅雨で変わるので、こちらでは決められません。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ 章5 柱になる ══════════════════════════════════════ -->
+  <section class="ch ch5" aria-labelledby="h5x">
+    <div class="ch-fig" aria-hidden="true">
+      <!-- WebGLが動かないときの図：105角の柱 -->
+      <svg viewBox="0 0 620 340" role="img" aria-label="112mm角の柱取り材を105mm角に挽き直した柱の断面図と立面図">
+        <g fill="none" stroke="#8A857B" stroke-width="1.2" stroke-dasharray="5 4">
+          <rect x="60" y="96" width="120" height="120"/>
+        </g>
+        <g fill="none" stroke="#EDE7DA" stroke-width="1.6">
+          <rect x="64" y="100" width="112" height="112"/>
+          <circle cx="106" cy="142" r="9" stroke="#C08A4A"/>
+        </g>
+        <g fill="none" stroke="#EDE7DA" stroke-width="1.6" opacity=".9">
+          <rect x="330" y="24" width="86" height="290"/>
+          <path d="M348 96h50 M348 97a25 25 0 0 0 50 0" stroke="#C08A4A"/>
+        </g>
+        <g fill="#EDE7DA" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="12" opacity=".78">
+          <text x="120" y="248" text-anchor="middle">105</text>
+          <text x="373" y="336" text-anchor="middle">3,000</text>
+          <text x="428" y="104" fill="#C08A4A">節</text>
+          <text x="120" y="82" text-anchor="middle" fill="#8A857B">112</text>
+        </g>
+      </svg>
+    </div>
+    <div class="beat">
+      <div class="blk">
+        <div class="blk-in">
+          <p class="label js-fade">五 ／ 柱</p>
+          <h2 id="h5x" class="js-rise"><span class="in">やっと名前が付く</span></h2>
+          <p class="js-fade" style="--d:150ms"><span class="num">105mm</span> 角に挽き直して、ようやく現場に出ます。丸太が土場に来てから一年二か月。</p>
+          <p class="js-fade" style="--d:300ms">節は出ます。うちは節を埋めません。埋めると、どこが弱いか分からなくなるので。</p>
+        </div>
+      </div>
+    </div>
+    <div class="beat">
+      <div class="blk">
+        <div class="blk-in">
+          <p class="js-fade">この柱がどこへ行くかは、ここからは工務店の仕事です。</p>
+          <div class="cta js-fade" style="--d:150ms">
+            <a class="btn" href="../demo4-sugito/">この柱で建てる工務店を見る</a>
+            <a class="btn btn-2" href="../">制作実績の一覧へ</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div class="foot-grid">
+      <div>
+        <p class="foot-name">木挽舎</p>
+        <p class="foot-info">
+          <span class="nowrap">〒357-0000</span><span class="sep">　</span><span class="nowrap">埼玉県飯能市原町 0-00-0</span><br>
+          <span class="nowrap">042-000-0000</span><span class="sep">　／　</span><span class="nowrap">7:30〜17:00</span><span class="sep">　／　</span><span class="nowrap">日曜・第2土曜 休</span><br>
+          <span class="nowrap">帯鋸 1台</span><span class="sep">　／　</span><span class="nowrap">乾燥は天然乾燥のみ</span>
+        </p>
+      </div>
+      <a class="foot-back" href="../">制作実績の一覧へ戻る</a>
+    </div>
+
+    <p class="foot-note">
+      ※このサイトは制作実績を紹介するためのデモです。<strong>木挽舎は架空の製材所</strong>で、社名・住所・電話番号・営業時間・数値・職人の話は、すべて制作のための設定です。実在の会社や個人とは関係ありません。<br>
+      ※木口の写真は杉戸工務店デモと同じ素材を使い回しています。丸太・板・桟木の立体はすべてブラウザ上で計算して描いています（外部の3Dモデルは使っていません）。<br>
+      ※末口径・刃厚・桟の間隔・含水率・105mm角といった数値は、国産スギの製材で一般的な範囲にもとづく設定値です。特定の事業者の実績ではありません。
+    </p>
+  </div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "木挽舎",
+  "description": "埼玉県飯能市の製材所。帯鋸一台で原木を挽き、天然乾燥で仕上げる（制作実績紹介のための架空の設定）",
+  "areaServed": "埼玉県飯能市・日高市・入間市",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "JP",
+    "addressRegion": "埼玉県",
+    "addressLocality": "飯能市",
+    "postalCode": "357-0000"
+  },
+  "openingHours": "Mo-Sa 07:30-17:00",
+  "disambiguatingDescription": "架空。ウェブサイト制作のデモンストレーション用に作成された、実在しない製材所です。社名・住所・電話番号・数値・証言はすべて架空の設定です。"
+}
+</script>
+
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.171.0/build/three.module.min.js" } }
+</script>
+<script type="module" src="main.js"></script>
+</body>
+</html>
